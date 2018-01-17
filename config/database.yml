@@ -1,12 +1,19 @@
-development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+defaults: &defaults
+  adapter: mysql2
+  encoding: utf8
   pool: 5
-  timeout: 5000
+  username: root
+  password: 
+
+# note we share same db for dev and production!
+development:
+  <<: *defaults
+  database: mezmurs_development
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
+  <<: *defaults
+  database: mezmurs_test
 
+production:
+  <<: *defaults
+  database: mezmurs_production
