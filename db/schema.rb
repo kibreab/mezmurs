@@ -12,9 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20180117082837) do
 
-  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "songs", force: :cascade do |t|
+    t.string "title"
     t.text "description"
+    t.string "type"
+    t.string "category"
+    t.integer "album_number"
+    t.string "singer"
+    t.string "filename"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

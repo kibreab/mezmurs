@@ -10,11 +10,15 @@ end
 
 def generate_data
   10.times do
-    item = Item.new
-    item.name = "Item"
-    item.description = "I am a description."
-    item.save!
-    puts "Generated item  # #{item.id}"
+    song = Song.new
+    song.title = "Song1"
+    song.description = "Classical of Nebse Hoy"
+    song.filename = "Nebse Hoy - Track 1.mp3"
+    song.singer = "some guy"
+    type = "Song"
+    category = "Misgana"
+    song.save!
+    puts "Generated item  # #{song.id}"
   end
 end
 end

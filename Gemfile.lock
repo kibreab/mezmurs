@@ -76,6 +76,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
+    pg (0.21.0)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -154,6 +155,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   mysql2 (>= 0.3.13, < 0.5)
+  pg (~> 0.20)
   rails (= 5.1.0)
   react-rails
   responders

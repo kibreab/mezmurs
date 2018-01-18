@@ -1,66 +1,66 @@
 var Body = React.createClass({
     getInitialState() {
-        return { items: [] }
+        return { songs: [] }
     },
 
 
     componentDidMount() {
-        $.getJSON('/api/v1/items.json', (response) => { this.setState({ items: response }) });
+        $.getJSON('/api/v1/songs.json', (response) => { this.setState({ songs: response }) });
     },
 
 
 
-    handleSubmit(item) {
-        var newState = this.state.items.concat(item);
-        this.setState({ items: newState })
+    handleSubmit(song) {
+        var newState = this.state.songs.concat(song);
+        this.setState({ songs: newState })
     },
 
 
     handleDelete(id) {
         $.ajax({
-            url: `/api/v1/items/${id}`,
+            url: `/api/v1/songs/${id}`,
             type: 'DELETE',
             success:() => {
-               this.removeItemClient(id);
+               this.removesongClient(id);
             }
         });
     },
 
-    removeItemClient(id) {
-        var newItems = this.state.items.filter((item) => {
-            return item.id != id;
+    removesongClient(id) {
+        var newsongs = this.state.songs.filter((song) => {
+            return song.id != id;
         });
 
-        this.setState({ items: newItems });
+        this.setState({ songs: newsongs });
     },
 
 
 
-    handleUpdate(item) {
+    handleUpdate(song) {
         $.ajax({
-                url: `/api/v1/items/${item.id}`,
+                url: `/api/v1/songs/${song.id}`,
                 type: 'PUT',
-                data: { item: item },
+                data: { song: song },
                 success: () => {
-                    this.updateItems(item);
+                    this.updatesongs(song);
 
                 }
             }
         )},
 
-    updateItems(item) {
-        var items = this.state.items.filter((i) => { return i.id != item.id });
-        items.push(item);
+    updatesongs(song) {
+        var songs = this.state.songs.filter((i) => { return i.id != song.id });
+        songs.push(song);
 
-        this.setState({items: items });
+        this.setState({songs: songs });
     },
 
 
     render() {
         return (
             <div>
-                <NewItem handleSubmit={this.handleSubmit}/>
-                <AllItems  items={this.state.items}  handleDelete={this.handleDelete} onUpdate={this.handleUpdate}/>
+                <NewSong handleSubmit={this.handleSubmit}/>
+                <Allsongs  songs={this.state.songs}  handleDelete={this.handleDelete} onUpdate={this.handleUpdate}/>             
             </div>
         )
     }

@@ -1,11 +1,11 @@
-var NewItem= React.createClass({
+var NewSong= React.createClass({
     handleClick() {
-        var name    = this.refs.name.value;
+        var title    = this.refs.title.value;
         var description = this.refs.description.value;
         $.ajax({
-            url: '/api/v1/items',
+            url: '/api/v1/songs',
             type: 'POST',
-            data: { item: { name: name, description: description } },
+            data: { song: { title: title, description: description } },
             success: (item) => {
                 this.props.handleSubmit(item);
             }
@@ -14,7 +14,7 @@ var NewItem= React.createClass({
     render() {
         return (
                 <div>
-                    {/*<input ref='name' placeholder='Enter the name of the item' />
+                    {/*<input ref='title' placeholder='Enter the title of the item' />
                     <input ref='description' placeholder='Enter a description' />
                     <button onClick={this.handleClick}>Submit</button>*/}
                 </div>
