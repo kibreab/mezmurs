@@ -16,13 +16,26 @@ var Item = React.createClass({
     handleCancel() {
         this.setState({ editable: !this.state.editable })
     },    
-
+    handleLoginKeyUp(item) {
+        transcrire();
+    },
     render() {
+        //<input type='text' ref='description' defaultValue={this.props.item.description} />
         var name = this.state.editable ? <input type='text' ref='name' defaultValue={this.props.item.name} /> : <h3>{this.props.item.name}</h3>;
-        var description = this.state.editable ? <input type='text' ref='description' defaultValue={this.props.item.description} />: <p>{this.props.item.description}</p>;
+        var description = this.state.editable ?  <div className="midcol">
+                <div className="app">
+                    <form name="conversion" method="get" action="" target="">
+                        <textarea defaultValue={this.props.item.description} ref='description' id="saisie" onKeyUp={this.handleLoginKeyUp} className="editor"  placeholder="መጻፍ ይጀምሩ..."></textarea>
+                    </form>
+
+                </div>
+            </div> : <p>{this.props.item.description}</p>;
         var cancelButton = this.state.editable ? <button onClick={this.handleCancel} >Cancel</button>: '';
         return (
             <div>
+                <audio controls ref="audio">
+                  <source src="/assets/Nebse Hoy - Track 1.mp3" type="audio/mpeg" />
+                </audio>
                 {name}
                 {description}
                 {cancelButton}
