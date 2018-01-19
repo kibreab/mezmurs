@@ -24,7 +24,7 @@ video {
   /* 2 */
 }
 audio:not([controls]) {
-  display: none;
+  display: inline-block !important;
   height: 0;
 }
 
@@ -411,3 +411,10 @@ form {
   }
 }
   
+#playlist div a{
+  color:black;
+  text-decoration: none;
+}
+#playlist .current-song a{
+  color:red;
+}

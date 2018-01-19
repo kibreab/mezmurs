@@ -2,6 +2,32 @@ var Song = React.createClass({
     getInitialState() {
         return {editable: false}
     },
+    componentDidMount(){
+      this.audioPlayer();
+    },
+    audioPlayer(){
+        var currentSong = 0;
+        $("#audioPlayer")[0].src = $("#playlist div a")[0];
+        $("#audioPlayer")[0].play();
+        $("#playlist div a").click(function(e){
+           e.preventDefault(); 
+           $("#audioPlayer")[0].src = this;
+           $("#audioPlayer")[0].play();
+           $("#playlist div").removeClass("current-song");
+            currentSong = $(this).parent().index();
+            $(this).parent().addClass("current-song");
+        });
+        
+        $("#audioPlayer")[0].addEventListener("ended", function(){
+           currentSong++;
+            if(currentSong == $("#playlist div a").length)
+                currentSong = 0;
+            $("#playlist div").removeClass("current-song");
+            $("#playlist div:eq("+currentSong+")").addClass("current-song").addClass("highlighted");
+            $("#audioPlayer")[0].src = $("#playlist div a")[currentSong].href;
+            $("#audioPlayer")[0].play();
+        });  
+    },
     handleEdit() {
         if(this.state.editable) {
             var title = this.refs.title.value;
@@ -33,16 +59,16 @@ var Song = React.createClass({
         var cancelButton = this.state.editable ? <button onClick={this.handleCancel} >Cancel</button>: '';
         return (
             <div>
-                <audio controls ref="audio">
-                  <source src={"/assets/" + this.props.song.filename} type="audio/mpeg" />
-                </audio>
-                {title}
-                <div>{this.props.song.singer}</div>
-                <div>{"3"}</div>                
+                
+                <div id="playlist">
+                    <div className="current-song"><a href={"assets/" + this.props.song.filename}>{title}</a></div>
+                </div>                
+                
+                <div>{this.props.song.singer}</div>            
                 {description}
                 {cancelButton}
                 <button onClick={this.handleEdit}> {this.state.editable ? 'Submit' : 'Edit' } </button>
-                <button onClick={this.props.handleDelete} >Delete</button>
+                <button onClick={this.props.handleDelete} >Delete</button>             
             </div>
         )
     }

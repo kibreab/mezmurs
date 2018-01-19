@@ -19,7 +19,10 @@ var Allsongs = React.createClass({
             });
 
         return(
+
             <div>
+                <audio src="" controls id="audioPlayer">
+                </audio>
                 {songs}
             </div>
         )
