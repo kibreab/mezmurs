@@ -58,10 +58,10 @@ var Song = React.createClass({
             </div> : <p>{this.props.song.description}</p>;
         var cancelButton = this.state.editable ? <button onClick={this.handleCancel} >Cancel</button>: '';
         return (
-            <div>
+            <div className="current-song">
                 
                 <div id="playlist">
-                    <div className="current-song"><a href={"assets/" + this.props.song.filename}>{title}</a></div>
+                    <div><a href={"assets/" + this.props.song.filename}>{title}</a></div>
                 </div>                
                 
                 <div>{this.props.song.singer}</div>            
