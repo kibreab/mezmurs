@@ -45,9 +45,9 @@ GEM
       execjs (~> 2.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
-    bootbox-rails (0.5.0)
     builder (3.2.3)
     byebug (9.0.6)
+    commonjs (0.2.7)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     devise (4.4.0)
@@ -69,6 +69,13 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.6)
+    less (2.6.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.8.0)
+      actionpack (>= 4.0)
+      less (~> 2.6.0)
+      sprockets (> 2, < 4)
+      tilt
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.5)
@@ -143,6 +150,11 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
+    twitter-bootstrap-rails (4.0.0)
+      actionpack (~> 5.0, >= 5.0.1)
+      execjs (~> 2.7)
+      less-rails (~> 2.8, >= 2.8.0)
+      railties (~> 5.0, >= 5.0.1)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
@@ -162,7 +174,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootbox-rails (~> 0.4)
   byebug
   devise
   jbuilder
@@ -174,6 +185,7 @@ DEPENDENCIES
   responders
   sass-rails
   sdoc
+  twitter-bootstrap-rails
   tzinfo-data
   uglifier
   web-console
