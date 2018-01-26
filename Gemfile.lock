@@ -58,6 +58,8 @@ GEM
       warden (~> 1.2.3)
     erubi (1.6.0)
     execjs (2.7.0)
+    font-awesome-rails (4.7.0.3)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.4)
@@ -176,6 +178,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   devise
+  font-awesome-rails
   jbuilder
   jquery-rails
   mysql2 (>= 0.3.13, < 0.5)

@@ -1,0 +1,115 @@
+.navbar{
+	min-height: 78px;
+	border: none;
+}
+.songs-holder{
+	
+	margin-top: 50px;
+}
+audio{
+	
+    overflow: auto;
+    width: 68%;
+    height: 55px;
+    padding: 10px;
+}
+
+
+.navbar-default {
+    background-color: #000000;
+    border-color: #e7e7e7;
+    color: #fff;
+    font-size: 13px;
+}    
+.navbar-default .navbar-brand {
+	color: #FFF;
+}
+
+.navbar-brand{
+	font-weight: 800;
+}
+
+.nav .navbar-nav > a{
+	color: #FFF;	
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+}
+
+.media, .media-body {
+	
+}
+.list-group-item{
+	border: none;
+	border-bottom: 1px solid #e2e2e2;
+	padding: 8px 16px;
+}
+.list-group-item:last-child{
+	border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+	border-top-right-radius: 0px;
+    border-top-left-radius: 0px;    
+}
+.list-group-item:first-child{
+	border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;	
+	border-top-right-radius: 0px;
+    border-top-left-radius: 0px;    
+}
+
+.singer-cover-listing{
+	background: #fff;
+    border: 3px solid #AD974F;
+    border-radius: 50%;
+    height: 80px;
+    position: relative;
+    width: 80px;
+    margin-right: 10px;
+}
+
+.song-description{
+	font-family: Nyala, "Raleway", Arial, sans-serif;
+	color: #9a9896;
+	font-size: 12px;
+}
+.audio-header{
+	background: #fafafa;
+    padding: 60px 116px;
+}
+.singer-name-listing{
+	font-weight: 200;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.current-singer-name{
+	font-size: 16px;
+    font-weight: 700;
+    color: black;
+    text-transform: uppercase;
+    margin-left: 20px;
+}
+.current-song-title{
+	margin-left: 20px;	
+}
+.song-action-buttons{
+    font-size: 18px;
+    /*border: 1px solid #ad974f;*/
+    padding: 9px;
+    border-radius: 50%;
+    margin: 4px;
+    cursor: pointer;
+}
+.song-title {
+	cursor: pointer;
+	font-family: Nyala, "Raleway", Arial, sans-serif;
+}
+#playlist a.active{
+	color: red;
+}
+#playlist div a.active{
+	color: red;
+}
+.song-title-span{	
+    margin-left: 10px;
+}
