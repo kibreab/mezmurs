@@ -1,6 +1,8 @@
 var Song = React.createClass({
     getInitialState() {
-        return {editable: false}
+        return {
+            editable: false
+        }
     },
     componentDidMount(){
       //this.audioPlayer();
@@ -15,6 +17,7 @@ var Song = React.createClass({
          $("#audioPlayer")[0].play();
       });       
     },
+    
     //audioPlayer(){
     //    var self = this;
     //    var currentSong = 0;
@@ -61,8 +64,7 @@ var Song = React.createClass({
             var title = this.refs.title.value;
             var id = this.props.song.id;
             var description = this.refs.description.value;
-            var singer = this.props.singer;
-            var song = {id: id , title: title , description: description, singer: singer};
+            var song = {id: id , title: title , description: description};
             this.props.handleUpdate(song);
 
         }
@@ -71,17 +73,19 @@ var Song = React.createClass({
     handleCancel() {
         this.setState({ editable: !this.state.editable })
     },    
-    handleLoginKeyUp() {
+    handleAmharicInputKeyUp() {
         transcrire();
     },
     render() {
+        var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : " - "
+        var singer_picture = this.props.song.singer ? this.props.song.singer.singer_name : " - "        
         //<input type='text' ref='description' defaultValue={this.props.song.description} />
         var title = this.state.editable ? <input type='text' ref='title' defaultValue={this.props.song.title} /> : this.props.song.title;
         var description = this.state.editable ? 
             <div className="midcol">
                 <div className="app">
                     <form name="conversion" method="get" action="" target="">
-                        <textarea defaultValue={this.props.song.description} ref='description' id="saisie" onKeyUp={this.handleLoginKeyUp} className="editor"  placeholder="መጻፍ ይጀምሩ..."></textarea>
+                        <textarea defaultValue={this.props.song.description} ref='description' id="saisie" onKeyUp={this.handleAmharicInputKeyUp} className="editor"  placeholder="መጻፍ ይጀምሩ..."></textarea>
                     </form>
                 </div>
             </div> : <div className="song-description">{this.props.song.description}</div>;
@@ -106,7 +110,7 @@ var Song = React.createClass({
                                     <a href={"assets/" + this.props.song.filename} className="fa fa-play" aria-hidden="true"><span className="song-title-span">{title}</span></a>
                                 </div>
                           </div>
-                          <div className="singer-name-listing">{this.props.song.singer}</div>
+                          <div className="singer-name-listing">{singer_name}</div>
                           {description}
                         </div>
 

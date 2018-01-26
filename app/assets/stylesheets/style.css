@@ -418,3 +418,18 @@ form {
 #playlist .current-song a{
   color:red;
 }
+
+#loading{
+  display: none;
+}
+
+#loading.show{
+  display: block;
+  position: fixed;
+  z-index: 100000;
+  opacity: 1;
+  left: 50%;
+  top: 50%;
+  color: #AD974F;
+  font-size: 80px;
+}

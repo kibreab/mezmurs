@@ -17,7 +17,6 @@ var Allsongs = React.createClass({
     },
 
     render() {
-        var self = this;
         var songs= this.props.songs.map((song) => {
             return (
                 <div key={song.id}>
@@ -32,7 +31,7 @@ var Allsongs = React.createClass({
         return(
 
             <div className="container songs-holder">
-                <AudioHeader currentSong={self.state.currentSong} />
+                <AudioHeader currentSong={this.state.currentSong} />
                 {songs}
             </div>
         )
