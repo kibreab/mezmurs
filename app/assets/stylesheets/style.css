@@ -10,7 +10,7 @@ body {
   font-weight: 400;
   font-family: "Raleway", Helvetica, sans-serif;
   color: #222;
-  background: #fafafa;
+  background: #f5f5f5;
 }
 p, h1, h2, h3, h4, h5 {
   font-family: Nyala, "Raleway", Arial, sans-serif;
@@ -431,6 +431,6 @@ form {
   opacity: 1;
   left: 50%;
   top: 50%;
-  color: #AD974F;
+  color: red;
   font-size: 80px;
 }

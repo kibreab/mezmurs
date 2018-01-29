@@ -2,7 +2,8 @@ var Body = React.createClass({
     getInitialState() {
         return { 
             songs: [],
-            singers: []
+            singers: [],
+            currentSong: null
          }
     },
 
@@ -64,19 +65,25 @@ var Body = React.createClass({
                 url: `/api/v1/songs/${song.id}`,
                 type: 'PUT',
                 data: { song: song },
-                success: () => {
+                success: (song) => {
                     this.updatesongs(song);
-
+                    if (this.state.currentSong && this.state.currentSong.id == song.id) {
+                        this.updateCurrentSong(song);
+                    }
                 }
             }
         )
+    },
+    
+    updateCurrentSong(song){
+        this.setState({ currentSong: song });
     },
 
     handleSingersUpdate(singer) {
         $.ajax({
                 url: `/api/v1/singers/${singer.id}`,
                 type: 'PUT',
-                data: { singerg: singer },
+                data: { singer: singer },
                 success: () => {
                     this.updatesingers(singer);
 
@@ -101,13 +108,17 @@ var Body = React.createClass({
                 
                 <div className="pull-left left-navigation">
                     <User updateCurrentUser={this.updateCurrentUser} />
+
                 </div>
 
                 <div className="pull-left mid-navigation">
                     <Allsongs 
-                        songs={this.state.songs}  
+                        songs={this.state.songs}
+                        singers={this.state.singers}
                         handleDelete={this.handleDelete} 
-                        onUpdate={this.handleUpdate} 
+                        onUpdate={this.handleUpdate}
+                        updateCurrentSong={this.updateCurrentSong}
+                        currentSong={this.state.currentSong}
                         current_user={this.props.current_user} />    
                 </div>
 

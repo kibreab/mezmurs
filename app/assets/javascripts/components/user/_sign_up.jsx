@@ -31,7 +31,7 @@ render: function() {
     <form>
      <input id="email" placeholder="email"/>
      <input id="password" placeholder="password"/>
-     <button onClick={this.handleClick}>Submit</button>
+     <button onClick={this.handleClick}>Register</button>
     </form>    
    </div>              
   )

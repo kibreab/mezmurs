@@ -17,6 +17,7 @@ var Header = React.createClass({
 			  <div className="container-fluid">
 			    <div className="navbar-header">
 			      <div className="navbar-brand">m e z m u r s . c o m</div>
+			      <div className="slogan amharic">{"ቆየት ያሉ መዝሙሮች ስብስብ"}</div>
 			    </div>			
 			    
 			    <div className="collapse navbar-collapse">

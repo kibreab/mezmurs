@@ -1,7 +1,4 @@
 var AudioHeader = React.createClass({
-    getInitialState() {
-        return { current_song: this.props.currentSong }
-    },
 
     render() {
         var current_song = this.props.currentSong;

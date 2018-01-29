@@ -1,7 +1,8 @@
 var Song = React.createClass({
     getInitialState() {
         return {
-            editable: false
+            editable: false,
+            singer_id: this.props.song.singer.id
         }
     },
     componentDidMount(){
@@ -64,7 +65,8 @@ var Song = React.createClass({
             var title = this.refs.title.value;
             var id = this.refs.id.value;
             var description = this.refs.description.value;
-            var song = {id: id , title: title , description: description};
+            var singer = this.refs.singer.value;
+            var song = {id: id , title: title , description: description , singer_id: singer};
             this.props.handleUpdate(song);
 
         }
@@ -75,6 +77,9 @@ var Song = React.createClass({
     },    
     handleAmharicInputKeyUp() {
         transcrire();
+    },
+    handleSingerChange(event) {
+        this.setState({ singer_id: event.target.value })    
     },
     render() {
         var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : " - "
@@ -90,6 +95,22 @@ var Song = React.createClass({
                     </form>
                 </div>
             </div> : <div className="song-description">{this.props.song.description}</div>;
+        
+        var ages = this.props.singers.map(function (item, key) {
+          return (
+            <option value={item.id} key={key}>
+              { item.singer_name }
+            </option>
+          );
+        });
+
+
+        var singers = this.state.editable ? 
+            <select ref="singer" value={this.state.singer_id} onChange={this.handleSingerChange} className="selectpicker">
+                {ages}
+            </select>
+            : <div className="singer-name-listing">{singer_name}</div>;
+
 
 
         var cancelButton = this.state.editable ? <i className="fa fa-reply song-action-buttons" onClick={this.handleCancel} aria-hidden="true"></i> : '';
@@ -113,7 +134,9 @@ var Song = React.createClass({
                                     <a href={"assets/" + this.props.song.filename} className="fa fa-play" aria-hidden="true"><span className="song-title-span">{title}</span></a>
                                 </div>
                           </div>
-                          <div className="singer-name-listing">{singer_name}</div>
+                          
+                          {singers}
+
                           {description}
                           {idField}
                         </div>

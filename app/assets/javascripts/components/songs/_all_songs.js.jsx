@@ -1,8 +1,4 @@
 var Allsongs = React.createClass({
-    getInitialState() {
-        return { currentSong: null }
-    },
-
 
     handleDelete(id) {
         this.props.handleDelete(id);
@@ -13,7 +9,7 @@ var Allsongs = React.createClass({
     },
 
     updateCurrentSong(song){
-        this.setState({ currentSong: song });
+        this.props.updateCurrentSong(song)      
     },
 
     render() {
@@ -23,7 +19,9 @@ var Allsongs = React.createClass({
                     <Song song={song}
                           handleDelete={this.handleDelete.bind(this, song.id)}
                           updateCurrentSong={this.updateCurrentSong}
+                          singers={this.props.singers}
                           current_user={this.props.current_user}
+                          currentSong={this.props.currentSong}
                           handleUpdate={this.onUpdate}/>
                 </div>
             )
@@ -32,7 +30,7 @@ var Allsongs = React.createClass({
         return(
 
             <div className="songs-holder">
-                <AudioHeader currentSong={this.state.currentSong} />
+                <AudioHeader currentSong={this.props.currentSong} />
                 {songs}
             </div>
         )
