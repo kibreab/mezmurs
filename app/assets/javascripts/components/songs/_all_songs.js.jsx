@@ -23,6 +23,7 @@ var Allsongs = React.createClass({
                     <Song song={song}
                           handleDelete={this.handleDelete.bind(this, song.id)}
                           updateCurrentSong={this.updateCurrentSong}
+                          current_user={this.props.current_user}
                           handleUpdate={this.onUpdate}/>
                 </div>
             )
@@ -30,7 +31,7 @@ var Allsongs = React.createClass({
 
         return(
 
-            <div className="container songs-holder">
+            <div className="songs-holder">
                 <AudioHeader currentSong={this.state.currentSong} />
                 {songs}
             </div>

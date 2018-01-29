@@ -62,7 +62,7 @@ var Song = React.createClass({
     handleEdit() {
         if(this.state.editable) {
             var title = this.refs.title.value;
-            var id = this.props.song.id;
+            var id = this.refs.id.value;
             var description = this.refs.description.value;
             var song = {id: id , title: title , description: description};
             this.props.handleUpdate(song);
@@ -81,6 +81,7 @@ var Song = React.createClass({
         var singer_picture = this.props.song.singer ? this.props.song.singer.singer_name : " - "        
         //<input type='text' ref='description' defaultValue={this.props.song.description} />
         var title = this.state.editable ? <input type='text' ref='title' defaultValue={this.props.song.title} /> : this.props.song.title;
+        var idField = <input type='hidden' ref='id' defaultValue={this.props.song.id} />;
         var description = this.state.editable ? 
             <div className="midcol">
                 <div className="app">
@@ -92,8 +93,10 @@ var Song = React.createClass({
 
 
         var cancelButton = this.state.editable ? <i className="fa fa-reply song-action-buttons" onClick={this.handleCancel} aria-hidden="true"></i> : '';
-        var editSubmitButton = this.state.editable ? <i className="fa fa-paper-plane song-action-buttons" onClick={this.handleEdit} aria-hidden="true"></i> : <i className="fa fa-pencil-square-o song-action-buttons" onClick={this.handleEdit} aria-hidden="true"></i>
+        var editSubmitButton = <ActionButton editable={this.state.editable} current_user={this.props.current_user} handleEdit={this.handleEdit} />
+         
         var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.props.handleDelete} aria-hidden="true"></i>
+        
         return (
             <div className="container">
                 <div className="list-group-item ">
@@ -112,6 +115,7 @@ var Song = React.createClass({
                           </div>
                           <div className="singer-name-listing">{singer_name}</div>
                           {description}
+                          {idField}
                         </div>
 
                         <div className="pull-right">

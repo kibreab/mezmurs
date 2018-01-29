@@ -12,8 +12,6 @@ var Body = React.createClass({
         $.getJSON('/api/v1/singers.json', (response) => { this.setState({ singers: response }) });
     },
 
-
-
     handleSubmit(song) {
         var newState = this.state.songs.concat(song);
         this.setState({ songs: newState })
@@ -92,13 +90,28 @@ var Body = React.createClass({
 
         this.setState({songs: songs });
     },
-
+    updateCurrentUser(user) {
+        this.props.updateCurrentUser(user);
+    },
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <NewSong handleSubmit={this.handleSubmit}/>
+                
                 <div className="pull-left left-navigation">
+                    <User updateCurrentUser={this.updateCurrentUser} />
+                </div>
+
+                <div className="pull-left mid-navigation">
+                    <Allsongs 
+                        songs={this.state.songs}  
+                        handleDelete={this.handleDelete} 
+                        onUpdate={this.handleUpdate} 
+                        current_user={this.props.current_user} />    
+                </div>
+
+                <div className="pull-left right-navigation">
                     <AllSingers 
                         singers={this.state.singers} 
                         handleSingerSubmit={this.handleSingerSubmit} 
@@ -106,11 +119,7 @@ var Body = React.createClass({
                         onUpdate={this.handleSingerUpdate} 
                         />
                 </div>
-                <div className="pull-left right-navigation">
-                    <Allsongs  songs={this.state.songs}  handleDelete={this.handleDelete} onUpdate={this.handleUpdate}/>             
-                </div>
 
-                
             </div>
         )
     }
