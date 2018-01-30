@@ -127,7 +127,8 @@ var Body = React.createClass({
                         singers={this.state.singers} 
                         handleSingerSubmit={this.handleSingerSubmit} 
                         handleDelete={this.handleSingerDelete} 
-                        onUpdate={this.handleSingerUpdate} 
+                        onUpdate={this.handleSingerUpdate}
+                        current_user={this.props.current_user}
                         />
                 </div>
 

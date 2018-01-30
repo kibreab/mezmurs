@@ -15,15 +15,16 @@ var AllSingers = React.createClass({
                 <div key={singer.id}>
                     <Singer singer={singer}
                           handleDelete={this.handleDelete.bind(this, singer.id)}
-                          handleUpdate={this.onUpdate}/>
+                          handleUpdate={this.onUpdate}
+                          current_user={this.props.current_user} />
                 </div>
             )
-        });        
+        });
+        var new_singer = this.props.current_user ? <NewSinger handleSubmit={this.handleSubmit}/> : null;
         return(
             <div className="container songs-holder">
-                <div className="navigation-header"></div>
                 {singers}
-                <NewSinger handleSubmit={this.handleSubmit}/>
+                {new_singer}
             </div>
         )
     }

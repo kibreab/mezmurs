@@ -5,17 +5,17 @@ var Singer = React.createClass({
         this.props.handleDelete(id);
     },
 
-    onUpdate(song) {
-        this.props.onUpdate(song);
+    onUpdate(singer) {
+        this.props.onUpdate(singer);
     },
     render() {
-        var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.handleDelete} aria-hidden="true"></i>
+        var user_created_singer = this.props.current_user ? (this.props.singer.user_id == this.props.current_user.id) : false;
+        var deleteButton = user_created_singer ? <i className="fa fa-trash song-action-buttons" onClick={this.handleDelete} aria-hidden="true"></i> : ""
+        
         return(
             <div className="singer-container">                
-                {this.props.singer.singer_name}
+                <span className={user_created_singer ? "highlight" : ""}>{this.props.singer.singer_name}</span>
                 {deleteButton}
-
-
             </div>
 
         )

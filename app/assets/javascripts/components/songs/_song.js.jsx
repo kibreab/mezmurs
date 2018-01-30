@@ -64,9 +64,9 @@ var Song = React.createClass({
         if(this.state.editable) {
             var title = this.refs.title.value;
             var id = this.refs.id.value;
-            var description = this.refs.description.value;
+            var lyrics = this.refs.lyrics.value;
             var singer = this.refs.singer.value;
-            var song = {id: id , title: title , description: description , singer_id: singer};
+            var song = {id: id , title: title , lyrics: lyrics , singer_id: singer};
             this.props.handleUpdate(song);
 
         }
@@ -84,19 +84,39 @@ var Song = React.createClass({
     render() {
         var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : " - "
         var singer_picture = this.props.song.singer ? this.props.song.singer.singer_name : " - "        
-        //<input type='text' ref='description' defaultValue={this.props.song.description} />
+        //<input type='text' ref='lyrics' defaultValue={this.props.song.lyrics} />
         var title = this.state.editable ? <input type='text' ref='title' defaultValue={this.props.song.title} /> : this.props.song.title;
         var idField = <input type='hidden' ref='id' defaultValue={this.props.song.id} />;
-        var description = this.state.editable ? 
+       
+
+        var lyricsButtonField =  
+            <div>
+                <button className="mez-btns" type="button" data-toggle="collapse" data-target={"#" + this.props.song.id} aria-expanded="false" aria-controls="collapseExample">
+                    See lyrics
+                </button>
+                <div className="collapse" id={this.props.song.id}>
+                    <div className="card card-block">
+                        <div className="song-lyrics" dangerouslySetInnerHTML={{__html: this.props.song.lyrics}} />
+                    </div>
+                </div>
+            </div>    
+
+        var lyrics = this.state.editable ? 
             <div className="midcol">
                 <div className="app">
                     <form name="conversion" method="get" action="" target="">
-                        <textarea defaultValue={this.props.song.description} ref='description' id="saisie" onKeyUp={this.handleAmharicInputKeyUp} className="editor"  placeholder="መጻፍ ይጀምሩ..."></textarea>
+                        <textarea defaultValue={this.props.song.lyrics} ref='lyrics' id="saisie" onKeyUp={this.handleAmharicInputKeyUp} className="editor"  placeholder="መጻፍ ይጀምሩ..."></textarea>
                     </form>
                 </div>
-            </div> : <div className="song-description">{this.props.song.description}</div>;
+            </div> : 
+
+            (
+                this.props.song.lyrics ? lyricsButtonField : ""
+                
+                )
+            
         
-        var ages = this.props.singers.map(function (item, key) {
+        var singersList = this.props.singers.map(function (item, key) {
           return (
             <option value={item.id} key={key}>
               { item.singer_name }
@@ -107,7 +127,7 @@ var Song = React.createClass({
 
         var singers = this.state.editable ? 
             <select ref="singer" value={this.state.singer_id} onChange={this.handleSingerChange} className="selectpicker">
-                {ages}
+                {singersList}
             </select>
             : <div className="singer-name-listing">{singer_name}</div>;
 
@@ -117,7 +137,7 @@ var Song = React.createClass({
         var editSubmitButton = <ActionButton editable={this.state.editable} current_user={this.props.current_user} handleEdit={this.handleEdit} />
          
         var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.props.handleDelete} aria-hidden="true"></i>
-        
+        var nowPlaying = (this.props.currentSong && this.props.currentSong.id == this.props.song.id);
         return (
             <div className="container">
                 <div className="list-group-item ">
@@ -131,13 +151,13 @@ var Song = React.createClass({
                         <div className="media-body pull-left">
                           <div id="playlist">
                                 <div className="song-title" onClick={this.handlePlaySong}>
-                                    <a href={"assets/" + this.props.song.filename} className="fa fa-play" aria-hidden="true"><span className="song-title-span">{title}</span></a>
+                                    <a href={"assets/" + this.props.song.filename} className={nowPlaying ? "active fa fa-music" : "fa fa-play"}  aria-hidden="true"><span className="song-title-span">{title}</span></a>
                                 </div>
                           </div>
                           
                           {singers}
-
-                          {description}
+                          {lyrics}                        
+                          
                           {idField}
                         </div>
 
