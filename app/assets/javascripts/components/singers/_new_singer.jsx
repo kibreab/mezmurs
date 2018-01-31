@@ -5,14 +5,7 @@ var NewSinger= React.createClass({
         var formData = new FormData();
         formData.append('singer[singer_name]', singer_name );
         formData.append('singer[user_id]', window.current_user.id );
-        //if ($("#coverPictureUpload")[0])
-        //  if ($("#coverPictureUpload")[0].files[0])
-        //    formData.append('singer[picture]', $("#coverPictureUpload")[0].files[0]);
-
-        //formData.append('singer[picture]', $('input[type=file]')[0].files[0]); 
-        
-        console.log(' -*- -*-  **  formData  **  -*- -*- ')
-        console.log(formData)
+        formData.append('singer[picture]', $('input[type=file]')[0].files[0]); 
         $.ajax({
             url: '/api/v1/singers',
             type: 'POST',
@@ -28,10 +21,12 @@ var NewSinger= React.createClass({
     render() {
         return (
                 <div>
-                    <input ref='singer_name' placeholder='Enter the singer name' />
-                    Select images: <input id="coverPictureUpload" type="file" ref="img" multiple />
-
-                    <button onClick={this.handleClick}>Create singer</button>
+                    <Title titleBig="Add new singers" titleSmall="አዲስ ዘማሪ ይጨምሩ" />
+                    <div className="side-content-container">
+                        <input ref='singer_name' placeholder='Enter the singer name' />
+                        Select images: <input id="coverPictureUpload" type="file" ref="img" multiple />
+                        <button onClick={this.handleClick}>Create singer</button>
+                    </div>             
                 </div>
 
         )

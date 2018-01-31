@@ -27,12 +27,15 @@ var SignUp = React.createClass({
 render: function() {
   return (
    <div>
-    <h2>Sign up</h2>
-    <form>
-     <input id="email" placeholder="email"/>
-     <input id="password" placeholder="password"/>
-     <button onClick={this.handleClick}>Register</button>
-    </form>    
+    <Title titleBig="Register" titleSmall="በቀላሉ ይመዝገቡ" />
+
+    <div className="side-content-container">
+      <form>
+       <input id="email" placeholder="email"/>
+       <input id="password" placeholder="password"/>
+       <button className="mz-btns" onClick={this.handleClick}>Register</button>
+      </form>
+    </div>    
    </div>              
   )
  }

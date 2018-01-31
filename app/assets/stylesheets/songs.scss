@@ -18,14 +18,11 @@ audio{
 }
 .left-navigation{
 	width: 20%;
-	background: #fff;
-    padding: 12px;
-	
+	background: #fff;	
 }
 .right-navigation{
 	width: 20%;
 	background: #fff;
-    padding: 12px;
 }
 
 .navbar{
@@ -78,10 +75,17 @@ audio{
 	background: #fff;
     /*border: 2px solid #AD974F;*/
     border-radius: 50%;
-    height: 50px;
+    /*height: 50px;*/
+    width: 40px;
     position: relative;
-    width: 50px;
+
     margin-right: 10px;
+}
+
+.small-singer-cover-listing{
+    border-radius: 50%;
+    width: 24px;
+    position: relative;
 }
 
 .song-lyrics{
@@ -101,7 +105,6 @@ audio{
 .singer-name-listing{
 	font-weight: 200;
     font-size: 14px;
-    text-transform: uppercase;
 }
 .current-singer-name{
 	font-size: 16px;
@@ -114,12 +117,10 @@ audio{
 	margin-left: 20px;	
 }
 .song-action-buttons{
-    font-size: 18px;
-    /*border: 1px solid #ad974f;*/
-    padding: 9px;
-    border-radius: 50%;
-    margin: 4px;
+	font-size: 18px;
+    padding: 0px 10px;
     cursor: pointer;
+
 }
 .song-title {
 	cursor: pointer;
@@ -152,8 +153,39 @@ audio{
   text-align:center;
   background-color: rgba(5, 173, 13, 0.49);
 }
-.mez-btns{
-	
+.mz-btns{
+	height: 32px;
+	line-height: 32px;
 	border-radius: 0;
 	font-size: 9px;
+}
+.btns-small{
+	height: 26px;
+    line-height: 26px;
+    padding: 0 15px;
+    border: 1px solid #e2e2e2;
+    color: #757575;
+}
+.side-listing-container{
+    padding: 2px 12px;
+    margin: 2px 0;
+    overflow: auto;
+    font-size: 12px;
+}
+
+.title-container{
+	/*background: #a2a2a2;*/
+    padding: 6px 12px;
+	color: #888;    
+    .big-title{
+		text-transform: uppercase;
+    	font-weight: 800;    
+    }
+    .small-title{		
+    	font-size: 14px;
+    	font-weight: 600;   
+    }
+}
+.side-content-container{
+	padding: 2px 12px;
 }

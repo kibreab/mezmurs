@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130193007) do
+ActiveRecord::Schema.define(version: 20180131123615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "playlist_songs", force: :cascade do |t|
+    t.bigint "playlist_id"
+    t.bigint "song_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_id"], name: "index_playlist_songs_on_playlist_id"
+    t.index ["song_id"], name: "index_playlist_songs_on_song_id"
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "type"
+    t.string "category"
+    t.integer "user_id"
+  end
 
   create_table "singers", force: :cascade do |t|
     t.string "singer_name"
@@ -33,12 +50,13 @@ ActiveRecord::Schema.define(version: 20180130193007) do
     t.string "type"
     t.string "category"
     t.integer "album_number"
-    t.string "singer"
     t.string "filename"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "singer_id"
     t.text "lyrics"
+    t.integer "playlist_id"
+    t.string "singer"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,4 +76,6 @@ ActiveRecord::Schema.define(version: 20180130193007) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "playlist_songs", "playlists"
+  add_foreign_key "playlist_songs", "songs"
 end

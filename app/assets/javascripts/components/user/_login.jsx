@@ -26,13 +26,21 @@ var Login = React.createClass({
 render: function() {
   return (
    <div>
-    <h2>Login</h2>
-    <form>
-     <input id="email" placeholder="email"/>
-     <input id="password" placeholder="password"/>
-     <button onClick={this.handleLogin}>Log in</button>
-    </form>
-    <button onClick={()=>this.props.changePage("signup")}>Sign Up!</button>
+    <Title titleBig="login" titleSmall="ይግቡ" />
+    <div className="side-content-container">
+      <form>
+       <input id="email" placeholder="email"/>
+       <input id="password" placeholder="password"/>
+       <button className="mz-btns" onClick={this.handleLogin}>Log in</button>
+      </form>
+    </div>
+
+    <Title titleBig="Register" titleSmall="በቀላሉ ይመዝገቡ" />
+    <div className="side-content-container">
+      <button className="mz-btns" onClick={()=>this.props.changePage("signup")}>Sign Up!</button>    
+    </div >
+    
+
    </div>              
   )
  }

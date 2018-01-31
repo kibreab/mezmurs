@@ -10,6 +10,8 @@ gem 'pg', '~> 0.20'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

@@ -22,7 +22,8 @@ var AllSingers = React.createClass({
         });
         var new_singer = this.props.current_user ? <NewSinger handleSubmit={this.handleSubmit}/> : null;
         return(
-            <div className="container songs-holder">
+            <div className="">
+                <Title titleBig="singers" titleSmall="ዘማሪዎች" />
                 {singers}
                 {new_singer}
             </div>

@@ -21,6 +21,6 @@ class Api::V1::SingersController < Api::V1::BaseController
   private
 
   def singer_params
-    params.require(:singer).permit(:id, :singer_name, :user_id)
+    params.require(:singer).permit(:id, :singer_name, :user_id, :picture)
   end
 end

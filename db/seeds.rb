@@ -9,12 +9,11 @@ def run
 end
 
 def generate_data
-  10.times do
+  10.times do |k|
     song = Song.new
-    song.title = "Song1"
+    song.title = "Song seeded #{k}"
     song.description = "Classical of Nebse Hoy"
     song.filename = "Nebse Hoy - Track 1.mp3"
-    song.singer = "some guy"
     type = "Song"
     category = "Misgana"
     song.save!

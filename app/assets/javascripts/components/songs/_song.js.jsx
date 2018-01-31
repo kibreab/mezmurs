@@ -2,7 +2,7 @@ var Song = React.createClass({
     getInitialState() {
         return {
             editable: false,
-            singer_id: this.props.song.singer.id
+            singer_id: this.props.song.singer ? this.props.song.singer.id : ""
         }
     },
     componentDidMount(){
@@ -82,8 +82,9 @@ var Song = React.createClass({
         this.setState({ singer_id: event.target.value })    
     },
     render() {
-        var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : " - "
-        var singer_picture = this.props.song.singer ? this.props.song.singer.singer_name : " - "        
+        var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : ""
+        var singer_picture = this.props.song.singer ? this.props.song.singer.picture : "/assets/original/missing.png" 
+
         //<input type='text' ref='lyrics' defaultValue={this.props.song.lyrics} />
         var title = this.state.editable ? <input type='text' ref='title' defaultValue={this.props.song.title} /> : this.props.song.title;
         var idField = <input type='hidden' ref='id' defaultValue={this.props.song.id} />;
@@ -91,7 +92,7 @@ var Song = React.createClass({
 
         var lyricsButtonField =  
             <div>
-                <button className="mez-btns" type="button" data-toggle="collapse" data-target={"#" + this.props.song.id} aria-expanded="false" aria-controls="collapseExample">
+                <button className="mz-btns btns-small" type="button" data-toggle="collapse" data-target={"#" + this.props.song.id} aria-expanded="false" aria-controls="collapseExample">
                     See lyrics
                 </button>
                 <div className="collapse" id={this.props.song.id}>
@@ -126,7 +127,7 @@ var Song = React.createClass({
 
 
         var singers = this.state.editable ? 
-            <select ref="singer" value={this.state.singer_id} onChange={this.handleSingerChange} className="selectpicker">
+            <select ref="singer" value={this.state ? this.state.singer_id : ""} onChange={this.handleSingerChange} className="selectpicker">
                 {singersList}
             </select>
             : <div className="singer-name-listing">{singer_name}</div>;
@@ -145,13 +146,15 @@ var Song = React.createClass({
                     <div className="media">
                       <div className="media-left media-bottom">
                         <a href="#">
-                          <img className="pull-left media-object singer-cover-listing" src="https://pbs.twimg.com/profile_images/1107421561/demo-hot-girl1_400x400.jpg" alt="..." />
+                          <img className="pull-left media-object singer-cover-listing" src={singer_picture} alt="..." />
                         </a>
                       
                         <div className="media-body pull-left">
                           <div id="playlist">
                                 <div className="song-title" onClick={this.handlePlaySong}>
-                                    <a href={"assets/" + this.props.song.filename} className={nowPlaying ? "active fa fa-music" : "fa fa-play"}  aria-hidden="true"><span className="song-title-span">{title}</span></a>
+                                    <a href={"assets/" + this.props.song.filename} className={nowPlaying ? "active fa fa-music" : "fa fa-play"} aria-hidden="true">
+                                        <span className="song-title-span">{title} {this.props.song.id}</span>
+                                    </a>
                                 </div>
                           </div>
                           

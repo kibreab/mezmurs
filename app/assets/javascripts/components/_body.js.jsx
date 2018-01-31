@@ -3,14 +3,15 @@ var Body = React.createClass({
         return { 
             songs: [],
             singers: [],
-            currentSong: null
+            currentSong: null,
+            user_playlists: []
          }
     },
-
 
     componentDidMount() {
         $.getJSON('/api/v1/songs.json', (response) => { this.setState({ songs: response }) });
         $.getJSON('/api/v1/singers.json', (response) => { this.setState({ singers: response }) });
+        $.getJSON('/api/v1/playlists.json', (response) => { this.setState({ user_playlists: response }) });
     },
 
     handleSubmit(song) {
@@ -22,13 +23,26 @@ var Body = React.createClass({
         var newState = this.state.singers.concat(singer);
         this.setState({ singers: newState })
     },
-
+    handlePlaylistSubmit(playlist) {
+        var newState = this.state.user_playlists.concat(playlist);
+        this.setState({ user_playlists: newState })
+    },
     handleSingerDelete(id) {
         $.ajax({
             url: `/api/v1/singers/${id}`,
             type: 'DELETE',
             success:() => {
                this.removeSingerClient(id);
+            }
+        });
+    },
+
+    handlePlaylistDelete(id) {
+        $.ajax({
+            url: `/api/v1/playlists/${id}`,
+            type: 'DELETE',
+            success:() => {
+               this.removePlaylistsClient(id);
             }
         });
     },
@@ -41,6 +55,13 @@ var Body = React.createClass({
         this.setState({ singers: newsingers });
     },
 
+    removePlaylistsClient(id) {
+        var newplaylists = this.state.user_playlists.filter((playlist) => {
+            return playlist.id != id;
+        });
+
+        this.setState({ user_playlists: newplaylists });
+    },
 
     handleDelete(id) {
         $.ajax({
@@ -108,7 +129,11 @@ var Body = React.createClass({
                 
                 <div className="pull-left left-navigation">
                     <User updateCurrentUser={this.updateCurrentUser} />
-
+                    <AllPlaylists 
+                        user_playlists={this.state.user_playlists} 
+                        handlePlaylistSubmit={this.handlePlaylistSubmit}
+                        handleDelete={this.handlePlaylistDelete}
+                        current_user={this.props.current_user} />
                 </div>
 
                 <div className="pull-left mid-navigation">

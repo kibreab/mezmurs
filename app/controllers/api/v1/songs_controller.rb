@@ -1,6 +1,6 @@
 class Api::V1::SongsController < Api::V1::BaseController
   def index
-    respond_with Song.all
+    respond_with Song.all.order("updated_at")
   end
 
   def create
@@ -20,6 +20,6 @@ class Api::V1::SongsController < Api::V1::BaseController
   private
 
   def song_params
-    params.require(:song).permit(:id, :title, :description, :lyrics, :type, :category, :album_number, :singer_id, :filename)
+    params.require(:song).permit(:id, :title, :description, :lyrics, :type, :category, :album_number, :singer_id, :playlist_id, :filename)
   end
 end
