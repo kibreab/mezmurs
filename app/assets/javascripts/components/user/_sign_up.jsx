@@ -13,10 +13,10 @@ var SignUp = React.createClass({
    url: "/users",
    dataType: 'json',
    data: userInfo,
-   success: function (res) {
+   success: function (user) {
     console.log("user sign in success")
     that.props.changePage("edit")  
-    that.props.updateCurrentUser(res)
+    that.props.updateCurrentUser(user)
    },
    error: function (error) {
     console.log("there is error in SingUp")

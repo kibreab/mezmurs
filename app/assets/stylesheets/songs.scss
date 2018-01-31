@@ -39,7 +39,12 @@ audio{
 }
 
 .navbar-brand{
-	font-weight: 800;
+    float: left;
+    padding: 15px;
+    font-size: 13px;
+    line-height: 20px;
+    height: 39px;
+    text-transform: uppercase;
 }
 
 .nav .navbar-nav > a{
@@ -117,10 +122,10 @@ audio{
 	margin-left: 20px;	
 }
 .song-action-buttons{
-	font-size: 18px;
+	font-size: 16px;
+	color: #7b7b7b;
     padding: 0px 10px;
     cursor: pointer;
-
 }
 .song-title {
 	cursor: pointer;
@@ -136,7 +141,7 @@ audio{
     margin-left: 10px;
 }
 .slogan{
-	color: red;
+	color: #a0a0a0;
     position: absolute;
     margin-top: 36px;
 
@@ -158,6 +163,7 @@ audio{
 	line-height: 32px;
 	border-radius: 0;
 	font-size: 9px;
+	margin-right: 3px;
 }
 .btns-small{
 	height: 26px;
@@ -188,4 +194,20 @@ audio{
 }
 .side-content-container{
 	padding: 2px 12px;
+}
+.popover{
+	border-radius: 0;
+}
+.popover-title {
+    margin: 0;
+    font-family: "Raleway", Arial, sans-serif;
+    padding: 8px 14px;
+    font-size: 11px;    
+    line-height: 18px;
+    background-color: #f7f7f7;
+    text-transform: uppercase;
+    font-weight: 800;    
+}
+.hidden {
+  display: none;
 }

@@ -11,7 +11,7 @@ var Body = React.createClass({
     componentDidMount() {
         $.getJSON('/api/v1/songs.json', (response) => { this.setState({ songs: response }) });
         $.getJSON('/api/v1/singers.json', (response) => { this.setState({ singers: response }) });
-        $.getJSON('/api/v1/playlists.json', (response) => { this.setState({ user_playlists: response }) });
+        //$.getJSON('/api/v1/playlists.json', (response) => { this.setState({ user_playlists: response }) });
     },
 
     handleSubmit(song) {
@@ -24,8 +24,11 @@ var Body = React.createClass({
         this.setState({ singers: newState })
     },
     handlePlaylistSubmit(playlist) {
-        var newState = this.state.user_playlists.concat(playlist);
-        this.setState({ user_playlists: newState })
+        var user = this.props.current_user;
+        var newPlayists = user["playlists"].concat(playlist);
+        user.playlists = newPlayists;
+        this.props.updateCurrentUser(user);        
+
     },
     handleSingerDelete(id) {
         $.ajax({
@@ -56,11 +59,12 @@ var Body = React.createClass({
     },
 
     removePlaylistsClient(id) {
-        var newplaylists = this.state.user_playlists.filter((playlist) => {
+        var newplaylists = this.props.current_user.playlists.filter((playlist) => {
             return playlist.id != id;
         });
-
-        this.setState({ user_playlists: newplaylists });
+        var user = this.props.current_user;
+        user["playlists"] = newplaylists;
+        this.props.updateCurrentUser(user);
     },
 
     handleDelete(id) {

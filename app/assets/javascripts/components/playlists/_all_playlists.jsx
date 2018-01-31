@@ -10,19 +10,21 @@ var AllPlaylists = React.createClass({
     },
 
     render() {
+        var playlists = null;
 
-        var playlists= this.props.user_playlists.map((playlist) => {
-            return (
-                <div key={playlist.id}>
-                    <Playlist playlist={playlist}
-                          handleDelete={this.handleDelete.bind(this, playlist.id)}
-                          handleUpdate={this.onUpdate}
-                          current_user={this.props.current_user} />
-                </div>
-            )
-        });
+        if (this.props.current_user && this.props.current_user.playlists) {
 
-
+            var playlists= this.props.current_user.playlists.map((playlist) => {
+                return (
+                    <div key={playlist.id}>
+                        <Playlist playlist={playlist}
+                              handleDelete={this.handleDelete.bind(this, playlist.id)}
+                              handleUpdate={this.onUpdate}
+                              current_user={this.props.current_user} />
+                    </div>
+                )
+            });
+        }
 
         return(
             <div className="">

@@ -31,6 +31,7 @@ var Allsongs = React.createClass({
 
             <div className="songs-holder">
                 <AudioHeader currentSong={this.props.currentSong} />
+                <SearchArea />
                 {songs}
             </div>
         )

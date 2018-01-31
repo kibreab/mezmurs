@@ -13,8 +13,8 @@ var NewPlaylist= React.createClass({
     render() {
         return (
         <div>            
-            <div className="side-content-container">
-                <input ref='title' placeholder='Enter the title of the item' />   
+            <div className="side-form-container">
+                <input ref='title' placeholder='New playlist' />   
                 <button className="mz-btns btns-small" onClick={this.handleClick}>Create playlist +</button>
             </div>    
         </div>    

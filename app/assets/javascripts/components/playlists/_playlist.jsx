@@ -9,9 +9,42 @@ var Playlist = React.createClass({
         this.props.onUpdate(playlist);
     },
     render() {
+
+
+
+        var playlist_songs = this.props.playlist.songs.map((song) => { 
+            return (                               
+                <div key={song.id}>
+                    <PlaylistSong song={song}
+                          handleDelete={this.handleDelete.bind(this, song.id)}
+                          handleUpdate={this.onUpdate}
+                          current_user={this.props.current_user} />
+                </div>
+            )
+        });
+
+        
+        var playlistButtonField =  null;
+        playlistButtonField = 
+            <div>
+                <i className="" type="" data-toggle="collapse" data-target={"#" + this.props.playlist.id} aria-expanded="false" aria-controls="collapseSongs">
+                    {this.props.playlist.title + " ( "+this.props.playlist.songs.length + " ) "}
+                </i>
+                <div className="collapse" id={this.props.playlist.id}>
+                    <div className="card card-block">
+                        <div className="">
+                            {playlist_songs}
+                        </div>
+                    </div>
+                </div>
+            </div>    
+  
+
         return(
             <div className="side-listing-container"> 
-                <div className="pull-left">{this.props.playlist.title}</div>
+                <div className="pull-left">
+                    {playlistButtonField}
+                </div>
                 <div className="pull-right">                    
                     <i className="fa fa-trash song-action-buttons" onClick={this.handleDelete} aria-hidden="true"></i>
                 </div>

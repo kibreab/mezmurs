@@ -9,7 +9,6 @@ var Singer = React.createClass({
         this.props.onUpdate(singer);
     },
     render() {
-        console.log(this.props.singer)
         var user_created_singer = this.props.current_user ? (this.props.singer.user_id == this.props.current_user.id) : false;
         var deleteButton = user_created_singer ? <i className="fa fa-trash song-action-buttons" onClick={this.handleDelete} aria-hidden="true"></i> : ""
         var singer_picture = this.props.singer.picture 

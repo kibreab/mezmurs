@@ -1,3 +1,10 @@
-form{
-	margin-bottom: 0 !important;
+form, input{
+	margin-bottom: 5px !important;
+}
+.side-form-container{
+    border: 1px solid #f1f1f1;
+    background: #fbfbfb;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 6px;
 }

@@ -8,17 +8,40 @@ var Song = React.createClass({
     componentDidMount(){
       //this.audioPlayer();
       var currentSong = 0;
-      $("#audioPlayer")[0].addEventListener("ended", function(e){
-         currentSong++;
-         if(currentSong == $("#playlist div").length)
-             currentSong = 0;
-         //$("#playlist div:eq("+currentSong+")").addClass("current-song").addClass("highlighted");
-         $("#audioPlayer")[0].src = $("#playlist div a")[currentSong].href;
-         //$("#playlist div").addClass("active")
-         $("#audioPlayer")[0].play();
-      });       
+      if ($("#audioPlayer")[0]) {
+        $("#audioPlayer")[0].addEventListener("ended", function(e){
+           currentSong++;
+           if(currentSong == $("#playlist div").length)
+               currentSong = 0;
+           //$("#playlist div:eq("+currentSong+")").addClass("current-song").addClass("highlighted");
+           $("#audioPlayer")[0].src = $("#playlist div a")[currentSong].href;
+           //$("#playlist div").addClass("active")
+           $("#audioPlayer")[0].play();
+        });
+      }
+      this.popOver();   
+
     },
     
+    popOver(){
+      /// Popover
+      $('.popover-dismiss').popover({
+          trigger: 'focus'
+      })
+      
+      $("[data-toggle=popover]").popover({
+          html : true,
+          content: function() {
+            var content = $(this).attr("data-popover-content");
+            return $(content).children(".popover-body").html();
+          },
+          title: function() {
+            var title = $(this).attr("data-popover-content");
+            return $(title).children(".popover-heading").html();
+          }
+      });         
+    },
+
     //audioPlayer(){
     //    var self = this;
     //    var currentSong = 0;
@@ -74,7 +97,10 @@ var Song = React.createClass({
     },
     handleCancel() {
         this.setState({ editable: !this.state.editable })
-    },    
+    },
+    handlePlaylistDelete(){
+
+    },
     handleAmharicInputKeyUp() {
         transcrire();
     },
@@ -135,12 +161,34 @@ var Song = React.createClass({
 
 
         var cancelButton = this.state.editable ? <i className="fa fa-reply song-action-buttons" onClick={this.handleCancel} aria-hidden="true"></i> : '';
-        var editSubmitButton = <ActionButton editable={this.state.editable} current_user={this.props.current_user} handleEdit={this.handleEdit} />
+        var editSubmitButton = <ActionButton 
+                                    editable={this.state.editable} 
+                                    current_user={this.props.current_user} 
+                                    handleAction={this.handleEdit} />
          
         var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.props.handleDelete} aria-hidden="true"></i>
         var nowPlaying = (this.props.currentSong && this.props.currentSong.id == this.props.song.id);
+
+        var playlists = null;
+        if (this.props.current_user && this.props.current_user.playlists) {
+
+            playlists= this.props.current_user.playlists.map((playlist) => {
+                return (
+                    <div key={playlist.id}>
+                        <Playlist playlist={playlist}
+                              handleDelete={this.handlePlaylistDelete.bind(this, playlist.id)}
+                              handleUpdate={this.onUpdate}
+                              current_user={this.props.current_user} />
+                    </div>
+                )
+            });
+
+
+        }
+
         return (
             <div className="container">
+
                 <div className="list-group-item ">
 
                     <div className="media">
@@ -152,15 +200,25 @@ var Song = React.createClass({
                         <div className="media-body pull-left">
                           <div id="playlist">
                                 <div className="song-title" onClick={this.handlePlaySong}>
-                                    <a href={"assets/" + this.props.song.filename} className={nowPlaying ? "active fa fa-music" : "fa fa-play"} aria-hidden="true">
+                                    <a href={"assets/" + this.props.song.filename} className={nowPlaying ? "active fa fa-music" : "fa fa-play-dis"} aria-hidden="true">
                                         <span className="song-title-span">{title} {this.props.song.id}</span>
                                     </a>
                                 </div>
                           </div>
                           
                           {singers}
-                          {lyrics}                        
+
+                          <div className="">
+                            <div className="pull-left">{lyrics}</div>
+                            <div className="pull-left"><button className="mz-btns btns-small" tabIndex="0" data-toggle="popover" data-popover-content="#a1" data-placement="right">Add this song to playlists</button></div>
+                          </div>
                           
+                          
+                          <div id="a1" className="hidden">
+                              <div className="popover-heading">Add this song to ...</div>
+                              
+                              <div className="popover-body">{playlists}</div>
+                          </div> 
                           {idField}
                         </div>
 
