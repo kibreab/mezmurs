@@ -1,6 +1,6 @@
 class Api::V1::SongsController < Api::V1::BaseController
   def index
-    respond_with Song.all.order("updated_at")
+    respond_with Song.all.order("title")
   end
 
   def create

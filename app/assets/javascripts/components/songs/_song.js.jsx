@@ -139,9 +139,7 @@ var Song = React.createClass({
 
             (
                 this.props.song.lyrics ? lyricsButtonField : ""
-                
                 )
-            
         
         var singersList = this.props.singers.map(function (item, key) {
           return (
@@ -172,18 +170,17 @@ var Song = React.createClass({
         var playlists = null;
         if (this.props.current_user && this.props.current_user.playlists) {
 
-            playlists= this.props.current_user.playlists.map((playlist) => {
+            playlists = this.props.current_user.playlists.map((playlist) => {
                 return (
                     <div key={playlist.id}>
                         <Playlist playlist={playlist}
                               handleDelete={this.handlePlaylistDelete.bind(this, playlist.id)}
                               handleUpdate={this.onUpdate}
+                              dataFor={"songs-popover"}
                               current_user={this.props.current_user} />
                     </div>
                 )
             });
-
-
         }
 
         return (
@@ -213,10 +210,8 @@ var Song = React.createClass({
                             <div className="pull-left"><button className="mz-btns btns-small" tabIndex="0" data-toggle="popover" data-popover-content="#a1" data-placement="right">Add this song to playlists</button></div>
                           </div>
                           
-                          
                           <div id="a1" className="hidden">
                               <div className="popover-heading">Add this song to ...</div>
-                              
                               <div className="popover-body">{playlists}</div>
                           </div> 
                           {idField}

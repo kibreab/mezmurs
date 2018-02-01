@@ -22,15 +22,15 @@ var Playlist = React.createClass({
                 </div>
             )
         });
-
         
-        var playlistButtonField =  null;
-        playlistButtonField = 
+        var playlistAndSongs =  null;
+        playlistAndSongs = 
             <div>
-                <i className="" type="" data-toggle="collapse" data-target={"#" + this.props.playlist.id} aria-expanded="false" aria-controls="collapseSongs">
-                    {this.props.playlist.title + " ( "+this.props.playlist.songs.length + " ) "}
+                <i className="fa fa-chevron-right site-toggle-buttons" type="" data-toggle="collapse" data-target={"#" + this.props.playlist.id + (this.props.dataFor ? this.props.dataFor : "") } aria-expanded="false" aria-controls="collapseSongs">
+                    
                 </i>
-                <div className="collapse" id={this.props.playlist.id}>
+                <span>{this.props.playlist.title + " ( "+this.props.playlist.songs.length + " ) "}</span>
+                <div className="collapse" id={this.props.playlist.id + (this.props.dataFor ? this.props.dataFor : "")}>
                     <div className="card card-block">
                         <div className="">
                             {playlist_songs}
@@ -39,12 +39,13 @@ var Playlist = React.createClass({
                 </div>
             </div>    
   
-
         return(
             <div className="side-listing-container"> 
-                <div className="pull-left">
-                    {playlistButtonField}
+
+                <div className="pull-left">                    
+                    {playlistAndSongs}                    
                 </div>
+              
                 <div className="pull-right">                    
                     <i className="fa fa-trash song-action-buttons" onClick={this.handleDelete} aria-hidden="true"></i>
                 </div>

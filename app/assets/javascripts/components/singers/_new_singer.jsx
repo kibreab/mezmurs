@@ -24,7 +24,7 @@ var NewSinger= React.createClass({
                     <Title titleBig="Add new singers" titleSmall="አዲስ ዘማሪ ይጨምሩ" />
                     <div className="side-form-container">
                         <input ref='singer_name' placeholder='New singer' />
-                        <div>Select images: <input type="file" ref="img" multiple /></div>
+                        <div>Singer picture <input type="file" ref="img" multiple /></div>
                         <button className="mz-btns btns-small" onClick={this.handleClick}>Create singer +</button>
                     </div>             
                 </div>
