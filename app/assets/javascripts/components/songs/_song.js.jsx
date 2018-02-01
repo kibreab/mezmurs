@@ -5,7 +5,7 @@ var Song = React.createClass({
             singer_id: this.props.song.singer ? this.props.song.singer.id : ""
         }
     },
-    componentDidMount(){
+    componentDidMount(){        
       //this.audioPlayer();
       var currentSong = 0;
       if ($("#audioPlayer")[0]) {
@@ -39,7 +39,11 @@ var Song = React.createClass({
             var title = $(this).attr("data-popover-content");
             return $(title).children(".popover-heading").html();
           }
-      });         
+      });
+      //$( "#" + this.props.song.id + "-add-song-to-playlists" ).click(function() {
+      //  console.log(' -*- -*-  **  CLICKED  **  -*- -*- ')
+      //});
+        
     },
 
     //audioPlayer(){
@@ -107,7 +111,11 @@ var Song = React.createClass({
     handleSingerChange(event) {
         this.setState({ singer_id: event.target.value })    
     },
+    handleAddSongToPlaylists() {
+        console.log(' -*- -*-  **  You came toadd playlists ?  **  -*- -*- ')
+    },
     render() {
+        var self = this;
         var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : ""
         var singer_picture = this.props.song.singer ? this.props.song.singer.picture : "/assets/original/missing.png" 
 
@@ -118,10 +126,10 @@ var Song = React.createClass({
 
         var lyricsButtonField =  
             <div>
-                <button className="mz-btns btns-small" type="button" data-toggle="collapse" data-target={"#" + this.props.song.id} aria-expanded="false" aria-controls="collapseExample">
+                <button className="mz-btns btns-small" type="button" data-toggle="collapse" data-target={"#lyrics-of-" + this.props.song.id} aria-expanded="false" aria-controls="collapseExample">
                     See lyrics
                 </button>
-                <div className="collapse" id={this.props.song.id}>
+                <div className="collapse" id={"lyrics-of-"+this.props.song.id}>
                     <div className="card card-block">
                         <div className="song-lyrics" dangerouslySetInnerHTML={{__html: this.props.song.lyrics}} />
                     </div>
@@ -176,7 +184,7 @@ var Song = React.createClass({
                         <Playlist playlist={playlist}
                               handleDelete={this.handlePlaylistDelete.bind(this, playlist.id)}
                               handleUpdate={this.onUpdate}
-                              dataFor={"songs-popover"}
+                              dataFor={"songs-popover"+this.props.song.id}
                               current_user={this.props.current_user} />
                     </div>
                 )
@@ -207,12 +215,17 @@ var Song = React.createClass({
 
                           <div className="">
                             <div className="pull-left">{lyrics}</div>
-                            <div className="pull-left"><button className="mz-btns btns-small" tabIndex="0" data-toggle="popover" data-popover-content="#a1" data-placement="right">Add this song to playlists</button></div>
+                            <div className="pull-left">
+                                <button className="mz-btns btns-small" tabIndex="0" data-toggle="popover" data-popover-content={"#"+this.props.song.id} data-placement="right">Add this song to playlists</button>
+                            </div>
                           </div>
                           
-                          <div id="a1" className="hidden">
+                          <div id={this.props.song.id} className="hidden">
                               <div className="popover-heading">Add this song to ...</div>
-                              <div className="popover-body">{playlists}</div>
+                                <div className="popover-body">
+                                    {playlists}
+                                    <button id={this.props.song.id + "-add-song-to-playlists"} className="mz-btns btns-small" onClick={self.handleAddSongToPlaylists} >Add </button>
+                                </div>
                           </div> 
                           {idField}
                         </div>
