@@ -4,7 +4,7 @@ class Song < ApplicationRecord
   	has_many :playlists, through: :playlist_songs
 	# the like associations
 	has_many :likes
-	has_many :liking_users, :through => :likes, :source => :user  	
+	has_many :liking_users, :through => :likes, :source => :user
 
 	def as_json(options={})
 		result = super

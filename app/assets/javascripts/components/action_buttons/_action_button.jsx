@@ -12,7 +12,7 @@ var ActionButton = React.createClass({
 		if (true) {
 			button = this.props.editable ? 
 				<i className={"fa song-action-buttons " + "fa-paper-plane"} onClick={this.handleClick} aria-hidden="true"></i> : 
-				<i className="fa fa-pencil-square-o song-action-buttons" onClick={this.handleClick} aria-hidden="true"></i>		
+				<i className={this.props.classList} onClick={this.handleClick} aria-hidden="true"></i>		
 		};
         return (
             <i>

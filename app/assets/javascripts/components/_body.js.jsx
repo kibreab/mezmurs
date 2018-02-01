@@ -116,7 +116,35 @@ var Body = React.createClass({
             }
         )
     },
+
+    handleSongLike(song_id) {
+        console.log(' -*- -*-  **  body  **  -*- -*- ');
+        console.log(song_id);
+        $.ajax({
+            url: '/api/v1/likes',
+            type: 'POST',
+            data: { like: { song_id: song_id, user_id: this.props.current_user.id } },
+            success: (newLike) => {
+                // find the song and add this like to it.
+                var song = this.state.songs.filter((i) => { return i.id == song_id });
+                song = song[0];
+                var array = song.song_likes;
+                array = array.concat(newLike);
+                song.song_likes = array;
+                //song['song_likes'] = array;
+                console.log(song.song_likes)
+                console.log(song.song_likes);
+                this.updatesongs(song);
+
+                //this.props.handleSubmit(item);
+            }
+        });        
+    },
+
     updatesongs(song) {
+        console.log("song when sent..");
+        console.log(song);
+        console.log(' -*- -*-  **  updating song   **  -*- -*- ')
         var songs = this.state.songs.filter((i) => { return i.id != song.id });
         songs.push(song);
 
@@ -144,7 +172,8 @@ var Body = React.createClass({
                     <Allsongs 
                         songs={this.state.songs}
                         singers={this.state.singers}
-                        handleDelete={this.handleDelete} 
+                        handleDelete={this.handleDelete}
+                        handleSongLike={this.handleSongLike}
                         onUpdate={this.handleUpdate}
                         updateCurrentSong={this.updateCurrentSong}
                         currentSong={this.state.currentSong}

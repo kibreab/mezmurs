@@ -111,9 +111,12 @@ var Song = React.createClass({
     handleSingerChange(event) {
         this.setState({ singer_id: event.target.value })    
     },
-    handleAddSongToPlaylists() {
+    handleAddSongToPlaylists(e) {
         console.log(' -*- -*-  **  You came toadd playlists ?  **  -*- -*- ')
     },
+    handleSongLike() {
+        this.props.handleSongLike(this.props.song.id)
+    },    
     render() {
         var self = this;
         var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : ""
@@ -169,8 +172,22 @@ var Song = React.createClass({
         var cancelButton = this.state.editable ? <i className="fa fa-reply song-action-buttons" onClick={this.handleCancel} aria-hidden="true"></i> : '';
         var editSubmitButton = <ActionButton 
                                     editable={this.state.editable} 
-                                    current_user={this.props.current_user} 
+                                    current_user={this.props.current_user}
+                                    classList={"fa fa-pencil-square-o song-action-buttons"}
                                     handleAction={this.handleEdit} />
+
+        var user_liked_this_song = false;
+        if (this.props.current_user.user_likes && this.props.song.song_likes) {
+            user_liked_this_song = this.props.song.song_likes.filter((like) => { return like.song_id == this.props.song.id;});
+            user_liked_this_song = user_liked_this_song.length > 0;
+        }
+            
+        var likeButton = <ActionButton 
+                            editable={this.state.editable} 
+                            current_user={this.props.current_user}
+                            classList={"fa fa-thumbs-up song-action-buttons " + (user_liked_this_song ? "highlighted" : "")}
+                            handleAction={this.handleSongLike} />
+
          
         var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.props.handleDelete} aria-hidden="true"></i>
         var nowPlaying = (this.props.currentSong && this.props.currentSong.id == this.props.song.id);
@@ -218,8 +235,9 @@ var Song = React.createClass({
                             <div className="pull-left">
                                 <button className="mz-btns btns-small" tabIndex="0" data-toggle="popover" data-popover-content={"#"+this.props.song.id} data-placement="right">Add this song to playlists</button>
                             </div>
+                            
                           </div>
-                          
+                          <div>{likeButton}</div>
                           <div id={this.props.song.id} className="hidden">
                               <div className="popover-heading">Add this song to ...</div>
                                 <div className="popover-body">

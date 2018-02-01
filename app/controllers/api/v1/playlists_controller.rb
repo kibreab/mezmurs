@@ -14,7 +14,6 @@ class Api::V1::PlaylistsController < Api::V1::BaseController
 
   def update
     playlist = Playlist.find(params["id"])
-    playlist.updated_by = current_user.id
     playlist.update_attributes(playlist_params)
     respond_with playlist_params, json: playlist_params
   end
