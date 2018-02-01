@@ -23,7 +23,7 @@ var Allsongs = React.createClass({
                           current_user={this.props.current_user}
                           currentSong={this.props.currentSong}
                           handleSongLike={this.props.handleSongLike}
-                          handleUpdate={this.onUpdate}/>
+                          handleUpdate={this.onUpdate} />
                 </div>
             )
         });

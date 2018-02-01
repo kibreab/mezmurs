@@ -67,6 +67,28 @@ var Body = React.createClass({
         this.props.updateCurrentUser(user);
     },
 
+    removeLikeClient(id, song_id) {
+
+        var newUserLikes = this.props.current_user.user_likes.filter((like) => {
+            return like.id != id;
+        });
+
+        // find the song and add this like to it.
+        var song = this.state.songs.filter((i) => { return i.id == song_id });
+        song = song[0];
+
+        var newSongLikes = song.song_likes.filter((like) => {
+            return like.id != id;
+        }); 
+        
+        song.song_likes = newSongLikes
+        this.updatesongs(song);
+        
+        var user = this.props.current_user;
+        user.user_likes = newUserLikes;
+        this.props.updateCurrentUser(user); 
+    },
+
     handleDelete(id) {
         $.ajax({
             url: `/api/v1/songs/${id}`,
@@ -118,33 +140,47 @@ var Body = React.createClass({
     },
 
     handleSongLike(song_id) {
-        console.log(' -*- -*-  **  body  **  -*- -*- ');
-        console.log(song_id);
-        $.ajax({
-            url: '/api/v1/likes',
-            type: 'POST',
-            data: { like: { song_id: song_id, user_id: this.props.current_user.id } },
-            success: (newLike) => {
-                // find the song and add this like to it.
-                var song = this.state.songs.filter((i) => { return i.id == song_id });
-                song = song[0];
-                var array = song.song_likes;
-                array = array.concat(newLike);
-                song.song_likes = array;
-                //song['song_likes'] = array;
-                console.log(song.song_likes)
-                console.log(song.song_likes);
-                this.updatesongs(song);
 
-                //this.props.handleSubmit(item);
-            }
-        });        
+        var user_already_liked_this_song = this.props.current_user.user_likes.filter((like) => { return like.song_id == song_id;});
+
+        if (user_already_liked_this_song.length > 0){
+            like_id = user_already_liked_this_song[0].id
+            $.ajax({
+                url: `/api/v1/likes/${like_id}`,
+                type: 'DELETE',
+                success:() => {
+                   this.removeLikeClient(like_id, song_id);
+                }
+            });
+
+        }else{
+
+            $.ajax({
+                url: '/api/v1/likes',
+                type: 'POST',
+                data: { like: { song_id: song_id, user_id: this.props.current_user.id } },
+                success: (newLike) => {
+                    // find the song and add this like to it.
+                    var song = this.state.songs.filter((i) => { return i.id == song_id });
+                    song = song[0];
+                    var array = song.song_likes;
+                    array = array.concat(newLike);
+                    song.song_likes = array;
+                    this.updatesongs(song);
+
+                    // update also the user_likes
+                    var user = this.props.current_user;
+                    var arrayofLikedSongs = user.user_likes;
+                    arrayofLikedSongs = arrayofLikedSongs.concat(newLike);
+                    user.user_likes = arrayofLikedSongs;
+                    this.props.updateCurrentUser(user);
+                }
+            }); 
+
+        }
     },
 
     updatesongs(song) {
-        console.log("song when sent..");
-        console.log(song);
-        console.log(' -*- -*-  **  updating song   **  -*- -*- ')
         var songs = this.state.songs.filter((i) => { return i.id != song.id });
         songs.push(song);
 
@@ -166,6 +202,12 @@ var Body = React.createClass({
                         handlePlaylistSubmit={this.handlePlaylistSubmit}
                         handleDelete={this.handlePlaylistDelete}
                         current_user={this.props.current_user} />
+                    
+                    <AllPlaylists 
+                        user_playlists={this.state.user_playlists} 
+                        handlePlaylistSubmit={this.handlePlaylistSubmit}
+                        handleDelete={this.handlePlaylistDelete}
+                        current_user={this.props.current_user} />                        
                 </div>
 
                 <div className="pull-left mid-navigation">

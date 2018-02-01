@@ -177,11 +177,12 @@ var Song = React.createClass({
                                     handleAction={this.handleEdit} />
 
         var user_liked_this_song = false;
-        if (this.props.current_user.user_likes && this.props.song.song_likes) {
-            user_liked_this_song = this.props.song.song_likes.filter((like) => { return like.song_id == this.props.song.id;});
+        if (this.props.current_user && (this.props.current_user.user_likes && this.props.song.song_likes)) {
+            user_liked_this_song = this.props.current_user.user_likes.filter((like) => { return like.song_id == this.props.song.id;});
             user_liked_this_song = user_liked_this_song.length > 0;
         }
-            
+        
+        var likesCount = this.props.song.song_likes.length;
         var likeButton = <ActionButton 
                             editable={this.state.editable} 
                             current_user={this.props.current_user}
@@ -237,7 +238,8 @@ var Song = React.createClass({
                             </div>
                             
                           </div>
-                          <div>{likeButton}</div>
+                          <div>{likeButton} {likesCount}</div>
+
                           <div id={this.props.song.id} className="hidden">
                               <div className="popover-heading">Add this song to ...</div>
                                 <div className="popover-body">
