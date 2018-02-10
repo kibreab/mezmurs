@@ -2,9 +2,6 @@
 	min-height: 70px;
 	border: none;
 }
-.songs-holder{
-	/*margin-top: 43px;*/
-}
 audio{
 	
     overflow: auto;
@@ -13,8 +10,11 @@ audio{
     padding: 10px;
 }
 
+.container{
+	width: 98% !important;
+}
 .mid-navigation{
-	width: 60%;	
+	width: 80%;	
 }
 .left-navigation{
 	width: 20%;
@@ -98,14 +98,38 @@ audio{
 	color: #9a9896;
 	font-size: 12px;
 }
+
+.all-song-items-container{
+	background: #fff;
+	padding-top: 12px !important;
+}
 .audio-header{
 	padding-left: 35px;
 	padding-top: 10px;
-	width: 85%;
     margin-left: auto;
     margin-right: auto;
     background: #fff;
-    margin-bottom: 1px;	
+}
+.sort-container{
+	height: 90px;
+	background: #f1f1f1;
+	.sort-items-holder{
+		
+		margin-right: 30px;
+		.sort-item{
+    		border-right: 1px solid #c5c5c5;
+    		height: 90px;
+    		padding: 14px 26px;
+			height: 90px;
+
+			.amharic-text{
+
+			}
+			.english-text{
+
+			}
+		}
+	}
 }
 .singer-name-listing{
 	font-weight: 200;
@@ -179,10 +203,11 @@ audio{
     color: #757575;
 }
 .side-listing-container{
-    padding: 2px 12px;
-    margin: 2px 0;
+    padding: 6px 0px;
+    margin: 10px 0;
     overflow: auto;
     font-size: 12px;
+    border-top: 1px solid #f1f1f1;
 }
 
 .title-container{
@@ -199,7 +224,6 @@ audio{
     }
 }
 .side-content-container{
-	padding: 2px 12px;
 }
 .popover{
 	border-radius: 0;
@@ -218,5 +242,65 @@ audio{
   display: none;
 }
 .highlighted{
-	color: red;
+	color: #07aef3;
+}
+.song-holder{
+	height: 250px;
+    width: 200px;
+    display: inline-block;
+    margin: 4px 0 4px 10px;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    
+    
+    .song-item{
+    	height: 220px;
+    	border-bottom: 1px solid #e0e0e0;
+    }
+    .play-button-area{
+		
+    	text-align: center;
+    	padding: 6px;
+    	.play-button{    		
+    		margin-left: auto;
+    		margin-right: auto;
+    		.p-button{
+    		    position: relative;
+    			top: 10px;
+    			font-size: 26px;
+    			color: #bfbfbf;
+    		}
+    	}
+    }
+    .edit-song-area{
+		margin-top: 18px;
+    	text-align: center;
+    	padding: 6px;
+    	.edit-button{    		    		
+    		margin-left: auto;
+    		margin-right: auto;
+    	}    	
+    }
+    .song-content-area{
+		margin-top: 30px;
+    	margin-left: 8px;
+    	.song-title-container{
+    		font-weight: 600;
+    	}
+    }
+    .see-lyrics-area{
+    	margin-left: 8px;
+    }
+    .song-activity-button-area{
+    	padding-top: 4px;
+    	padding-right: 4px;
+    	background: #f1f1f1;
+    	overflow: auto;
+    	.add-icon{
+    		color: #8e8e8e;
+    		cursor: pointer;
+    	}
+    }
+
+
 }

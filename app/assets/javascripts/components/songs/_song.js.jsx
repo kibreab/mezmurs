@@ -186,7 +186,7 @@ var Song = React.createClass({
         var likeButton = <ActionButton 
                             editable={this.state.editable} 
                             current_user={this.props.current_user}
-                            classList={"fa fa-thumbs-up song-action-buttons " + (user_liked_this_song ? "highlighted" : "")}
+                            classList={"fa fa-heart song-action-buttons " + (user_liked_this_song ? "highlighted" : "")}
                             handleAction={this.handleSongLike} />
 
          
@@ -208,57 +208,61 @@ var Song = React.createClass({
                 )
             });
         }
-
         return (
-            <div className="container">
+            <div className="song-holder pull-left">
 
-                <div className="list-group-item ">
-
-                    <div className="media">
-                      <div className="media-left media-bottom">
-                        <a href="#">
-                          <img className="pull-left media-object singer-cover-listing" src={singer_picture} alt="..." />
-                        </a>
-                      
-                        <div className="media-body pull-left">
-                          <div id="playlist">
-                                <div className="song-title" onClick={this.handlePlaySong}>
-                                    <a href={"assets/" + this.props.song.filename} className={nowPlaying ? "active fa fa-music" : "fa fa-play-dis"} aria-hidden="true">
-                                        <span className="song-title-span">{title} {this.props.song.id}</span>
-                                    </a>
-                                </div>
-                          </div>
-                          
-                          {singers}
-
-                          <div className="">
-                            <div className="pull-left">{lyrics}</div>
-                            <div className="pull-left">
-                                <button className="mz-btns btns-small" tabIndex="0" data-toggle="popover" data-popover-content={"#"+this.props.song.id} data-placement="right">Add this song to playlists</button>
+                <div className="song-item">
+                    <div className="singer-bg" style ={ { backgroundImage: "url("+""+")" } }>
+                        <div id="playlist" className="play-button-area">
+                            <div className="play-button" onClick={this.handlePlaySong}>  
+                                <span className={nowPlaying ? "p-button active fa fa-music" : "fa fa-play p-button"}></span>
                             </div>
-                            
-                          </div>
-                          <div>{likeButton} {likesCount}</div>
-
-                          <div id={this.props.song.id} className="hidden">
-                              <div className="popover-heading">Add this song to ...</div>
-                                <div className="popover-body">
-                                    {playlists}
-                                    <button id={this.props.song.id + "-add-song-to-playlists"} className="mz-btns btns-small" onClick={self.handleAddSongToPlaylists} >Add </button>
-                                </div>
-                          </div> 
-                          {idField}
                         </div>
-
-                        <div className="pull-right">
-                            {cancelButton}                            
-                            {editSubmitButton}
-                            {deleteButton}
+                        <div className="edit-song-area">
+                            <div className="edit-button">
+                                {editSubmitButton}
+                            </div>                    
                         </div>
-                      </div>
                     </div>
- 
-                     
+
+                    <div className="song-content-area">
+                        <div className="song-title-container">
+                            {title}
+                        </div>
+                        <div className="song-singer-container">
+                            {singers}
+                        </div>
+                    </div>
+                    <div className="see-lyrics-area">
+                        <div className="lyrics-button">
+                            {lyrics}    
+                        </div>
+                        
+                    </div>
+                    
+
+                </div>
+                <div className="song-activity-button-area">
+                    <div className="pull-left">
+
+                    </div>
+                    <div className="pull-left">
+                        <div>{likeButton} {likesCount}</div>
+                    </div>
+                    <div className="pull-right">
+                        <i className="fa fa-plus add-icon" tabIndex="0" data-toggle="popover" data-popover-content={"#"+this.props.song.id} data-placement="right"></i>
+                    </div>
+
+                    <div className="pull-left">
+                        <div id={this.props.song.id} className="hidden">
+                            <div className="popover-heading">Add this song to ...</div>
+                              <div className="popover-body">
+                                  {playlists}
+                                  <button id={this.props.song.id + "-add-song-to-playlists"} className="mz-btns btns-small" onClick={self.handleAddSongToPlaylists} >Add </button>
+                              </div>
+                        </div> 
+                        {idField}                    
+                    </div>                                        
                 </div>
            
             </div>

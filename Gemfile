@@ -9,8 +9,14 @@ gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'pg', '~> 0.20'
 
 # Use SCSS for stylesheets
-gem 'sass-rails'
-gem 'bootstrap-sass', '~> 3.3.6'
+
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'sass-rails', '>= 3.2'
+
+
+gem 'bootbox-rails', '~>0.4'
+# select2
+gem "select2-rails"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
@@ -19,8 +25,6 @@ gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', group: :doc
 gem 'jquery-rails'
-
-gem "twitter-bootstrap-rails"
 
 gem "font-awesome-rails"
 

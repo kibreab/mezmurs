@@ -194,6 +194,8 @@ var Body = React.createClass({
         return (
             <div className="container">
                 <NewSong handleSubmit={this.handleSubmit}/>
+
+
                 
                 <div className="pull-left left-navigation">
                     <User updateCurrentUser={this.updateCurrentUser} />
@@ -203,10 +205,8 @@ var Body = React.createClass({
                         handleDelete={this.handlePlaylistDelete}
                         current_user={this.props.current_user} />
                     
-                    <AllPlaylists 
-                        user_playlists={this.state.user_playlists} 
-                        handlePlaylistSubmit={this.handlePlaylistSubmit}
-                        handleDelete={this.handlePlaylistDelete}
+                    <AllUserLikes 
+                        handleSongLike={this.handleSongLike}
                         current_user={this.props.current_user} />                        
                 </div>
 
@@ -222,7 +222,7 @@ var Body = React.createClass({
                         current_user={this.props.current_user} />    
                 </div>
 
-                <div className="pull-left right-navigation">
+                {/* <div className="pull-left right-navigation">
                     <AllSingers 
                         singers={this.state.singers} 
                         handleSingerSubmit={this.handleSingerSubmit} 
@@ -230,7 +230,7 @@ var Body = React.createClass({
                         onUpdate={this.handleSingerUpdate}
                         current_user={this.props.current_user}
                         />
-                </div>
+                </div>*/}
 
             </div>
         )

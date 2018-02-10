@@ -26,7 +26,7 @@ var Playlist = React.createClass({
         var playlistAndSongs =  null;
         playlistAndSongs = 
             <div>
-                <i className="fa fa-chevron-right site-toggle-buttons" type="" data-toggle="collapse" data-target={"#" + this.props.playlist.id + (this.props.dataFor ? this.props.dataFor : "") } aria-expanded="false" aria-controls="collapseSongs">
+                <i className="fa fa-chevron-down site-toggle-buttons" type="" data-toggle="collapse" data-target={"#" + this.props.playlist.id + (this.props.dataFor ? this.props.dataFor : "") } aria-expanded="false" aria-controls="collapseSongs">
                     
                 </i>
                 <span>{this.props.playlist.title + " ( "+this.props.playlist.songs.length + " ) "}</span>
