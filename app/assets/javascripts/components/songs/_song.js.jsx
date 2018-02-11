@@ -121,7 +121,7 @@ var Song = React.createClass({
         var self = this;
         var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : ""
         var singer_picture = this.props.song.singer ? this.props.song.singer.picture : "/assets/original/missing.png" 
-
+        var nowPlaying = (this.props.currentSong && this.props.currentSong.id == this.props.song.id);
         //<input type='text' ref='lyrics' defaultValue={this.props.song.lyrics} />
         var title = this.state.editable ? <input type='text' ref='title' defaultValue={this.props.song.title} /> : this.props.song.title;
         var idField = <input type='hidden' ref='id' defaultValue={this.props.song.id} />;
@@ -130,14 +130,18 @@ var Song = React.createClass({
         var lyricsButtonField =  
             <div>
                 <button className="mz-btns btns-small" type="button" data-toggle="collapse" data-target={"#lyrics-of-" + this.props.song.id} aria-expanded="false" aria-controls="collapseExample">
-                    See lyrics
+                    <span className="fa fa-eye" />   <span>See lyrics</span>
                 </button>
                 <div className="collapse" id={"lyrics-of-"+this.props.song.id}>
                     <div className="card card-block">
                         <div className="song-lyrics" dangerouslySetInnerHTML={{__html: this.props.song.lyrics}} />
                     </div>
                 </div>
-            </div>    
+            </div>
+
+        var addLyrics = <button className="mz-btns btns-small" type="button" >
+                            <span>Add lyrics</span>  <span className="fa fa-plus" />
+                        </button>
 
         var lyrics = this.state.editable ? 
             <div className="midcol">
@@ -149,7 +153,7 @@ var Song = React.createClass({
             </div> : 
 
             (
-                this.props.song.lyrics ? lyricsButtonField : ""
+                this.props.song.lyrics ? lyricsButtonField : addLyrics 
                 )
         
         var singersList = this.props.singers.map(function (item, key) {
@@ -173,7 +177,7 @@ var Song = React.createClass({
         var editSubmitButton = <ActionButton 
                                     editable={this.state.editable} 
                                     current_user={this.props.current_user}
-                                    classList={"fa fa-pencil-square-o song-action-buttons"}
+                                    classList={"fa fa-pencil-square-o edit-song-icon"}
                                     handleAction={this.handleEdit} />
 
         var user_liked_this_song = false;
@@ -186,12 +190,11 @@ var Song = React.createClass({
         var likeButton = <ActionButton 
                             editable={this.state.editable} 
                             current_user={this.props.current_user}
-                            classList={"fa fa-heart song-action-buttons " + (user_liked_this_song ? "highlighted" : "")}
+                            classList={"fa fa-heart " + ( (user_liked_this_song && nowPlaying) ? " now-playing-highlighted " : ((user_liked_this_song) ? " highlighted " : "")) + (nowPlaying ? "action-icon-active" : "action-icon")}
                             handleAction={this.handleSongLike} />
 
          
         var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.props.handleDelete} aria-hidden="true"></i>
-        var nowPlaying = (this.props.currentSong && this.props.currentSong.id == this.props.song.id);
 
         var playlists = null;
         if (this.props.current_user && this.props.current_user.playlists) {
@@ -209,48 +212,53 @@ var Song = React.createClass({
             });
         }
         return (
-            <div className="song-holder pull-left">
+            <div className={"song-holder pull-left " + (nowPlaying ? "active-song-holder " : "")}>
 
                 <div className="song-item">
                     <div className="singer-bg" style ={ { backgroundImage: "url("+""+")" } }>
                         <div id="playlist" className="play-button-area">
-                            <div className="play-button" onClick={this.handlePlaySong}>  
-                                <span className={nowPlaying ? "p-button active fa fa-music" : "fa fa-play p-button"}></span>
+                            <div className={nowPlaying ? "play-button-active" : "play-button"} onClick={this.handlePlaySong}>  
+                                <span className={nowPlaying ? "p-button-active fa fa-music" : "fa fa-play p-button"}></span>
                             </div>
                         </div>
-                        <div className="edit-song-area">
-                            <div className="edit-button">
-                                {editSubmitButton}
-                            </div>                    
-                        </div>
+
                     </div>
 
                     <div className="song-content-area">
+                        
+
                         <div className="song-title-container">
                             {title}
                         </div>
                         <div className="song-singer-container">
                             {singers}
                         </div>
-                    </div>
-                    <div className="see-lyrics-area">
-                        <div className="lyrics-button">
-                            {lyrics}    
+
+                        <div className="see-lyrics-area">
+                            <div className="lyrics-button">
+                                {lyrics}    
+                            </div>
+                            
                         </div>
-                        
+
                     </div>
                     
 
                 </div>
-                <div className="song-activity-button-area">
+               
+                <div className={nowPlaying ? "song-activity-button-area-active" : "song-activity-button-area"}>
+                    
                     <div className="pull-left">
+                        <ShareSong song={this.props.song} nowPlaying={nowPlaying} />
+                    </div>
 
-                    </div>
+
                     <div className="pull-left">
-                        <div>{likeButton} {likesCount}</div>
+                        <div>{likeButton} <span className={nowPlaying ? "likes-count-active" : "likes-count"}>{likesCount}</span></div>
                     </div>
+
                     <div className="pull-right">
-                        <i className="fa fa-plus add-icon" tabIndex="0" data-toggle="popover" data-popover-content={"#"+this.props.song.id} data-placement="right"></i>
+                        <i className={nowPlaying ? "fa fa-plus action-icon-active" : "fa fa-plus action-icon"} tabIndex="0" data-toggle="popover" data-popover-content={"#"+this.props.song.id} data-placement="right"></i>
                     </div>
 
                     <div className="pull-left">
@@ -263,6 +271,16 @@ var Song = React.createClass({
                         </div> 
                         {idField}                    
                     </div>                                        
+
+                    <div className="edit-song-area">
+                        <div className="edit-button">
+                            {editSubmitButton}
+                        </div>                    
+                    </div>
+
+
+
+
                 </div>
            
             </div>

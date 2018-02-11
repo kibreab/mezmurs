@@ -1,11 +1,14 @@
+@import "_mixins";
+@import "_colors";
+
 .navbar{
 	min-height: 70px;
 	border: none;
 }
 audio{
-	
+	outline: none;
     overflow: auto;
-    width: 68%;
+    width: 100%;
     height: 55px;
     padding: 10px;
 }
@@ -117,17 +120,42 @@ audio{
 		
 		margin-right: 30px;
 		.sort-item{
-    		border-right: 1px solid #c5c5c5;
+    		border-right: 1px solid #dadada;
     		height: 90px;
     		padding: 14px 26px;
 			height: 90px;
+            .sort-icon-description{
+                margin-right: 10px;
+                padding: 14px 0px;
+                background: #ffffff;
+                border-radius: 50%;
+                width: 55px;
+                height: 55px;
+                text-align: center;
+                .description-icon{
+                    color: $main-logo-color;
+                    font-size: 18px;
+                }
+            }
+            .text-area{
+                font-size: 14px;
+                color: #000;
+                font-weight: 800;
+                text-transform: uppercase;
+			     .amharic-text{
 
-			.amharic-text{
+			     }
+			     .english-text{
 
-			}
-			.english-text{
-
-			}
+			     }
+                 .sort-icon-container{
+                    text-align: center;
+                 }
+                 .count-number{
+                    text-align: center;  
+                    font-size: 16px;
+                 }
+            }     
 		}
 	}
 }
@@ -141,14 +169,14 @@ audio{
     color: black;
     text-transform: uppercase;
     margin-left: 20px;
+    margin-top: 6px;
 }
 .current-song-title{
 	margin-left: 20px;	
 }
 .song-action-buttons{
 	font-size: 16px;
-	color: #7b7b7b;
-    padding: 0px 10px;
+	color: #bfbfbf;
     cursor: pointer;
 }
 .site-toggle-buttons{
@@ -200,13 +228,14 @@ audio{
     line-height: 26px;
     padding: 0 15px;
     border: 1px solid #e2e2e2;
-    color: #757575;
+    color: #8e8e8e;
 }
 .side-listing-container{
     padding: 6px 0px;
     margin: 10px 0;
     overflow: auto;
     font-size: 12px;
+    padding-right: 6px;
     border-top: 1px solid #f1f1f1;
 }
 
@@ -242,7 +271,13 @@ audio{
   display: none;
 }
 .highlighted{
-	color: #07aef3;
+	color: #ff5858 !important;
+}
+.now-playing-highlighted{
+    color: #a90d0d !important;   
+}
+.active-song-holder{
+    border: 1px solid $main-logo-color !important;   
 }
 .song-holder{
 	height: 250px;
@@ -251,11 +286,9 @@ audio{
     margin: 4px 0 4px 10px;
     border: 1px solid #e2e2e2;
     border-radius: 5px;
-    
-    
+   
     .song-item{
-    	height: 220px;
-    	border-bottom: 1px solid #e0e0e0;
+    	height: 219px;    	
     }
     .play-button-area{
 		
@@ -264,22 +297,42 @@ audio{
     	.play-button{    		
     		margin-left: auto;
     		margin-right: auto;
+
+            width: 66px;
+            height: 66px;
+            padding-top: 8px;
+            border-radius: 50%;
+            border: 1px solid #f1f1f1;
+            padding-left: 5px;            
+            background: #f5f5f578;
+
+
+
     		.p-button{
     		    position: relative;
     			top: 10px;
     			font-size: 26px;
     			color: #bfbfbf;
+                cursor: pointer;
     		}
+
     	}
-    }
-    .edit-song-area{
-		margin-top: 18px;
-    	text-align: center;
-    	padding: 6px;
-    	.edit-button{    		    		
-    		margin-left: auto;
-    		margin-right: auto;
-    	}    	
+        .play-button-active{
+            margin-left: auto;
+            margin-right: auto;        
+            width: 50px;
+            height: 50px;
+            padding-top: 6px;
+            border-radius: 50%;
+            background: $main-logo-color;   
+            .p-button-active{
+                position: relative;
+                top: 8px;
+                font-size: 22px;
+                color: #fff;
+                cursor: pointer;            
+            }
+        }
     }
     .song-content-area{
 		margin-top: 30px;
@@ -289,18 +342,58 @@ audio{
     	}
     }
     .see-lyrics-area{
-    	margin-left: 8px;
     }
     .song-activity-button-area{
-    	padding-top: 4px;
-    	padding-right: 4px;
-    	background: #f1f1f1;
-    	overflow: auto;
-    	.add-icon{
-    		color: #8e8e8e;
+        border-top: 1px solid #e0e0e0;
+    	padding: 2px 10px;
+    	background: #f7f7f7;
+        overflow: visible;    
+        height: 29px;	
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;        
+    	.action-icon{
+    		color: #bfbfbf;
     		cursor: pointer;
+            padding-left: 25px;
+            outline: none;
     	}
     }
 
-
+    .song-activity-button-area-active{
+        border-top: 1px solid #ff7576;
+        padding: 2px 10px;
+        background: $main-logo-color;
+        overflow: visible;
+        height: 29px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px; 
+        .action-icon-active{
+            color: #fff;
+            cursor: pointer;
+            padding-left: 25px;
+            outline: none;        
+        }
+    }
+    .edit-song-area{
+        text-align: right;
+        padding: 4px;
+        .edit-button{
+            position: relative;
+            bottom: 40px;
+            left: 42px;
+            .edit-song-icon{
+                font-size: 32px;
+                color: #000; 
+                cursor: pointer;
+            }
+        }       
+    }
+    .likes-count-active{
+        color: #fff;
+        font-size: 13px;
+    }
+    .likes-count{
+        color: #bfbfbf;
+        font-size: 13px;
+    }
 }

@@ -1,8 +1,16 @@
 var SortArea = React.createClass({
 
     render() {
+
+
+
+
         return(
             <div className="container sort-container">
+
+                <AllUserLikes                     
+                    current_user={this.props.current_user} />  
+
             	<div className="pull-right sort-items-holder">
 
             		<div className="sort-item pull-left">
@@ -12,7 +20,10 @@ var SortArea = React.createClass({
             				</div>
             				<div className="amharic-text amharic">
             					በብዛት የተወደዱ
-            				</div>            				
+            				</div>
+                            <div className="sort-icon-container">
+                                <i className="sort-icons fa fa-arrow-down action-icon"></i>
+                            </div>                            
             			</div>
             			
             		</div>

@@ -203,11 +203,7 @@ var Body = React.createClass({
                         user_playlists={this.state.user_playlists} 
                         handlePlaylistSubmit={this.handlePlaylistSubmit}
                         handleDelete={this.handlePlaylistDelete}
-                        current_user={this.props.current_user} />
-                    
-                    <AllUserLikes 
-                        handleSongLike={this.handleSongLike}
-                        current_user={this.props.current_user} />                        
+                        current_user={this.props.current_user} />                      
                 </div>
 
                 <div className="pull-left mid-navigation">

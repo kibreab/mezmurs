@@ -20,20 +20,24 @@ var SearchArea = React.createClass({
 
 
                     <div className="pull-left">
-                        <div className="forms-area">
-                            <div className="input-options">
-                                <div className="pull-left">
-                                    By amharic
+                        <form>
+                            <div className="form-group forms-area">
+                                <div className="input-options">
+                                    <div className="pull-left">
+                                        By amharic
+                                    </div>
+                                    <div className="pull-left">
+                                        By English
+                                    </div>                            
                                 </div>
-                                <div className="pull-left">
-                                    By English
-                                </div>                            
-                            </div>
 
-                            <div className="input-group">
-                                <input className="form-control form-control-lg" type="text" placeholder=".form-control-lg" />
-                            </div>
-                        </div>         
+                                <div className="form-group">
+                                    <input className="form-control form-control-lg" type="text" placeholder="form-control-lg" />
+                                </div>
+                            </div> 
+
+                        </form>
+        
                     </div>
 
                 </div>
