@@ -19,11 +19,13 @@ audio{
 .mid-navigation{
 	width: 80%;	
 }
-.left-navigation{
-	width: 20%;
-	background: #fff;	
-}
 .right-navigation{
+	width: 20%;
+	background: #fff;
+    max-height: 397px;
+    overflow: auto;
+}
+.left-navigation{
 	width: 20%;
 	background: #fff;
 }
@@ -103,24 +105,26 @@ audio{
 }
 
 .all-song-items-container{
-	background: #fff;
+	border-top: 1px solid #ddd;
 	padding-top: 12px !important;
+    padding-top: 20px;
+    clear: both;    
 }
 .audio-header{
 	padding-left: 35px;
 	padding-top: 10px;
+    min-height: 120px;
     margin-left: auto;
     margin-right: auto;
-    background: #fff;
+    background: #fafafa;
 }
 .sort-container{
 	height: 90px;
-	background: #f1f1f1;
+	background: #fafafa;
 	.sort-items-holder{
 		
 		margin-right: 30px;
-		.sort-item{
-    		border-right: 1px solid #dadada;
+		.sort-item{    		
     		height: 90px;
     		padding: 14px 26px;
 			height: 90px;
@@ -181,7 +185,6 @@ audio{
 }
 .site-toggle-buttons{
 	font-size: 12px;
-	color: #7b7b7b;
     padding: 0px 10px;
     cursor: pointer;	
 }
@@ -242,7 +245,6 @@ audio{
 .title-container{
 	/*background: #a2a2a2;*/
     padding: 6px 12px;
-	color: #888;    
     .big-title{
 		text-transform: uppercase;
     	font-weight: 800;    
@@ -283,10 +285,11 @@ audio{
 	height: 250px;
     width: 200px;
     display: inline-block;
-    margin: 4px 0 4px 10px;
-    border: 1px solid #e2e2e2;
+    margin: 4px 0 4px 10px;        
+    border: 1px solid #d0d0d0;
     border-radius: 5px;
-   
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(25,25,25,0.2);
     .song-item{
     	height: 219px;    	
     }
@@ -295,24 +298,21 @@ audio{
     	text-align: center;
     	padding: 6px;
     	.play-button{    		
-    		margin-left: auto;
-    		margin-right: auto;
-
+            margin-left: auto;
+            margin-right: auto;
             width: 66px;
             height: 66px;
-            padding-top: 8px;
+            padding-top: 10px;
             border-radius: 50%;
-            border: 1px solid #f1f1f1;
-            padding-left: 5px;            
-            background: #f5f5f578;
-
-
+            /* border: 1px solid #f1f1f1; */
+            padding-left: 8px;
+            background: #f4f7f6;
 
     		.p-button{
-    		    position: relative;
-    			top: 10px;
-    			font-size: 26px;
-    			color: #bfbfbf;
+                position: relative;
+                top: 10px;
+                font-size: 25px;
+                color: #d9dedc;
                 cursor: pointer;
     		}
 
@@ -352,7 +352,7 @@ audio{
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;        
     	.action-icon{
-    		color: #bfbfbf;
+    		color: #9c9c9c;
     		cursor: pointer;
             padding-left: 25px;
             outline: none;
@@ -383,7 +383,7 @@ audio{
             left: 42px;
             .edit-song-icon{
                 font-size: 32px;
-                color: #000; 
+                color: #8e8e8e; 
                 cursor: pointer;
             }
         }       

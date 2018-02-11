@@ -197,7 +197,16 @@ var Body = React.createClass({
 
 
                 
-                <div className="pull-left left-navigation">
+
+                <div className="pull-left mid-navigation">
+
+                    <SearchArea />
+                    <AudioHeader currentSong={this.state.currentSong} />
+                    <SortArea current_user={this.props.current_user} />
+  
+                </div>
+
+                <div className="pull-left right-navigation">
                     <User updateCurrentUser={this.updateCurrentUser} />
                     <AllPlaylists 
                         user_playlists={this.state.user_playlists} 
@@ -206,17 +215,15 @@ var Body = React.createClass({
                         current_user={this.props.current_user} />                      
                 </div>
 
-                <div className="pull-left mid-navigation">
-                    <Allsongs 
-                        songs={this.state.songs}
-                        singers={this.state.singers}
-                        handleDelete={this.handleDelete}
-                        handleSongLike={this.handleSongLike}
-                        onUpdate={this.handleUpdate}
-                        updateCurrentSong={this.updateCurrentSong}
-                        currentSong={this.state.currentSong}
-                        current_user={this.props.current_user} />    
-                </div>
+                <Allsongs 
+                    songs={this.state.songs}
+                    singers={this.state.singers}
+                    handleDelete={this.handleDelete}
+                    handleSongLike={this.handleSongLike}
+                    onUpdate={this.handleUpdate}
+                    updateCurrentSong={this.updateCurrentSong}
+                    currentSong={this.state.currentSong}
+                    current_user={this.props.current_user} />  
 
                 {/* <div className="pull-left right-navigation">
                     <AllSingers 

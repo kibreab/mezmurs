@@ -31,10 +31,7 @@ var Allsongs = React.createClass({
         return(
 
             <div className="">
-                <SearchArea />
-                <AudioHeader currentSong={this.props.currentSong} />
-                <SortArea current_user={this.props.current_user} />
-                <div className="container all-song-items-container">
+                <div className="all-song-items-container">
                     {songs}
                 </div>
                 
