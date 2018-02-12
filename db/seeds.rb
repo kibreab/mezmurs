@@ -11,7 +11,7 @@ end
 def generate_data
   5.times do |k|
     song = Song.new
-    song.title = "Song seeded #{k}"
+    song.title = "New generation song #{k}"
     song.description = "Classical of Nebse Hoy"
     song.filename = "Nebse Hoy - Track 1.mp3"
     song.singer = Singer.create()

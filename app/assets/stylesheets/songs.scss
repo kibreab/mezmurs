@@ -17,7 +17,8 @@ audio{
 	width: 98% !important;
 }
 .mid-navigation{
-	width: 80%;	
+	width: 79%;	
+    margin-right: 10px;
 }
 .right-navigation{
 	width: 20%;
@@ -238,7 +239,7 @@ audio{
     margin: 10px 0;
     overflow: auto;
     font-size: 12px;
-    padding-right: 6px;
+    padding-right: 14px;
     border-top: 1px solid #f1f1f1;
 }
 
@@ -289,7 +290,12 @@ audio{
     border: 1px solid #d0d0d0;
     border-radius: 5px;
     background: #fff;
-    box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+    /*box-shadow: 0 1px 2px rgba(25,25,25,0.2);*/
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;    
     .song-item{
     	height: 219px;    	
     }
@@ -302,17 +308,40 @@ audio{
             margin-right: auto;
             width: 66px;
             height: 66px;
-            padding-top: 10px;
+            padding-top: 9px;
             border-radius: 50%;
-            /* border: 1px solid #f1f1f1; */
+            border: 1px solid #d9dedc;
             padding-left: 8px;
             background: #f4f7f6;
+            color: #d9dedc;
+
+            -webkit-transition: all .3s ease-out;
+            -moz-transition: all .3s ease-out;
+            -ms-transition: all .3s ease-out;
+            -o-transition: all .3s ease-out;
+            transition: all .3s ease-out;
+
+
+            &:hover {
+                background: $main-logo-color;
+                border: none;  
+                color: #FFF;
+                -webkit-transform: scale(1.1);
+                -moz-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                -o-transform:   scale(1.1);
+                transform: scale(1.1);
+                -webkit-transition: all .3s ease-out;
+                -moz-transition: all .3s ease-out;
+                -ms-transition: all .3s ease-out;
+                -o-transition: all .3s ease-out;
+                transition: all .3s ease-out;
+            }
 
     		.p-button{
                 position: relative;
                 top: 10px;
-                font-size: 25px;
-                color: #d9dedc;
+                font-size: 25px;                
                 cursor: pointer;
     		}
 
@@ -320,19 +349,37 @@ audio{
         .play-button-active{
             margin-left: auto;
             margin-right: auto;        
-            width: 50px;
-            height: 50px;
-            padding-top: 6px;
+            width: 66px;
+            height: 66px;
+            padding-top: 9px;
             border-radius: 50%;
             background: $main-logo-color;   
             .p-button-active{
                 position: relative;
-                top: 8px;
-                font-size: 22px;
+                top: 10px;
+                font-size: 25px;
                 color: #fff;
                 cursor: pointer;            
             }
         }
+
+        .play-button-editable{
+            
+            margin-left: 162px;        
+            width: 18px;
+            height: 18px;
+            padding-top: 0px;
+            border-radius: 50%;
+            background: $main-logo-color;   
+            .p-button-editable{
+                position: relative;
+                top: -4px;
+                font-size: 11px;
+                color: #fff;
+                cursor: pointer;            
+            }
+        }
+
     }
     .song-content-area{
 		margin-top: 30px;
@@ -393,7 +440,26 @@ audio{
         font-size: 13px;
     }
     .likes-count{
-        color: #bfbfbf;
+        color: #000;
         font-size: 13px;
+        font-weight: 600;
     }
+
+
+    &:hover {
+        border: 1px solid $main-logo-color;
+
+        -webkit-transition: all .3s ease-out;
+        -moz-transition: all .3s ease-out;
+        -ms-transition: all .3s ease-out;
+        -o-transition: all .3s ease-out;
+        transition: all .3s ease-out;
+    }
+
+
+}
+.edit-song-icon{
+    font-size: 32px;
+    color: #8e8e8e; 
+    cursor: pointer;
 }

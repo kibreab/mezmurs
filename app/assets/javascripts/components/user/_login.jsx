@@ -4,8 +4,8 @@ var Login = React.createClass({
   var that = this
   var userInfo = {
    user: {
-    email: document.getElementById("email").value,
-    password: document.getElementById("password").value
+    email: $("#email").val(),
+    password: $("#password").val()
    }
   }
   $.ajax({
@@ -15,7 +15,7 @@ var Login = React.createClass({
    data: userInfo,
    success: function (user) {
     console.log("user sign in success")
-    that.props.changePage("edit");  
+    that.props.changePage("edit");
     that.props.updateCurrentUser(user);
    },
    error: function (error) {

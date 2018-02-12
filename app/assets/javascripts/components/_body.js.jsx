@@ -107,7 +107,7 @@ var Body = React.createClass({
         this.setState({ songs: newsongs });
     },
 
-    handleUpdate(song) {
+    handleSongUpdate(song) {
         $.ajax({
                 url: `/api/v1/songs/${song.id}`,
                 type: 'PUT',
@@ -192,7 +192,7 @@ var Body = React.createClass({
 
     render() {
         return (
-            <div className="container">
+            <div className="">
                 <NewSong handleSubmit={this.handleSubmit}/>
 
 
@@ -201,13 +201,20 @@ var Body = React.createClass({
                 <div className="pull-left mid-navigation">
 
                     <SearchArea />
-                    <AudioHeader currentSong={this.state.currentSong} />
+                    <AudioHeader 
+                        singers={this.state.singers} 
+                        onUpdate={this.handleSongUpdate}
+                        updateCurrentUser={this.updateCurrentUser}
+                        currentSong={this.state.currentSong} 
+                        current_user={this.props.current_user}
+                        />
+
                     <SortArea current_user={this.props.current_user} />
   
                 </div>
 
                 <div className="pull-left right-navigation">
-                    <User updateCurrentUser={this.updateCurrentUser} />
+                    <User current_user={this.props.current_user} updateCurrentUser={this.updateCurrentUser} />
                     <AllPlaylists 
                         user_playlists={this.state.user_playlists} 
                         handlePlaylistSubmit={this.handlePlaylistSubmit}
@@ -220,8 +227,9 @@ var Body = React.createClass({
                     singers={this.state.singers}
                     handleDelete={this.handleDelete}
                     handleSongLike={this.handleSongLike}
-                    onUpdate={this.handleUpdate}
+                    onUpdate={this.handleSongUpdate}
                     updateCurrentSong={this.updateCurrentSong}
+                    updateCurrentUser={this.updateCurrentUser}
                     currentSong={this.state.currentSong}
                     current_user={this.props.current_user} />  
 

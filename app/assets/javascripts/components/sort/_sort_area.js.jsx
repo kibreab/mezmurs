@@ -6,7 +6,7 @@ var SortArea = React.createClass({
 
 
         return(
-            <div className="container sort-container">
+            <div className=" sort-container">
 
                 <AllUserLikes                     
                     current_user={this.props.current_user} />  

@@ -1,8 +1,7 @@
 var Song = React.createClass({
     getInitialState() {
         return {
-            editable: false,
-            singer_id: this.props.song.singer ? this.props.song.singer.id : ""
+            editable: false
         }
     },
     componentDidMount(){        
@@ -87,12 +86,15 @@ var Song = React.createClass({
     updateCurrentSong(song){
         this.props.updateCurrentSong(song);
     },
+    updateCurrentUser(user){
+        this.props.updateCurrentUser(user);
+    },
     handleEdit() {
         if(this.state.editable) {
             var title = this.refs.title.value;
             var id = this.refs.id.value;
             var lyrics = this.refs.lyrics.value;
-            var singer = this.refs.singer.value;
+            var singer = $("#singer-select").val(); //this.refs.singer.value;
             var song = {id: id , title: title , lyrics: lyrics , singer_id: singer};
             this.props.handleUpdate(song);
 
@@ -108,9 +110,6 @@ var Song = React.createClass({
     handleAmharicInputKeyUp() {
         transcrire();
     },
-    handleSingerChange(event) {
-        this.setState({ singer_id: event.target.value })    
-    },
     handleAddSongToPlaylists(e) {
         console.log(' -*- -*-  **  You came toadd playlists ?  **  -*- -*- ')
     },
@@ -123,7 +122,7 @@ var Song = React.createClass({
         var singer_picture = this.props.song.singer ? this.props.song.singer.picture : "/assets/original/missing.png" 
         var nowPlaying = (this.props.currentSong && this.props.currentSong.id == this.props.song.id);
         //<input type='text' ref='lyrics' defaultValue={this.props.song.lyrics} />
-        var title = this.state.editable ? <input type='text' ref='title' defaultValue={this.props.song.title} /> : this.props.song.title;
+        
         var idField = <input type='hidden' ref='id' defaultValue={this.props.song.id} />;
        
 
@@ -156,28 +155,18 @@ var Song = React.createClass({
                 this.props.song.lyrics ? lyricsButtonField : addLyrics 
                 )
         
-        var singersList = this.props.singers.map(function (item, key) {
-          return (
-            <option value={item.id} key={key}>
-              { item.singer_name }
-            </option>
-          );
-        });
-
-
-        var singers = this.state.editable ? 
-            <select ref="singer" value={this.state ? this.state.singer_id : ""} onChange={this.handleSingerChange} className="selectpicker">
-                {singersList}
-            </select>
+        var title = this.state.editable ? <input type='text' ref='title' defaultValue={this.props.song.title} /> : this.props.song.title;
+        var singers = this.state.editable ? <SingersSelectList song={this.props.song} singers={this.props.singers} />          
             : <div className="singer-name-listing">{singer_name}</div>;
 
+        
 
 
         var cancelButton = this.state.editable ? <i className="fa fa-reply song-action-buttons" onClick={this.handleCancel} aria-hidden="true"></i> : '';
-        var editSubmitButton = <ActionButton 
-                                    editable={this.state.editable} 
+        var editSubmitButton = <ActionButton  
                                     current_user={this.props.current_user}
-                                    classList={"fa fa-pencil-square-o edit-song-icon"}
+                                    updateCurrentUser={this.updateCurrentUser}
+                                    classList={"fa edit-song-icon " + (this.state.editable ? " fa-paper-plane" : " fa-pencil-square-o")}
                                     handleAction={this.handleEdit} />
 
         var user_liked_this_song = false;
@@ -187,8 +176,7 @@ var Song = React.createClass({
         }
         
         var likesCount = this.props.song.song_likes.length;
-        var likeButton = <ActionButton 
-                            editable={this.state.editable} 
+        var likeButton = <ActionButton
                             current_user={this.props.current_user}
                             classList={"fa fa-heart " + ( (user_liked_this_song && nowPlaying) ? " now-playing-highlighted " : ((user_liked_this_song) ? " highlighted " : "")) + (nowPlaying ? "action-icon-active" : "action-icon")}
                             handleAction={this.handleSongLike} />
@@ -217,11 +205,10 @@ var Song = React.createClass({
                 <div className="song-item">
                     <div className="singer-bg" style ={ { backgroundImage: "url("+""+")" } }>
                         <div id="playlist" className="play-button-area">
-                            <div className={nowPlaying ? "play-button-active" : "play-button"} onClick={this.handlePlaySong}>  
-                                <span className={nowPlaying ? "p-button-active fa fa-music" : "fa fa-play p-button"}></span>
+                            <div className={this.state.editable ? "play-button-editable" : (nowPlaying ? "play-button-active" : "play-button")} onClick={this.handlePlaySong}>  
+                                <span className={this.state.editable ? (nowPlaying ? "p-button-editable fa fa-music " : "p-button-editable fa fa-play " ) : (nowPlaying ? "p-button-active fa fa-music" : "fa fa-play p-button")}></span>
                             </div>
                         </div>
-
                     </div>
 
                     <div className="song-content-area">
@@ -243,7 +230,6 @@ var Song = React.createClass({
 
                     </div>
                     
-
                 </div>
                
                 <div className={nowPlaying ? "song-activity-button-area-active" : "song-activity-button-area"}>
@@ -275,6 +261,7 @@ var Song = React.createClass({
                     <div className="edit-song-area">
                         <div className="edit-button">
                             {editSubmitButton}
+                            {cancelButton}
                         </div>                    
                     </div>
 

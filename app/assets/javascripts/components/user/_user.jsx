@@ -1,7 +1,7 @@
 var User = React.createClass({
   getInitialState: function() {
     return {
-      page: window.current_user ? "edit" : "login",
+      page: this.props.current_user ? "edit" : "login",
     }
   },
  
@@ -12,11 +12,10 @@ var User = React.createClass({
   },
 
   updateCurrentUser: function(user) {
-    this.props.updateCurrentUser(user);
     this.setState({
       page: "edit"
     })
-
+    this.props.updateCurrentUser(user);
   },
  
   render: function() {

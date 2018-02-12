@@ -2,7 +2,7 @@ var SearchArea = React.createClass({
 
     render() {
         return(
-            <div className="container search-container">
+            <div className=" search-container">
 
 
                 <div className="form-group pull-left">

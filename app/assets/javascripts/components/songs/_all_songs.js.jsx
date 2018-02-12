@@ -9,9 +9,11 @@ var Allsongs = React.createClass({
     },
 
     updateCurrentSong(song){
-        this.props.updateCurrentSong(song)      
+        this.props.updateCurrentSong(song);      
     },
-
+    updateCurrentUser(user){
+        this.props.updateCurrentUser(user);
+    },
     render() {
         var songs= this.props.songs.map((song) => {
             return (
@@ -19,6 +21,7 @@ var Allsongs = React.createClass({
                     <Song song={song}
                           handleDelete={this.handleDelete.bind(this, song.id)}
                           updateCurrentSong={this.updateCurrentSong}
+                          updateCurrentUser={this.updateCurrentUser}
                           singers={this.props.singers}
                           current_user={this.props.current_user}
                           currentSong={this.props.currentSong}
