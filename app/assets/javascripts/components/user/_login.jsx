@@ -30,8 +30,8 @@ render: function() {
     <div className="side-content-container">
       <form>
         <div className="side-input-container">
-          <input id="email" placeholder="email"/>       
-          <input id="password" placeholder="password"/>        
+          <input id="email" placeholder="Email"/>       
+          <input id="password" placeholder="Password"/>        
         </div>
         <div className="">
           <button className="main-side-button" onClick={this.handleLogin}>Log in</button>
@@ -40,10 +40,7 @@ render: function() {
       </form>
     </div>
 
-    <Title titleBig="Register" titleSmall="በቀላሉ ይመዝገቡ" />
-    <div className="side-content-container">
-      <button className="mz-btns" onClick={()=>this.props.changePage("signup")}>Sign Up!</button>    
-    </div >
+
     
 
    </div>              

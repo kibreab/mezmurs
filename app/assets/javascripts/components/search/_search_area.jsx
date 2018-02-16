@@ -29,9 +29,11 @@ var SearchArea = React.createClass({
 
                 </div>
 
-                <div className="search-button-container pull-left">
-                    <div className="">
-                        SEARCH
+                <div className="search-icon-container pull-left">
+                    <i className="fa fa-search"></i>
+                    
+                    <div className="hidden">
+                        <i className="fa fa-search"></i>Search
                     </div>
                 </div>
 

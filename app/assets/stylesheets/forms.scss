@@ -74,15 +74,16 @@ input{
 .search-button-container {
 	width: 15%;
 }
+
 .search-button-container{
 	position: relative;
     top: 40px;
     cursor: pointer;
     left: 82px;
-    border: 4px solid $main-logo-color;
-    color: $main-logo-color;    
-    padding-top: 36px;
-    padding-left: 20px;
+    border: 4px solid #000	;
+    color: #000;    
+    padding-top: 34px;
+    padding-left: 18px;
 	width: 100px;
     height: 100px;    
     border-radius: 50%;
@@ -93,8 +94,35 @@ input{
     transition: all .3s ease-out;
     &:hover {
         background: $main-logo-color;
-        border: 4px solid $main-logo-color;
+        border: none;
         color: #FFF;
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -o-transform:   scale(1.1);
+        transform: scale(1.1);
+        -webkit-transition: all .3s ease-out;
+        -moz-transition: all .3s ease-out;
+        -ms-transition: all .3s ease-out;
+        -o-transition: all .3s ease-out;
+        transition: all .3s ease-out;
+    }
+}
+
+.search-icon-container{
+	font-size: 90px;
+    position: relative;
+    top: 18px;
+    left: 40px;    
+    cursor: pointer;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    &:hover {
+        color: $main-logo-color;
+        border: none;
         -webkit-transform: scale(1.1);
         -moz-transform: scale(1.1);
         -ms-transform: scale(1.1);

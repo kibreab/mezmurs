@@ -11,7 +11,14 @@ var Header = React.createClass({
 			            <li role="separator" className="divider"></li>
 			            <li><a href="/users/sign_out">Log out</a></li>
 			          </ul>
-			        </li> : ""    	
+			        </li> : 
+			        	<div>
+			            	<Title titleBig="Register" titleSmall="በቀላሉ ይመዝገቡ" />
+    						<div className="side-content-container">
+      							<button className="mz-btns" onClick={()=>this.props.changePage("signup")}>Sign Up!</button>    
+    						</div >    	
+			        	</div>
+
         return (
 			<nav className="navbar navbar-default">
 			  <div className="container-fluid">
