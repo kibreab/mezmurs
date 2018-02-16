@@ -11,7 +11,6 @@ var Body = React.createClass({
     componentDidMount() {
         $.getJSON('/api/v1/songs.json', (response) => { this.setState({ songs: response }) });
         $.getJSON('/api/v1/singers.json', (response) => { this.setState({ singers: response }) });
-        //$.getJSON('/api/v1/playlists.json', (response) => { this.setState({ user_playlists: response }) });
     },
 
     handleSubmit(song) {
@@ -195,12 +194,15 @@ var Body = React.createClass({
             <div className="">
                 <NewSong handleSubmit={this.handleSubmit}/>
 
-
-                
-
-                <div className="pull-left mid-navigation">
+                <div className="major-navigation first-layer">
 
                     <SearchArea />
+                    <User current_user={this.props.current_user} updateCurrentUser={this.updateCurrentUser} />
+  
+                </div>
+
+                <div className="major-navigation second-layer">
+
                     <AudioHeader 
                         singers={this.state.singers} 
                         onUpdate={this.handleSongUpdate}
@@ -209,29 +211,41 @@ var Body = React.createClass({
                         current_user={this.props.current_user}
                         />
 
-                    <SortArea current_user={this.props.current_user} />
-  
+                    < NewPlaylist handleSubmit={this.handlePlaylistSubmit} current_user={this.props.current_user} />
+
                 </div>
 
-                <div className="pull-left right-navigation">
-                    <User current_user={this.props.current_user} updateCurrentUser={this.updateCurrentUser} />
+
+                <div className="major-navigation second-layer">
+
                     <AllPlaylists 
                         user_playlists={this.state.user_playlists} 
                         handlePlaylistSubmit={this.handlePlaylistSubmit}
                         handleDelete={this.handlePlaylistDelete}
-                        current_user={this.props.current_user} />                      
+                        current_user={this.props.current_user} /> 
+
                 </div>
 
-                <Allsongs 
-                    songs={this.state.songs}
-                    singers={this.state.singers}
-                    handleDelete={this.handleDelete}
-                    handleSongLike={this.handleSongLike}
-                    onUpdate={this.handleSongUpdate}
-                    updateCurrentSong={this.updateCurrentSong}
-                    updateCurrentUser={this.updateCurrentUser}
-                    currentSong={this.state.currentSong}
-                    current_user={this.props.current_user} />  
+
+
+                <div className="major-navigation third-layer">
+                    <SortArea current_user={this.props.current_user} />                                                         
+                </div>
+
+                <div className="major-navigation">
+                    <Allsongs 
+                        songs={this.state.songs}
+                        singers={this.state.singers}
+                        handleDelete={this.handleDelete}
+                        handleSongLike={this.handleSongLike}
+                        onUpdate={this.handleSongUpdate}
+                        updateCurrentSong={this.updateCurrentSong}
+                        updateCurrentUser={this.updateCurrentUser}
+                        currentSong={this.state.currentSong}
+                        current_user={this.props.current_user} />  
+
+                </div>
+
 
                 {/* <div className="pull-left right-navigation">
                     <AllSingers 

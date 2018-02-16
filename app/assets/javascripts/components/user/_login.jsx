@@ -29,9 +29,14 @@ render: function() {
     <Title titleBig="login" titleSmall="ይግቡ" />
     <div className="side-content-container">
       <form>
-       <input id="email" placeholder="email"/>
-       <input id="password" placeholder="password"/>
-       <button className="mz-btns" onClick={this.handleLogin}>Log in</button>
+        <div className="side-input-container">
+          <input id="email" placeholder="email"/>       
+          <input id="password" placeholder="password"/>        
+        </div>
+        <div className="">
+          <button className="main-side-button" onClick={this.handleLogin}>Log in</button>
+        </div>
+       
       </form>
     </div>
 

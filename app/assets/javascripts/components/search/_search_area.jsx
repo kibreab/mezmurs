@@ -2,49 +2,35 @@ var SearchArea = React.createClass({
 
     render() {
         return(
-            <div className=" search-container">
+            <div className="pull-left mid-navigation ">
 
-
-                <div className="form-group pull-left">
-                    <div className="pull-left">
-                        <div className="labels-area">
-                            <div className="english-label">
+                <div className="pull-left search-forms-container">
+                    <div className="">
+                        <div className="form-item">
+                            <div className="form-label">
                                 Song title
                             </div>
-                            <div className="amharic amharic-label">
-                                Song title
-                            </div>                        
+                            <div className="search-by-text-container">
+                                <input className=""  />
+                            </div>
                         </div>
+
+
+                        <div className="form-item">
+                            <div className="form-label">
+                                Singer name
+                            </div>
+                            <div className="search-by-text-container">
+                                <input className=""  />
+                            </div>
+                        </div>     
          
-                    </div>
-
-
-                    <div className="pull-left">
-                        <form>
-                            <div className="form-group forms-area">
-                                <div className="input-options">
-                                    <div className="pull-left">
-                                        By amharic
-                                    </div>
-                                    <div className="pull-left">
-                                        By English
-                                    </div>                            
-                                </div>
-
-                                <div className="form-group">
-                                    <input className="form-control form-control-lg" type="text" placeholder="form-control-lg" />
-                                </div>
-                            </div> 
-
-                        </form>
-        
                     </div>
 
                 </div>
 
-
-                <div className="pull-left">
-                    <div className="search-button-area">
+                <div className="search-button-container pull-left">
+                    <div className="">
                         SEARCH
                     </div>
                 </div>

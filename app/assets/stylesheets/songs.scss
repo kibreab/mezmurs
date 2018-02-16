@@ -4,6 +4,7 @@
 .navbar{
 	min-height: 70px;
 	border: none;
+    margin-bottom: 0;
 }
 audio{
 	outline: none;
@@ -16,19 +17,27 @@ audio{
 .container{
 	width: 98% !important;
 }
+.major-navigation{    
+    
+}
+.first-layer{
+    background: #fff;
+    overflow: auto;
+}
+.second-layer{
+    background: #fafafa;
+    padding-top: 10px;
+    overflow: auto;
+}
+.third-layer{
+    background: #fafafa;
+    overflow: auto;
+}
 .mid-navigation{
-	width: 79%;	
-    margin-right: 10px;
+	width: 80%;	
 }
 .right-navigation{
 	width: 20%;
-	background: #fff;
-    max-height: 397px;
-    overflow: auto;
-}
-.left-navigation{
-	width: 20%;
-	background: #fff;
 }
 
 .navbar{
@@ -36,7 +45,6 @@ audio{
 }
 .navbar-default {
     background-color: #000000;
-    border-color: #e7e7e7;
     color: #fff;
     font-size: 13px;
 }    
@@ -54,7 +62,7 @@ audio{
 }
 
 .nav .navbar-nav > a{
-	color: #FFF;	
+	color: #FFF;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -112,12 +120,10 @@ audio{
     clear: both;    
 }
 .audio-header{
-	padding-left: 35px;
-	padding-top: 10px;
+	padding-right: 35px;
     min-height: 120px;
     margin-left: auto;
     margin-right: auto;
-    background: #fafafa;
 }
 .sort-container{
 	height: 90px;
@@ -177,7 +183,7 @@ audio{
     margin-top: 6px;
 }
 .current-song-title{
-	margin-left: 20px;	
+	margin-left: 20px;
 }
 .song-action-buttons{
 	font-size: 16px;
@@ -186,8 +192,16 @@ audio{
 }
 .site-toggle-buttons{
 	font-size: 12px;
-    padding: 0px 10px;
-    cursor: pointer;	
+    padding: 0px 6px;
+    cursor: pointer;
+}
+.playlist-length-container{
+    text-align: center;
+    font-weight: bold;
+}
+.playlist-trash-icon-container{
+    text-align: right;
+    width: 20px;
 }
 .song-title {
 	cursor: pointer;
@@ -242,10 +256,19 @@ audio{
     padding-right: 14px;
     border-top: 1px solid #f1f1f1;
 }
+.playlist-listing-container
+{
+
+    padding: 6px 20px;
+    margin: 10px 0;
+    overflow: auto;
+    font-size: 12px;
+    border-right: 1px solid #d4d4d4; 
+
+}
 
 .title-container{
-	/*background: #a2a2a2;*/
-    padding: 6px 12px;
+    padding: 8px 0px;
     .big-title{
 		text-transform: uppercase;
     	font-weight: 800;    
@@ -302,19 +325,17 @@ audio{
     .play-button-area{
 		
     	text-align: center;
-    	padding: 6px;
+    	padding-top: 10px;
     	.play-button{    		
             margin-left: auto;
             margin-right: auto;
-            width: 66px;
-            height: 66px;
-            padding-top: 9px;
+            width: 54px;
+            height: 54px;
+            padding-top: 6px;
+            padding-left: 6px;
             border-radius: 50%;
-            border: 1px solid #d9dedc;
-            padding-left: 8px;
-            background: #f4f7f6;
+            border: 1px solid #d9dedc;            
             color: #d9dedc;
-
             -webkit-transition: all .3s ease-out;
             -moz-transition: all .3s ease-out;
             -ms-transition: all .3s ease-out;
@@ -340,8 +361,8 @@ audio{
 
     		.p-button{
                 position: relative;
-                top: 10px;
-                font-size: 25px;                
+                top: 8px;
+                font-size: 18px;                
                 cursor: pointer;
     		}
 
@@ -401,7 +422,7 @@ audio{
     	.action-icon{
     		color: #9c9c9c;
     		cursor: pointer;
-            padding-left: 25px;
+            margin-left: 25px;
             outline: none;
     	}
     }
@@ -417,7 +438,7 @@ audio{
         .action-icon-active{
             color: #fff;
             cursor: pointer;
-            padding-left: 25px;
+            margin-left: 25px;
             outline: none;        
         }
     }
@@ -429,8 +450,8 @@ audio{
             bottom: 40px;
             left: 42px;
             .edit-song-icon{
-                font-size: 32px;
-                color: #8e8e8e; 
+                font-size: 23px;
+                color: #000000;
                 cursor: pointer;
             }
         }       
@@ -459,7 +480,13 @@ audio{
 
 }
 .edit-song-icon{
-    font-size: 32px;
-    color: #8e8e8e; 
+    font-size: 23px;
+    color: #000000;
     cursor: pointer;
+}
+.user-pic-container{
+    color: #c3c3c3;
+    font-size: 26px;
+    text-align: center;
+    margin-left: 28px;
 }

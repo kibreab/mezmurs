@@ -5,6 +5,7 @@ var SignUp = React.createClass({
   var userInfo = {
    user: {
     email: document.getElementById("email").value,
+    name: document.getElementById("name").value,
     password: document.getElementById("password").value
    }
   }
@@ -31,9 +32,16 @@ render: function() {
 
     <div className="side-content-container">
       <form>
-       <input id="email" placeholder="email"/>
-       <input id="password" placeholder="password"/>
-       <button className="mz-btns" onClick={this.handleClick}>Register</button>
+        <div className="side-input-container">
+          <input id="name" placeholder="name"/>
+          <input id="email" placeholder="email"/>
+          <input id="password" placeholder="password"/>
+        </div> 
+        <div>
+          <button className="main-side-button" onClick={this.handleClick}>Register</button>        
+        </div>
+
+          
       </form>
     </div>    
    </div>              

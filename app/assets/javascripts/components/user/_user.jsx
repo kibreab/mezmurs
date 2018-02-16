@@ -21,11 +21,11 @@ var User = React.createClass({
   render: function() {
     switch(this.state.page) {
       case "login":
-        return <Login changePage={this.changePage} updateCurrentUser={this.updateCurrentUser} />
+        return <div className="pull-left right-navigation"><Login changePage={this.changePage} updateCurrentUser={this.updateCurrentUser} /></div>
       case "signup":
-        return <SignUp changePage={this.changePage} updateCurrentUser={this.updateCurrentUser}/>
+        return <div className="pull-left right-navigation"><SignUp changePage={this.changePage} updateCurrentUser={this.updateCurrentUser}/></div>
       case "edit":
-        return <Edit changePage={this.changePage}/>
+        return <div className="pull-left right-navigation"><Edit current_user={this.props.current_user} changePage={this.changePage}/></div>
     }
   }
 });

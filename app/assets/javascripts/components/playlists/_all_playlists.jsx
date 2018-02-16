@@ -27,11 +27,9 @@ var AllPlaylists = React.createClass({
         }
 
         return(
-            <div className="">
-                <Title titleBig="Your Playlists" titleSmall="የመረጥዋቸው መዝሙሮች" />            
-                <div className="side-content-container">                    
-                    {playlists}
-                    < NewPlaylist handleSubmit={this.handleSubmit} current_user={this.props.current_user} />                    
+            <div className="">                
+                <div className="all-playlists-container">                    
+                    {playlists}                    
                 </div>
             </div>
         )

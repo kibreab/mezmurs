@@ -12,10 +12,19 @@ var NewPlaylist= React.createClass({
     },
     render() {
         return (
-        <div>            
+        <div className="pull-left right-navigation">    
+            <Title titleBig="Create New Playlists" titleSmall="የመረጥዋቸው መዝሙሮች" />
             <div className="side-form-container">
-                <input ref='title' placeholder='New playlist' />   
-                <button className="mz-btns btns-small" onClick={this.handleClick}>Create playlist +</button>
+                <div className="form-label">
+                    New playlist
+                </div>
+                <div className="side-input-container">
+                    <input ref='title'  />
+                </div>
+                <div>
+                    <button className="main-side-button" onClick={this.handleClick}>Create a playlist</button>
+                </div>
+                
             </div>    
         </div>    
 
