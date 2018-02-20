@@ -7,13 +7,39 @@
 		}
 
 		.modal-body{
+			padding: 0 80px;
+			.welcome-text{
+				text-align: center;
+    			font-size: 34px;
+    			font-weight: 900;
+			}
+			.site-name{
+				text-align: center;
+    			line-height: 10px;
+    			font-weight: 200;
+    			font-weight: 400;
+    			line-height: 20px;
+			}
 
-		}
+			.member-qn{
+				text-align: center;    		
+    			font-size: 20px;
+    			margin-top: 24px;
+    			font-weight: 800;				
+			}
+			     
+			.sign-up-area{
+				margin-top: 20px;
+			}						      
 
-		.modal-footer{
-			border: none;
-			button{
-
+			.benefits-pack-holder{
+				margin-top: 20px;
+    			padding: 16px 0;
+    			margin-bottom: 20px;
+    			font-size: 13px;
+				.benefits-holder{
+					overflow: auto;
+				}
 			}
 		}
 

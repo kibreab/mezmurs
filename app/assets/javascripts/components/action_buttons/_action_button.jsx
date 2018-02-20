@@ -20,9 +20,9 @@ var ActionButton = React.createClass({
 		}		
 		
         return (
-            <div>
+            <span>
             	{button}
-            </div>
+            </span>
         )
 	}
 });

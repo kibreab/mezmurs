@@ -253,7 +253,7 @@ var Body = React.createClass({
                         current_user={this.props.current_user} />  
 
                 </div>
-                <LoginModal updateCurrentUser={this.updateCurrentUser} />
+                <LoginModal updateCurrentUser={this.updateCurrentUser} current_user={this.props.current_user} />
 
                 {/* <div className="pull-left right-navigation">
                     <AllSingers 
