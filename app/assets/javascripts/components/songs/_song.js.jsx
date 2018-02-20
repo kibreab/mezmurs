@@ -40,7 +40,6 @@ var Song = React.createClass({
           }
       });
       //$( "#" + this.props.song.id + "-add-song-to-playlists" ).click(function() {
-      //  console.log(' -*- -*-  **  CLICKED  **  -*- -*- ')
       //});
         
     },
@@ -75,7 +74,7 @@ var Song = React.createClass({
 
     handlePlaySong(e){
         e.preventDefault();
-        var src = "assets/" + this.props.song.filename;
+        var src = "assets/all_old_emezmurs/" + this.props.song.filename;
         $("#audioPlayer")[0].src = src;
         $("#audioPlayer")[0].play();
         $(".song-title").find("a").removeClass("active");
@@ -111,7 +110,6 @@ var Song = React.createClass({
         transcrire();
     },
     handleAddSongToPlaylists(e) {
-        console.log(' -*- -*-  **  You came toadd playlists ?  **  -*- -*- ')
     },
     handleSongLike() {
         this.props.handleSongLike(this.props.song.id)

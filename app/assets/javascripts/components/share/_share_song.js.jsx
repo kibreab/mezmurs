@@ -19,7 +19,6 @@ var ShareSong = React.createClass({
 var ShareSongContent = React.createClass({
     
     handleShare(){
-    	console.log(' -*- -*-  **  handle Share  **  -*- -*- ')
     },
     render() {
         return(

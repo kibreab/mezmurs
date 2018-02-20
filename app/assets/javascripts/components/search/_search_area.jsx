@@ -1,12 +1,19 @@
 var SearchArea = React.createClass({
 
     render() {
+        var singersSelectList = this.props.singers.map(function (item, key) {
+          return (
+            <option value={item.id} key={key}>
+              { item.singer_name }
+            </option>
+          );
+        });
         return(
             <div className="pull-left mid-navigation ">
 
                 <div className="pull-left search-forms-container">
                     <div className="">
-                        <div className="form-item">
+                        <div className="pull-left form-item">
                             <div className="form-label">
                                 Song title
                             </div>
@@ -16,12 +23,14 @@ var SearchArea = React.createClass({
                         </div>
 
 
-                        <div className="form-item">
+                        <div className="pull-left form-item">
                             <div className="form-label">
                                 Singer name
                             </div>
                             <div className="search-by-text-container">
-                                <input className=""  />
+                                <select id="singer-select" value={this.state ? this.state.singer_id : ""} className="form-select chosen-select" onChange={this.handleSingerChange}>                                    
+                                    {singersSelectList}
+                                </select>
                             </div>
                         </div>     
          

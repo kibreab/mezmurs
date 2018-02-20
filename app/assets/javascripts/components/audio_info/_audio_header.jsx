@@ -32,7 +32,7 @@ var AudioHeader = React.createClass({
         return(
             <div className="pull-left mid-navigation audio-header">
                 <div className="current-singer-name">
-                    <span>{current_song_singer}</span>
+                    <span className="current-singer-name-text">{current_song_singer}</span>
                     {current_song ? editSubmitButton : "Selct song to play.."}
                     {idField}
                 </div>

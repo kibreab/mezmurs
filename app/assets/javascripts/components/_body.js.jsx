@@ -11,8 +11,16 @@ var Body = React.createClass({
     componentDidMount() {
         $.getJSON('/api/v1/songs.json', (response) => { this.setState({ songs: response }) });
         $.getJSON('/api/v1/singers.json', (response) => { this.setState({ singers: response }) });
+        this.chosenSelectInit();
+    },  
+    chosenSelectInit: function() {
+        $('.chosen-select').chosen({
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '100%'
+        });
+      
     },
-
     handleSubmit(song) {
         var newState = this.state.songs.concat(song);
         this.setState({ songs: newState })
@@ -196,7 +204,7 @@ var Body = React.createClass({
 
                 <div className="major-navigation first-layer">
 
-                    <SearchArea />
+                    <SearchArea singers={this.state.singers} />
                     <User current_user={this.props.current_user} updateCurrentUser={this.updateCurrentUser} />
   
                 </div>
@@ -211,7 +219,7 @@ var Body = React.createClass({
                         current_user={this.props.current_user}
                         />
 
-                    < NewPlaylist handleSubmit={this.handlePlaylistSubmit} current_user={this.props.current_user} />
+                    < NewPlaylist updateCurrentUser={this.updateCurrentUser} handleSubmit={this.handlePlaylistSubmit} current_user={this.props.current_user} />
 
                 </div>
 
@@ -245,7 +253,7 @@ var Body = React.createClass({
                         current_user={this.props.current_user} />  
 
                 </div>
-
+                <LoginModal updateCurrentUser={this.updateCurrentUser} />
 
                 {/* <div className="pull-left right-navigation">
                     <AllSingers 

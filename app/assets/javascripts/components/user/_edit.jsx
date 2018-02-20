@@ -1,6 +1,7 @@
 var Edit = React.createClass({
 
 render: function() {
+  var nameField = (this.props.current_user && this.props.current_user.name) ? this.props.current_user.name : <a href="">Add name</a>
   return (
     <div>
       <Title titleBig={"Welcome " + ""} titleSmall="ሻሎም" />      
@@ -8,7 +9,7 @@ render: function() {
         
         <div className="pull-left user-content-container">
           <div>
-            {this.props.current_user ? this.props.current_user.name : ""}   
+            {nameField}
           </div>
 
           <div>

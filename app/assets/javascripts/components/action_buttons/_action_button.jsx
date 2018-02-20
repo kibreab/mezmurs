@@ -12,25 +12,17 @@ var ActionButton = React.createClass({
 	},
 	render() {
 		
-		var button = null;						
-		var loginModal = null;
-
+		var button = null;
 		if (this.props.current_user == null) {
-			
-			button = <div type="button" className={this.props.classList} data-toggle="modal" data-target="#exampleModal"></div>
-			
-
+			button = <div className={this.props.classList} data-toggle="modal" data-target="#logiModal">{this.props.buttonText}</div>
 		}else{
-			button = <i className={this.props.classList} onClick={this.handleClick} aria-hidden="true"></i>
-			var loginModal = null;
+			button = <div className={this.props.classList} onClick={this.handleClick} aria-hidden="true">{this.props.buttonText}</div>			
 		}		
-		loginModal = <LoginModal updateCurrentUser={this.updateCurrentUser} />
+		
         return (
-            <i>
+            <div>
             	{button}
-            	{loginModal}            	
-
-            </i>
+            </div>
         )
 	}
 });

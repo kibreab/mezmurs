@@ -1,12 +1,11 @@
-
 var LoginModal = React.createClass({
     updateCurrentUser(user){
     	this.props.updateCurrentUser(user);
     },
-    render() {
+    render() {    	
         return(
 			
-			<div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div className="modal fade" id="logiModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div className="modal-dialog" role="document">
 			    <div className="modal-content">
 			      <div className="modal-header">			        
@@ -17,19 +16,15 @@ var LoginModal = React.createClass({
 
 			      <div className="modal-body">
 			      	<Title titleBig="WWW ontribute or sth" titleSmall="በቀላሉ ይመዝገቡ" />
-			      	<User updateCurrentUser={this.updateCurrentUser} />
+			      	
 			      </div>
-			      <div className="modal-footer">
-			        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-			        <button type="button" className="btn btn-primary">Send message</button>
+			      
+			      <div className="modal-footer">   			        
 			      </div>
+
 			    </div>
 			  </div>
-			</div>        	
-
+			</div>
         )
     }
 });
-
-
-
