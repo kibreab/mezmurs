@@ -44,17 +44,14 @@ var Body = React.createClass({
             type: 'POST',
             data: { playlist_song: { song_id: song_id, playlist_id: playlist_id } },
             success: (result) => {
-                // find the song and add this like to it.
                 var song = this.state.songs.filter((i) => { return i.id == song_id });
-                song = song[0];
-                song.playlist_id = playlist_id;  
-                this.updatesongs(song);                
+                song = song[0];                
                 var user = this.props.current_user;
                 var playlists = user.playlists;
                 var this_playlist = playlists.filter((i) => { return i.id == playlist_id });            
                 this_playlist = this_playlist[0];
                 this_playlist.songs = this_playlist.songs.concat(song);
-                var newPlayists = user["playlists"].concat(this_playlist);            
+                var newPlayists = user["playlists"].concat(this_playlist);
                 this.props.updateCurrentUser(user);
             }
         });
