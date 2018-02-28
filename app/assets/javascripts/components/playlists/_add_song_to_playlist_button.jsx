@@ -2,7 +2,7 @@ var AddSongToPlaylistButton = React.createClass({
 
     render() {
       
-      var targetId = this.props.current_user ? "#playlistModal" : "#logiModal"      
+      var targetId = this.props.current_user ? "#playlistModal-"+this.props.song.id : "#logiModal"      
       return(    
 
         <div className="pull-right">

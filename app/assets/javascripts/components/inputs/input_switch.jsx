@@ -11,7 +11,7 @@ var InputSwitch = React.createClass({
     //console.log("state is " + this.state.inputState);
     return (
       <div className={"checkbox-switch " + this.props.className}>
-        <input type="checkbox" checked={this.state.inputState} id={this.props.inputID} name={this.props.inputName} defaultChecked={this.state.inputState} onChange={this.props.onChange} />
+        <input type="checkbox" checked={this.state.inputState} id={this.props.inputID} name={this.props.inputName} value={this.props.value} defaultChecked={this.state.inputState} onChange={this.props.onChange} />
         <label htmlFor={this.props.inputID}><span className="toggle-switch"></span>{this.props.label}</label>
       </div>
     );

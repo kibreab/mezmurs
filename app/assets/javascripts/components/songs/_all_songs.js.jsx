@@ -25,6 +25,7 @@ var Allsongs = React.createClass({
                           singers={this.props.singers}
                           current_user={this.props.current_user}
                           currentSong={this.props.currentSong}
+                          handleAddSongToPlaylist={this.props.handleAddSongToPlaylist}
                           handleSongLike={this.props.handleSongLike}
                           handleUpdate={this.onUpdate} />
                 </div>

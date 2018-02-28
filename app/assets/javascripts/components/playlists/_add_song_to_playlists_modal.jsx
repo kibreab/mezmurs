@@ -4,14 +4,13 @@ var AddSongToPlaylistModal = React.createClass({
     console.log(' -*- -*-  **  u came to add  **  -*- -*- ')
     var song_id = this.props.song.id;
     var user_id = this.props.current_user.id;
-    ///selected_playlists = 
 
   },  
 
 
   handleChange(e) {
-    console.log(' -*- -*-  **  input checked  **  -*- -*- ');
-
+    var playlist_id = $(e.currentTarget).val();
+    this.props.handleAddSongToPlaylist(this.props.song.id, playlist_id);        
   },
 
   render() {
@@ -25,7 +24,7 @@ var AddSongToPlaylistModal = React.createClass({
           return (
               <div className="modal-playlist-item-container" key={playlist.id}>
                 <div className="">
-                  <InputSwitch inputID={"playlist-"+playlist.id} inputName="playlist" label={playlist.title}  onChange={this.handleChange} />                  
+                  <InputSwitch inputID={"playlist-"+playlist.id+"-song-"+this.props.song.id} inputName="playlist" label={playlist.title} value={playlist.id} onChange={this.handleChange} />                  
                 </div>
               </div>
           )
@@ -34,7 +33,7 @@ var AddSongToPlaylistModal = React.createClass({
 
     return(
     
-      <div className="modal fade" id="playlistModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id={"playlistModal-"+this.props.song.id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             
@@ -50,7 +49,7 @@ var AddSongToPlaylistModal = React.createClass({
 
               <div className="member-qn">
                 <span>{"Your playlists "}</span>
-                <span className="modal-playlists-counter">{this.props.current_user.playlists.length}</span>
+                <span className="modal-playlists-counter">{this.props.current_user ? this.props.current_user.playlists.length : ""}</span>
               </div>
               
               <div className="modal-all-playlists-container">

@@ -3,8 +3,7 @@ var Body = React.createClass({
         return { 
             songs: [],
             singers: [],
-            currentSong: null,
-            user_playlists: []
+            currentSong: null
          }
     },
 
@@ -37,6 +36,30 @@ var Body = React.createClass({
         this.props.updateCurrentUser(user);        
 
     },
+
+    handleAddSongToPlaylist(song_id, playlist_id) {
+
+        $.ajax({
+            url: '/api/v1/playlist_songs',
+            type: 'POST',
+            data: { playlist_song: { song_id: song_id, playlist_id: playlist_id } },
+            success: (result) => {
+                // find the song and add this like to it.
+                var song = this.state.songs.filter((i) => { return i.id == song_id });
+                song = song[0];
+                song.playlist_id = playlist_id;  
+                this.updatesongs(song);                
+                var user = this.props.current_user;
+                var playlists = user.playlists;
+                var this_playlist = playlists.filter((i) => { return i.id == playlist_id });            
+                this_playlist = this_playlist[0];
+                this_playlist.songs = this_playlist.songs.concat(song);
+                var newPlayists = user["playlists"].concat(this_playlist);            
+                this.props.updateCurrentUser(user);
+            }
+        });
+    },
+
     handleSingerDelete(id) {
         $.ajax({
             url: `/api/v1/singers/${id}`,
@@ -227,14 +250,11 @@ var Body = React.createClass({
                 <div className="major-navigation second-layer">
 
                     <AllPlaylists 
-                        user_playlists={this.state.user_playlists} 
                         handlePlaylistSubmit={this.handlePlaylistSubmit}
                         handleDelete={this.handlePlaylistDelete}
                         current_user={this.props.current_user} /> 
 
                 </div>
-
-
 
                 <div className="major-navigation third-layer">
                     <SortArea current_user={this.props.current_user} />                                                         
@@ -244,6 +264,7 @@ var Body = React.createClass({
                     <Allsongs 
                         songs={this.state.songs}
                         singers={this.state.singers}
+                        handleAddSongToPlaylist={this.handleAddSongToPlaylist}
                         handleDelete={this.handleDelete}
                         handleSongLike={this.handleSongLike}
                         onUpdate={this.handleSongUpdate}
