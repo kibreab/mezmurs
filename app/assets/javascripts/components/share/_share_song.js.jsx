@@ -7,9 +7,8 @@
 //}(document, 'script', 'facebook-jssdk'));
 
 var ShareSong = React.createClass({
-    getInitialState() {return {editable: false}},
     render() {
-        var targetId = "#modalShareSong"
+        var targetId = "#modalShareSong-"+this.props.song.id
         return(
             <div className=""> 
                 <i className={this.props.nowPlaying ? "fa fa-share-alt action-icon-active" : "fa fa-share-alt action-icon"} data-toggle="modal" data-target={targetId}></i>                
@@ -27,10 +26,11 @@ var ShareSong = React.createClass({
 var ShareSongContent = React.createClass({  
   
   render() {
-    var songUrl = "https://mezmurs.herokuapp.com/";
+    var base_url = "mezmurs.herokuapp.com"
+    var songUrl = base_url+"/api/v1/songs/"+this.props.song.id;
     return(
     
-      <div className="modal fade" id={"modalShareSong"} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id={"modalShareSong-"+this.props.song.id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             
@@ -53,7 +53,7 @@ var ShareSongContent = React.createClass({
 
 
                     <div data-href={songUrl} data-layout="button_count" data-size="large" data-mobile-iframe="true">
-                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmezmurs.herokuapp.com%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">                            
+                        <a target="_blank" href={"https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F"+songUrl+"%2F&amp;src=sdkpreparse"} className="fb-xfbml-parse-ignore">                            
                             <div className="share-media-icon fa fa-facebook-square"></div>
                         </a>
                     </div>
