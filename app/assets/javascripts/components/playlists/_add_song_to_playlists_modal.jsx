@@ -1,13 +1,5 @@
 var AddSongToPlaylistModal = React.createClass({
   
-  handlePlaylistAdd(){
-    console.log(' -*- -*-  **  u came to add  **  -*- -*- ')
-    var song_id = this.props.song.id;
-    var user_id = this.props.current_user.id;
-
-  },  
-
-
   handleChange(e) {
     var playlist_id = $(e.currentTarget).val();
     this.props.handleAddSongToPlaylist(this.props.song.id, playlist_id);        
@@ -18,17 +10,25 @@ var AddSongToPlaylistModal = React.createClass({
     var playlists = null;
     if (this.props.current_user && this.props.current_user.playlists) {
 
-        playlists = this.props.current_user.playlists.map((playlist) => {
-          //var checked = this.song.playlists.filter(playlist.id)  STH LIKE THIS
-          var checked = true;
-          return (
-              <div className="modal-playlist-item-container" key={playlist.id}>
-                <div className="">
-                  <InputSwitch inputID={"playlist-"+playlist.id+"-song-"+this.props.song.id} inputName="playlist" label={playlist.title} value={playlist.id} onChange={this.handleChange} />                  
-                </div>
+      
+      playlists = this.props.current_user.playlists.map((playlist) => {              
+        var thisSongIsInThisPlaylistAlready = false;
+        if (playlist.songs.length > 0) {
+          theSongInPlaylist = playlist.songs.filter((song) => {
+            return this.props.song.id == song.id;
+          });
+          if (theSongInPlaylist.length > 0) {
+            thisSongIsInThisPlaylistAlready = true;
+          }
+        }
+        return (
+            <div className="modal-playlist-item-container" key={playlist.id}>
+              <div className="">
+                <InputSwitch inputID={"playlist-"+playlist.id+"-song-"+this.props.song.id} inputName="playlist" inputState={thisSongIsInThisPlaylistAlready} label={playlist.title} value={playlist.id} onChange={this.handleChange} />                  
               </div>
-          )
-        });
+            </div>
+        )
+      });
     }
 
     return(
