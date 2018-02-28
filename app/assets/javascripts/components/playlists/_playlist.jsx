@@ -12,7 +12,7 @@ var Playlist = React.createClass({
 
         var playlist_songs = this.props.playlist.songs.map((song) => { 
             return (                               
-                <div key={song.id}>
+                <div className="playlist_song-item-holder">
                     <PlaylistSong song={song}
                           handleDelete={this.handleDelete.bind(this, song.id)}
                           handleUpdate={this.onUpdate}

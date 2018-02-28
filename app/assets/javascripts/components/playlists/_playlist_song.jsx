@@ -10,9 +10,9 @@ var PlaylistSong = React.createClass({
     },
     render() {
         return(
-            <div className="side-content-container">                
-                <div className="pull-left" >{this.props.song.title}</div>
-                <div className="pull-right">
+            <div className="playlist-songs-list">                
+                <div className="playlist-song-title pull-left" >{this.props.song.title}</div>
+                <div className="delete-button pull-right">
                     <i className="fa fa-minus-circle song-action-buttons" onClick={this.handleDelete} aria-hidden="true"></i>
                 </div>
             </div>

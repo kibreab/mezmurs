@@ -493,3 +493,15 @@ audio{
     text-align: center;
     margin-left: 28px;
 }
+.playlist-songs-list{
+    background: #e8e8e8;
+    padding: 8px;
+    overflow: auto;
+    margin-top: 2px;
+    .playlist-song-title{
+        margin-right:4px;
+    }
+    .delete-button{
+
+    }
+}
