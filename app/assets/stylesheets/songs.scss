@@ -427,6 +427,10 @@ audio{
     		cursor: pointer;
             margin-left: 25px;
             outline: none;
+            color: #969696;
+            &:hover {                
+                color: #000;
+            }            
     	}
     }
 

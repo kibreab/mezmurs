@@ -3,7 +3,7 @@ var Body = React.createClass({
         return { 
             songs: [],
             singers: [],
-            currentSong: null
+            currentSong: JSON.parse(this.props.currentSong)
          }
     },
 

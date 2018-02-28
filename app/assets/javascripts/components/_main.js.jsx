@@ -16,7 +16,11 @@ var Main = React.createClass({
         return (
             <div className="">            
                 <Header current_user={this.state.current_user} />
-                <Body updateCurrentUser={this.updateCurrentUser} current_user={this.state.current_user} />
+                <Body 
+                    updateCurrentUser={this.updateCurrentUser} 
+                    current_user={this.state.current_user}  
+                    currentSong={this.props.currentSong}
+                    />
             </div>
         )
     }

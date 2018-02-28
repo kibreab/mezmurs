@@ -7,6 +7,12 @@ class Api::V1::SongsController < Api::V1::BaseController
     respond_with :api, :v1, Song.create(song_params)
   end
 
+  def show
+    puts "COMES TO SHOWWW:::::"
+    #respond_with :api, :v1, Song.find(params[:id])
+    @song = Song.find(params[:id])
+  end  
+
   def destroy
     respond_with Song.destroy(params[:id])
   end

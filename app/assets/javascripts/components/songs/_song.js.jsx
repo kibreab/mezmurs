@@ -226,7 +226,7 @@ var Song = React.createClass({
                         <div>{likeButton} <span className={nowPlaying ? "likes-count-active" : "likes-count"}>{likesCount}</span></div>
                     </div>
                                                                
-                    <AddSongToPlaylistButton song={this.props.song} current_user={this.props.current_user} />
+                    <AddSongToPlaylistButton song={this.props.song} nowPlaying={nowPlaying} current_user={this.props.current_user} />
 
                     <div className="edit-song-area">
                         <div className="edit-button">

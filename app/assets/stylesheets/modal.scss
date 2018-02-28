@@ -1,3 +1,6 @@
+@import "_mixins";
+@import "_colors";
+
 .modal-dialog{
 	.modal-content{
 		
@@ -62,6 +65,37 @@
     			margin: 4px 0;
     			border: 1px solid #f5f5f5;
     		}
+		}
+		.modal-media-icons-container{
+			overflow: auto;
+			padding: 12px;
+			width: 60%;
+			margin-bottom: 30px;
+			margin-left: auto;
+			margin-right: auto;
+			.modal-fb-container{
+				padding: 20px;
+				border-right: 1px solid #ccc;
+				.share-media-icon{
+					font-size: 80px;
+            		&:hover {            		    
+            		    color: $fb-color;
+            		    cursor: pointer;
+            		}   					
+				}
+			}
+			.modal-twitter-container{
+				padding: 20px;
+				.share-media-icon{
+					font-size: 80px;
+            		&:hover {            		    
+            		    color: $twitter-color;
+            		    cursor: pointer;
+            		}
+						
+				}				
+			}
+
 		}
 
 

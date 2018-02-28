@@ -17,6 +17,8 @@ var AudioHeader = React.createClass({
     },
     render() {
         var current_song = this.props.currentSong;
+        console.log(' -*- -*-  **  current_song in header  **  -*- -*- ')
+        console.log(current_song);
         var current_song_title = current_song ? current_song.title : "";                
         var current_song_singer = this.state.editable ? <SingersSelectList song={current_song} singers={this.props.singers} />
             : (current_song ? (current_song.singer ? current_song.singer.singer_name : "UNKNOWN SINGER- please edit") : "");
