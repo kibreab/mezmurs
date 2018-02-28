@@ -15,7 +15,8 @@ var Allsongs = React.createClass({
         this.props.updateCurrentUser(user);
     },
     render() {
-        var songs= this.props.songs.map((song) => {
+        var sorted_songs = _.sortBy(this.props.songs, 'title');
+        var songs= sorted_songs.map((song) => {
             return (
                 <div key={song.id}>
                     <Song song={song}

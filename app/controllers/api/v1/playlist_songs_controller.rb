@@ -9,7 +9,8 @@ class Api::V1::PlaylistSongsController < Api::V1::BaseController
   end
 
   def destroy
-    respond_with PlaylistSong.destroy(params[:id])
+    playlist_song = PlaylistSong.where(:song_id => params[:song_id], :playlist_id => params[:playlist_id])    
+    respond_with PlaylistSong.destroy(playlist_song.first.id)
   end
 
   def update

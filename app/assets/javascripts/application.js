@@ -2,7 +2,7 @@
 //= require jquery_ujs
 
 
-
+//= require underscore
 //= require bootstrap-sprockets
 //= require react
 //= require react_ujs

@@ -1,8 +1,8 @@
 var AddSongToPlaylistModal = React.createClass({
   
-  handleChange(e) {
+  handleChange(songInPlaylist, e) {
     var playlist_id = $(e.currentTarget).val();
-    this.props.handleAddSongToPlaylist(this.props.song.id, playlist_id);        
+    this.props.handleAddSongToPlaylist(this.props.song.id, playlist_id, songInPlaylist);        
   },
 
   render() {
@@ -10,8 +10,8 @@ var AddSongToPlaylistModal = React.createClass({
     var playlists = null;
     if (this.props.current_user && this.props.current_user.playlists) {
 
-      
-      playlists = this.props.current_user.playlists.map((playlist) => {              
+      var sorted_playlists = _.sortBy(this.props.current_user.playlists, 'title');
+      playlists = sorted_playlists.map((playlist) => {              
         var thisSongIsInThisPlaylistAlready = false;
         if (playlist.songs.length > 0) {
           theSongInPlaylist = playlist.songs.filter((song) => {
@@ -22,9 +22,9 @@ var AddSongToPlaylistModal = React.createClass({
           }
         }
         return (
-            <div className="modal-playlist-item-container" key={playlist.id}>
+            <div className="modal-playlist-item-container" key={playlist.id+"-modal-"}>
               <div className="">
-                <InputSwitch inputID={"playlist-"+playlist.id+"-song-"+this.props.song.id} inputName="playlist" inputState={thisSongIsInThisPlaylistAlready} label={playlist.title} value={playlist.id} onChange={this.handleChange} />                  
+                <InputSwitch inputID={"playlist-"+playlist.id+"-song-"+this.props.song.id} inputName="playlist" inputState={thisSongIsInThisPlaylistAlready} label={playlist.title} value={playlist.id} onChange={(e) => this.handleChange(thisSongIsInThisPlaylistAlready, e)} />
               </div>
             </div>
         )

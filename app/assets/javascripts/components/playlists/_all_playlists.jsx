@@ -13,10 +13,10 @@ var AllPlaylists = React.createClass({
         var playlists = null;
 
         if (this.props.current_user && this.props.current_user.playlists) {
-
-            var playlists= this.props.current_user.playlists.map((playlist) => {
+            var sorted_playlists = _.sortBy(this.props.current_user.playlists, 'title');
+            var playlists= sorted_playlists.map((playlist) => {
                 return (
-                    <div key={playlist.id}>
+                    <div key={playlist.id+"-playlist"}>
                         <Playlist playlist={playlist}
                               handleDelete={this.handleDelete.bind(this, playlist.id)}
                               handleUpdate={this.onUpdate}
