@@ -21,8 +21,6 @@ render: function() {
         <div className="pull-left user-pic-container">
           <i className="fa fa-user" />
         </div>
-
-
       </div>
         
     </div>    

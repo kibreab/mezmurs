@@ -27,7 +27,15 @@
     			margin-top: 24px;
     			font-weight: 800;				
 			}
-			     
+
+			.modal-playlists-counter{
+				padding: 3px 14px;
+    			text-align: 12px;
+    			font-size: 13px;
+    			color: #ff0e0e;
+    			border: 1px solid #dcdcdc;
+    			border-radius: 4px;			
+			}			     
 			.sign-up-area{
 				margin-top: 20px;
 			}						      
@@ -41,6 +49,20 @@
 					overflow: auto;
 				}
 			}
+		}
+
+		.modal-all-playlists-container{
+			margin-bottom: 12px;
+			.modal-playlist-item-container{
+				overflow: auto;
+    			width: 66%;
+    			margin-left: auto;
+    			margin-right: auto;
+    			padding: 5px 20px;
+    			background: #f9f9f9;
+    			margin-bottom: 3px;
+    			border: 1px solid #f5f5f5;
+    		}
 		}
 
 

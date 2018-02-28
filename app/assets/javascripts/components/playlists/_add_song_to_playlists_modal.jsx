@@ -1,42 +1,66 @@
 var AddSongToPlaylistModal = React.createClass({
+  
+  handlePlaylistAdd(){
+    console.log(' -*- -*-  **  u came to add  **  -*- -*- ')
+    var song_id = this.props.song.id;
+    var user_id = this.props.current_user.id;
+    ///selected_playlists = 
 
-    render() {  
+  },  
 
-      var playlists = null;
-      if (this.props.current_user && this.props.current_user.playlists) {
 
-          playlists = this.props.current_user.playlists.map((playlist) => {
-              return (
-                  <div key={playlist.id}>                      
-                    {playlist.title}
-                  </div>
-              )
-          });
-      }
+  handleChange(e) {
+    console.log(' -*- -*-  **  input checked  **  -*- -*- ');
 
-      return(
-      
-        <div className="modal fade" id="playlistModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              
-              <div className="modal-header">              
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                  <span className="fa fa-times"aria-hidden="true"></span>
-                </button>
+  },
+
+  render() {
+
+    var playlists = null;
+    if (this.props.current_user && this.props.current_user.playlists) {
+
+        playlists = this.props.current_user.playlists.map((playlist) => {
+          //var checked = this.song.playlists.filter(playlist.id)  STH LIKE THIS
+          var checked = true;
+          return (
+              <div className="modal-playlist-item-container" key={playlist.id}>
+                <div className="">
+                  <InputSwitch inputID={"playlist-"+playlist.id} inputName="playlist" label={playlist.title}  onChange={this.handleChange} />                  
+                </div>
               </div>
+          )
+        });
+    }
 
-              <div className="modal-body">
-                <div className="welcome-text">{this.props.song.title}</div>
-                <div className="site-name">M E Z M U R S . C O M </div>
-
-                <div className="member-qn">{"Your playlists"}</div>
-                {playlists}
-
-              </div>            
+    return(
+    
+      <div className="modal fade" id="playlistModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            
+            <div className="modal-header">              
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span className="fa fa-times"aria-hidden="true"></span>
+              </button>
             </div>
+
+            <div className="modal-body">
+              <div className="welcome-text">{this.props.song.title}</div>
+              <div className="site-name">M E Z M U R S . C O M </div>
+
+              <div className="member-qn">
+                <span>{"Your playlists "}</span>
+                <span className="modal-playlists-counter">{this.props.current_user.playlists.length}</span>
+              </div>
+              
+              <div className="modal-all-playlists-container">
+                {playlists}                
+              </div>              
+            </div>
+
           </div>
         </div>
-      )
-    }
+      </div>
+    )
+  }
 });

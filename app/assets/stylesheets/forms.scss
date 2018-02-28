@@ -216,3 +216,87 @@ select {
 
 
 
+// Switch for checkbox styling
+// TODO: need to account for disabled inputs!
+.checkbox-switch {
+  input[type=checkbox] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  label {
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+  }
+
+  .toggle-switch {
+    // display: block;
+    position: relative;
+    display: inline-block;
+    position: relative;
+    padding: 2px;
+    width: 40px;
+    height: 24px;
+    background-color: $gray-light;
+    border-radius: 24px;
+    transition: background 0.4s;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    vertical-align: middle;
+
+    &:before,
+    &:after {
+      display: block;
+      position: absolute;
+      content: "";
+    }
+
+    &:before {
+      top: 2px;
+      left: 2px;
+      bottom: 2px;
+      right: 2px;
+      background-color: #fff;
+      border-radius: 24px;
+      transition: background 0.4s;
+    }
+
+    &:after {
+      top: 4px;
+      left: 4px;
+      bottom: 4px;
+      width: 16px;
+      background-color: $gray-light;
+      border-radius: 16px;
+      transition: margin 0.4s, background 0.4s;
+    }
+  }
+
+  input[type=checkbox] {
+    &:focus,
+    &:checked {
+      & + label {
+        .toggle-switch {
+          background-color: $main-logo-color;
+        }
+      }
+    }
+    &:checked {
+      & + label {
+        .toggle-switch {
+          &:after {
+            margin-left: 16px;
+            background-color: $main-logo-color;
+          }
+        }
+      }
+    }
+  }
+}

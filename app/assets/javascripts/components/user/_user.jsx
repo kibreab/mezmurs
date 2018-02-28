@@ -5,7 +5,6 @@ var User = React.createClass({
     }
   },
   componentWillReceiveProps: function(newProps){
-    console.log(newProps);
     if (newProps.current_user) {
       this.setState({
         page: "edit"

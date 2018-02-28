@@ -222,7 +222,6 @@ var Song = React.createClass({
                         <ShareSong song={this.props.song} nowPlaying={nowPlaying} />
                     </div>
 
-
                     <div className="pull-left">
                         <div>{likeButton} <span className={nowPlaying ? "likes-count-active" : "likes-count"}>{likesCount}</span></div>
                     </div>
