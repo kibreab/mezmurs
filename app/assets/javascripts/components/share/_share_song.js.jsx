@@ -17,8 +17,6 @@ var ShareSong = React.createClass({
 
             </div>
 
-
-
         )
     }
 });
@@ -58,8 +56,6 @@ var ShareSongContent = React.createClass({
                         </a>
                     </div>
 
-
-
                 </div>
                 <div className="modal-twitter-container pull-left">
                     <a target="_blank" href={"http://www.twitter.com/intent/tweet?url="+songUrl}>
@@ -67,14 +63,6 @@ var ShareSongContent = React.createClass({
                     </a>
 
                 </div>
-                
-
-
-
-
-
-
-
 
               </div>              
             </div>
