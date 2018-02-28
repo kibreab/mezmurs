@@ -182,21 +182,7 @@ var Song = React.createClass({
          
         var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.props.handleDelete} aria-hidden="true"></i>
 
-        var playlists = null;
-        if (this.props.current_user && this.props.current_user.playlists) {
 
-            playlists = this.props.current_user.playlists.map((playlist) => {
-                return (
-                    <div key={playlist.id}>
-                        <Playlist playlist={playlist}
-                              handleDelete={this.handlePlaylistDelete.bind(this, playlist.id)}
-                              handleUpdate={this.onUpdate}
-                              dataFor={"songs-popover"+this.props.song.id}
-                              current_user={this.props.current_user} />
-                    </div>
-                )
-            });
-        }
         return (
             <div className={"song-holder pull-left " + (nowPlaying ? "active-song-holder " : "")}>
 
@@ -240,21 +226,8 @@ var Song = React.createClass({
                     <div className="pull-left">
                         <div>{likeButton} <span className={nowPlaying ? "likes-count-active" : "likes-count"}>{likesCount}</span></div>
                     </div>
-
-                    <div className="pull-right">
-                        <i className={nowPlaying ? "fa fa-plus action-icon-active" : "fa fa-plus action-icon"} tabIndex="0" data-toggle="popover" data-popover-content={"#"+this.props.song.id} data-placement="right"></i>
-                    </div>
-
-                    <div className="pull-left">
-                        <div id={this.props.song.id} className="hidden">
-                            <div className="popover-heading">Add this song to ...</div>
-                              <div className="popover-body">
-                                  {playlists}
-                                  <button id={this.props.song.id + "-add-song-to-playlists"} className="mz-btns btns-small" onClick={self.handleAddSongToPlaylists} >Add </button>
-                              </div>
-                        </div> 
-                        {idField}                    
-                    </div>                                        
+                                                               
+                    <AddSongToPlaylistButton />
 
                     <div className="edit-song-area">
                         <div className="edit-button">
@@ -263,10 +236,12 @@ var Song = React.createClass({
                         </div>                    
                     </div>
 
-
-
-
                 </div>
+
+                <AddSongToPlaylistModal
+                    nowPlaying={nowPlaying}
+                    song={this.props.song}
+                    current_user={this.props.current_user} />
            
             </div>
         )

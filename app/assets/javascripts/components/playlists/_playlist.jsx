@@ -49,8 +49,6 @@ var Playlist = React.createClass({
                     {playlistAndSongs}                
                 </div>              
 
-
-
             </div>
         )
     }

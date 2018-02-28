@@ -16,9 +16,7 @@ var LoginModal = React.createClass({
 			        </button>
 			      </div>
 
-			      <div className="modal-body">			      	
-
-
+			      <div className="modal-body">
 			      	<div className="welcome-text">WELCOME</div>
 			      	<div className="site-name">M E Z M U R S . C O M </div>
 
@@ -43,11 +41,7 @@ var LoginModal = React.createClass({
 			      			<div className="pull-left">And a lot more to enjoy with sign-in</div>
 			      		</div>			      					      					      		
 			      	</div>
-
-			      </div>
-			      
-
-
+			      </div>			      
 			    </div>
 			  </div>
 			</div>
