@@ -2,7 +2,7 @@ var AddSongToPlaylistModal = React.createClass({
   
   handleChange(songInPlaylist, e) {
     var playlist_id = $(e.currentTarget).val();
-    this.props.handleAddSongToPlaylist(this.props.song.id, playlist_id, songInPlaylist);        
+    this.props.handleAddSongToPlaylist(this.props.song, playlist_id, songInPlaylist);        
   },
 
   render() {
@@ -23,9 +23,10 @@ var AddSongToPlaylistModal = React.createClass({
         }
         return (
             <div className="modal-playlist-item-container" key={playlist.id+"-modal-"}>
-              <div className="">
+              <div className="pull-left">
                 <InputSwitch inputID={"playlist-"+playlist.id+"-song-"+this.props.song.id} inputName="playlist" inputState={thisSongIsInThisPlaylistAlready} label={playlist.title} value={playlist.id} onChange={(e) => this.handleChange(thisSongIsInThisPlaylistAlready, e)} />
               </div>
+              <div className="pull-right modal-playlist-songs-counter">{playlist.songs.length}</div>
             </div>
         )
       });

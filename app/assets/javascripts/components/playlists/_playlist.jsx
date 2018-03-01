@@ -14,9 +14,10 @@ var Playlist = React.createClass({
             return (                               
                 <div className="playlist_song-item-holder" key={song.id+"p"+this.props.playlist.id}>
                     <PlaylistSong song={song}
-                          handleDelete={this.handleDelete.bind(this, song.id)}
-                          handleUpdate={this.onUpdate}
-                          current_user={this.props.current_user} />
+                        handleDelete={this.handleDelete.bind(this, song.id)}
+                        playlist={this.props.playlist}
+                        handleAddSongToPlaylist={this.props.handleAddSongToPlaylist}
+                        current_user={this.props.current_user} />
                 </div>
             )
         });

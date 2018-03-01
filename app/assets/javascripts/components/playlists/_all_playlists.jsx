@@ -20,6 +20,7 @@ var AllPlaylists = React.createClass({
                         <Playlist playlist={playlist}
                               handleDelete={this.handleDelete.bind(this, playlist.id)}
                               handleUpdate={this.onUpdate}
+                              handleAddSongToPlaylist={this.props.handleAddSongToPlaylist}
                               current_user={this.props.current_user} />
                     </div>
                 )

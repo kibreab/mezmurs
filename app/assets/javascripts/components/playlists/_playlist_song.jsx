@@ -2,11 +2,7 @@ var PlaylistSong = React.createClass({
     getInitialState() {return {editable: false}},    
     
     handleDelete(id) {
-        this.props.handleDelete(id);
-    },
-
-    onUpdate(singer) {
-        this.props.onUpdate(singer);
+        this.props.handleAddSongToPlaylist(this.props.song, this.props.playlist.id, true);
     },
     render() {
         return(

@@ -3,7 +3,7 @@ var Body = React.createClass({
         return { 
             songs: [],
             singers: [],
-            currentSong: JSON.parse(this.props.currentSong)
+            currentSong: this.props.currentSong ? JSON.parse(this.props.currentSong) : null
          }
     },
 
@@ -37,13 +37,15 @@ var Body = React.createClass({
 
     },
 
-    handleAddSongToPlaylist(song_id, playlist_id, removeIt= false) {
+    handleAddSongToPlaylist(song, playlist_id, removeIt= false) {
+
+        //var song = this.state.songs.filter((i) => { return i.id == song_id });         
+        //song = song[0];
         var user = this.props.current_user;
         var playlists = user.playlists;
-        var song = this.state.songs.filter((i) => { return i.id == song_id });
         var this_playlist = playlists.filter((i) => { return i.id == playlist_id });  
-        this_playlist = this_playlist[0];          
-        song = song[0];                                  
+        this_playlist = this_playlist[0];                                         
+        var newplaylists = _.without(playlists, this_playlist);  
         if (removeIt) {
             //Removing
             // wrong but for the route to think that. change if u can
@@ -51,23 +53,22 @@ var Body = React.createClass({
             $.ajax({
                 url: `/api/v1/playlist_songs/${id}`,
                 type: 'DELETE',
-                data: { song_id: song_id, playlist_id: playlist_id },
+                data: { song_id: song.id, playlist_id: playlist_id },
                 success: (result) => {                    
-                    //// remove the old playlist                    
-                    var newplaylists = _.without(playlists, this_playlist);                
-                    this_playlist.songs = _.without(this_playlist.songs, song);                    
+                    //// remove the old playlist                
+                    this_playlist.songs = _.without(this_playlist.songs, song);
                     user["playlists"] = newplaylists.concat(this_playlist);
                     this.props.updateCurrentUser(user);
                 }
             });
         }else{
-            // Adding
+            // Adding song to playlist
             $.ajax({
                 url: '/api/v1/playlist_songs',
                 type: 'POST',
-                data: { playlist_song: { song_id: song_id, playlist_id: playlist_id } },
+                data: { playlist_song: { song_id: song.id, playlist_id: playlist_id } },
                 success: (result) => {
-                    var newplaylists = _.without(playlists, this_playlist);                    
+                  
                     this_playlist.songs = this_playlist.songs.concat(song);
                     user["playlists"] = newplaylists.concat(this_playlist);
                     this.props.updateCurrentUser(user);
@@ -269,6 +270,7 @@ var Body = React.createClass({
                     <AllPlaylists 
                         handlePlaylistSubmit={this.handlePlaylistSubmit}
                         handleDelete={this.handlePlaylistDelete}
+                        handleAddSongToPlaylist={this.handleAddSongToPlaylist}
                         current_user={this.props.current_user} /> 
 
                 </div>
