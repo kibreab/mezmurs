@@ -137,7 +137,8 @@ var Song = React.createClass({
             </div>
 
         var addLyrics = <button className="mz-btns btns-small" type="button" >
-                            <span>Add lyrics</span>  <span className="fa fa-plus" />
+                            <span>Add lyrics</span>  
+                            <span className="fa fa-plus" />
                         </button>
 
         var lyrics = this.state.editable ? 

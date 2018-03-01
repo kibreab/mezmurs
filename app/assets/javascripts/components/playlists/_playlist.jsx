@@ -13,8 +13,7 @@ var Playlist = React.createClass({
         var playlist_songs = this.props.playlist.songs.map((song) => { 
             return (                               
                 <div className="playlist_song-item-holder" key={song.id+"p"+this.props.playlist.id}>
-                    <PlaylistSong song={song}
-                        handleDelete={this.handleDelete.bind(this, song.id)}
+                    <PlaylistSong song={song}                        
                         playlist={this.props.playlist}
                         handleAddSongToPlaylist={this.props.handleAddSongToPlaylist}
                         current_user={this.props.current_user} />
@@ -26,7 +25,7 @@ var Playlist = React.createClass({
         playlistAndSongs = 
             <div>
                 <div>
-                    <i className="fa fa-chevron-down site-toggle-buttons" type="" data-toggle="collapse" data-target={"#" + this.props.playlist.id + (this.props.dataFor ? this.props.dataFor : "") } aria-expanded="false" aria-controls="collapseSongs"></i>
+                    <i className="fa fa-chevron-down site-toggle-buttons" type="" data-toggle="collapse" data-target={"#" + this.props.playlist.id } aria-expanded="false" aria-controls="collapseSongs"></i>
                     
                     <div className="playlist-trash-icon-container pull-right">                    
                         <i className="fa fa-trash song-action-buttons" onClick={this.handleDelete} aria-hidden="true"></i>
@@ -35,7 +34,7 @@ var Playlist = React.createClass({
                 </div>
                 <div className="playlist-length-container">{this.props.playlist.songs.length}</div>
                 
-                <div className="collapse" id={this.props.playlist.id + (this.props.dataFor ? this.props.dataFor : "")}>
+                <div className="collapse" id={this.props.playlist.id }>
                     <div className="card card-block">
                         <div className="">
                             {playlist_songs}

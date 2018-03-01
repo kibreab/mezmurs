@@ -21,12 +21,42 @@ var AddSongToPlaylistModal = React.createClass({
             thisSongIsInThisPlaylistAlready = true;
           }
         }
+
+
+        var playlist_songs = playlist.songs.map((song) => { 
+            return (                               
+                <div className="playlist_song-item-holder" key={song.id+"p-modal"+playlist.id}>
+                    <PlaylistSong song={song}                        
+                        playlist={playlist}
+                        handleAddSongToPlaylist={this.props.handleAddSongToPlaylist}
+                        current_user={this.props.current_user} />
+                </div>
+            )
+        });
+
+
+
+
+
         return (
             <div className="modal-playlist-item-container" key={playlist.id+"-modal-"}>
               <div className="pull-left">
                 <InputSwitch inputID={"playlist-"+playlist.id+"-song-"+this.props.song.id} inputName="playlist" inputState={thisSongIsInThisPlaylistAlready} label={playlist.title} value={playlist.id} onChange={(e) => this.handleChange(thisSongIsInThisPlaylistAlready, e)} />
               </div>
-              <div className="pull-right modal-playlist-songs-counter">{playlist.songs.length}</div>
+
+              <div className="pull-right"><i className={"modal-toggle-open-icon " + (playlist.songs.length > 0 ? "fa fa-chevron-down" : "")} type="" data-toggle="collapse" data-target={"#songs-of-" + playlist.id } aria-expanded="false" aria-controls="collapseModalSongs"></i></div>
+              <div className="pull-right modal-playlist-songs-counter">{playlist.songs.length ? playlist.songs.length : ""}</div>
+
+              <div className="" id={"songs-of-" + playlist.id}>
+                  <div className="card card-block">
+                      <div className="">
+                          {playlist_songs}
+                      </div>
+                  </div>
+              </div>
+
+
+
             </div>
         )
       });

@@ -147,6 +147,11 @@ audio{
                     font-size: 18px;
                 }
             }
+            .count-total-likes{
+               padding: 0px 20px;
+               font-size: 28px;
+               font-weight: 700;
+            }            
             .text-area{
                 font-size: 14px;
                 color: #000;
@@ -161,9 +166,17 @@ audio{
                  .sort-icon-container{
                     text-align: center;
                  }
-                 .count-number{
-                    text-align: center;  
-                    font-size: 16px;
+                 .likes-icons{
+                    margin-right: 20px;
+                    cursor: pointer;
+                    color: gray;
+                    font-size: 11px;
+                    padding-left: 4px;                    
+                 }
+                 .user-likes-button-descripton{
+                    font-size: 11px;
+                    cursor: pointer;
+                    color: gray;
                  }
             }     
 		}
@@ -502,6 +515,7 @@ audio{
     padding: 8px;
     overflow: auto;
     margin-top: 2px;
+    width: 100%;
     .playlist-song-title{
         margin-right:4px;
     }

@@ -68,8 +68,13 @@
     			.modal-playlist-songs-counter{
 					font-size: 13px;    
     				font-weight: 800;
+    				padding: 3px;
     			}
-
+    			.modal-toggle-open-icon{
+    				color: #ccc;
+    				margin-left: 12px;
+    				cursor: pointer;
+    			}
     		}
 		}
 		.modal-media-icons-container{
