@@ -1,7 +1,8 @@
 var Song = React.createClass({
     getInitialState() {
         return {
-            editable: false
+            editable: false,
+            song_singer_id: null
         }
     },
     componentDidMount(){        
@@ -70,7 +71,7 @@ var Song = React.createClass({
             var title = this.refs.title.value;
             var id = this.refs.id.value;
             //var lyrics = this.refs.lyrics.value;
-            var singer = $("#singer-select").val(); //this.refs.singer.value;
+            var singer = this.state.song_singer_id;
             var song = {id: id , title: title , singer_id: singer};
             this.props.handleUpdate(song);
 
@@ -80,17 +81,12 @@ var Song = React.createClass({
     handleCancel() {
         this.setState({ editable: !this.state.editable })
     },
-    handlePlaylistDelete(){
-
-    },
-    handleAmharicInputKeyUp() {
-        transcrire();
-    },
-    handleAddSongToPlaylists(e) {
-    },
     handleSongLike() {
         this.props.handleSongLike(this.props.song.id)
-    },    
+    },
+    handleSongSingerChange(id) {
+      this.setState({ song_singer_id: id })  
+    }, 
     render() {
         var self = this;
         var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : ""
@@ -130,7 +126,7 @@ var Song = React.createClass({
             </div>            :
             
             this.props.song.title;
-        var singers = this.state.editable ? <SingersSelectList song={this.props.song} singers={this.props.singers} />          
+        var singers = this.state.editable ? <SingersSelectList handleSongSingerChange={this.handleSongSingerChange} song={this.props.song} singers={this.props.singers} />          
             : <div className="singer-name-listing">{singer_name}</div>;
 
         

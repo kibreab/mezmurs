@@ -5,7 +5,8 @@ var SingersSelectList = React.createClass({
         }
     },    
     handleSingerChange(event) {
-        this.setState({ singer_id: event.target.value })    
+        this.setState({ singer_id: event.target.value })
+        this.props.handleSongSingerChange(event.target.value);
     },
     render() {
 		var singersSelectList = this.props.singers.map(function (item, key) {
@@ -23,7 +24,7 @@ var SingersSelectList = React.createClass({
                     Singer
                 </div>
                 <div className="">
-                    <select id="singer-select" value={this.state ? this.state.singer_id : ""} onChange={this.handleSingerChange} className="chosen-select">
+                    <select id="singer-select" value={this.state ? this.state.singer_id : ""} onChange={this.handleSingerChange} className="">
                         {singersSelectList}
                     </select>                    
                 </div>
