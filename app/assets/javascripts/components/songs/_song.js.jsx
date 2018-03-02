@@ -88,7 +88,7 @@ var Song = React.createClass({
       this.setState({ song_singer_id: id })  
     }, 
     render() {
-        var self = this;
+        console.log(this.props.song.singer);
         var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : ""
         var singer_picture = this.props.song.singer ? this.props.song.singer.picture : "/assets/original/missing.png" 
         var nowPlaying = (this.props.currentSong && this.props.currentSong.id == this.props.song.id);
@@ -123,10 +123,12 @@ var Song = React.createClass({
                 <div className="">
                     <input ref='title' defaultValue={this.props.song.title}  />
                 </div>
-            </div>            :
-            
-            this.props.song.title;
-        var singers = this.state.editable ? <SingersSelectList handleSongSingerChange={this.handleSongSingerChange} song={this.props.song} singers={this.props.singers} />          
+            </div> : this.props.song.title.substring(0,30);
+        var singers = this.state.editable ? <SingersSelectList 
+            handleSongSingerChange={this.handleSongSingerChange} 
+            song={this.props.song} 
+            current_user={this.props.current_user}
+            singers={this.props.singers} />          
             : <div className="singer-name-listing">{singer_name}</div>;
 
         
@@ -159,18 +161,22 @@ var Song = React.createClass({
             <div className={"song-holder pull-left " + (nowPlaying ? "active-song-holder " : "")}>
 
                 <div className="song-item">
-                    <div className="singer-bg" style ={ { backgroundImage: "url("+""+")" } }>
+
+
+                    <div className={this.state.editable ? "" : "singer-bg" } style ={ { backgroundImage: "url(" + this.props.song.singer.picture +")"} }>
                         <div id="playlist" className="play-button-area">
                             <div className={this.state.editable ? "play-button-editable" : (nowPlaying ? "play-button-active" : "play-button")} onClick={this.handlePlaySong}>  
                                 <span className={this.state.editable ? (nowPlaying ? "p-button-editable fa fa-music " : "p-button-editable fa fa-play " ) : (nowPlaying ? "p-button-active fa fa-music" : "fa fa-play p-button")}></span>
                             </div>
+                            
+
                         </div>
                     </div>
 
                     <div className="song-content-area">
                         
 
-                        <div className="song-title-container">
+                        <div className="song-title-container" title={title}>
                             {title}
                         </div>
                         <div className="song-singer-container">

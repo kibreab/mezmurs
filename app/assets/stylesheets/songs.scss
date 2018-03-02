@@ -318,7 +318,7 @@ audio{
     color: black !important;   
 }
 .active-song-holder{
-    border: 1px solid $main-logo-color !important;   
+    border: 3px solid $main-logo-color !important;   
 }
 .song-holder{
 	height: 250px;
@@ -337,6 +337,14 @@ audio{
     .song-item{
     	height: 219px;    	
     }
+    .singer-bg{
+        height: 100px;
+        background-size: cover;
+
+        &:hover{
+            height: 140px;            
+        }
+    }
     .play-button-area{
 		
     	text-align: center;
@@ -346,9 +354,7 @@ audio{
             margin-right: auto;
             width: 54px;
             height: 54px;
-            padding-top: 6px;
             cursor: pointer;
-            padding-left: 6px;
             border-radius: 50%;
             border: 1px solid #d9dedc;      
             color: #d9dedc;
@@ -376,8 +382,9 @@ audio{
 
     		.p-button{
                 position: relative;
-                top: 9px;
-                font-size: 18px;                
+                top: 14px;
+                font-size: 18px;
+                left: 3px;
                 cursor: pointer;
     		}
 
@@ -388,12 +395,11 @@ audio{
             cursor: pointer;           
             width: 54px;
             height: 54px;
-            padding-top: 3px;
             border-radius: 50%;
             background: $main-logo-color;   
             .p-button-active{
                 position: relative;
-                top: 12px;
+                top: 14px;
                 font-size: 20px;
                 color: #fff;
                       
@@ -419,7 +425,7 @@ audio{
 
     }
     .song-content-area{
-		margin-top: 30px;
+		margin-top: 8px;
     	margin-left: 8px;
     	.song-title-container{
     		font-weight: 600;
@@ -526,4 +532,11 @@ audio{
     .delete-button{
 
     }
+}
+.add-singer-button{
+    font-size: 10px;
+    cursor: pointer;
+    color: $main-logo-color;
+    text-decoration: underline;
+    text-transform: uppercase;    
 }

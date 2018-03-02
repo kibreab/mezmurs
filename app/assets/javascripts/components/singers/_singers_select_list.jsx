@@ -26,17 +26,50 @@ var SingersSelectList = React.createClass({
                 <div className="">
                     <select id="singer-select" value={this.state ? this.state.singer_id : ""} onChange={this.handleSingerChange} className="">
                         {singersSelectList}
-                    </select>                    
+                    </select>                             
+                    <div className="add-singer-button" data-toggle="modal" data-target="#modalAddSingers">Add Singer</div>                   
                 </div>
-            </div>   
-
-
+                <AddSingerModal current_user={this.props.current_user} />
+            </div>
         )
         
     }
 });
 
+var AddSingerModal = React.createClass({  
 
+  render() {
+
+    return(
+    
+      <div className="modal fade" id={"modalAddSingers"} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            
+            <div className="modal-header">              
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span className="fa fa-times"aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <div className="modal-body">
+              <div className="welcome-text">Add singers</div>
+              <div className="site-name">M E Z M U R S . C O M </div>
+
+              <div className="member-qn">
+                <span>Add missing singers from the list</span>
+              </div>
+              
+              <NewSinger current_user={this.props.current_user} />
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    )
+  }
+});
 
 
 
