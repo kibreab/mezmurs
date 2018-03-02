@@ -1,14 +1,15 @@
 var AmharicKeyboard = React.createClass({
     
-    handleLoginKeyUp(item) {
+    handleKeyUp() {
+        console.log('---------------  please come  ------------------')
         transcrire();
     },
     render() {
         return(
-            <div className="midcol">
+            <div className="midcol text-area-amharic-modal">
                 <div className="app">
                     <form name="conversion" method="get" action="" target="">
-                        <textarea id='description' id="saisie" onKeyUp={this.handleLoginKeyUp} className="editor"  placeholder="መጻፍ ይጀምሩ..."></textarea>
+                        <textarea id="saisie" onKeyUp={this.handleKeyUp} className="editor"  placeholder="መጻፍ ይጀምሩ..."></textarea>
                     </form>
 
                 </div>

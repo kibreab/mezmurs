@@ -18,32 +18,9 @@ var Song = React.createClass({
            $("#audioPlayer")[0].play();
         });
       }
-      this.popOver();   
 
     },
     
-    popOver(){
-      /// Popover
-      $('.popover-dismiss').popover({
-          trigger: 'focus'
-      })
-      
-      $("[data-toggle=popover]").popover({
-          html : true,
-          content: function() {
-            var content = $(this).attr("data-popover-content");
-            return $(content).children(".popover-body").html();
-          },
-          title: function() {
-            var title = $(this).attr("data-popover-content");
-            return $(title).children(".popover-heading").html();
-          }
-      });
-      //$( "#" + this.props.song.id + "-add-song-to-playlists" ).click(function() {
-      //});
-        
-    },
-
     //audioPlayer(){
     //    var self = this;
     //    var currentSong = 0;
@@ -92,9 +69,9 @@ var Song = React.createClass({
         if(this.state.editable) {
             var title = this.refs.title.value;
             var id = this.refs.id.value;
-            var lyrics = this.refs.lyrics.value;
+            //var lyrics = this.refs.lyrics.value;
             var singer = $("#singer-select").val(); //this.refs.singer.value;
-            var song = {id: id , title: title , lyrics: lyrics , singer_id: singer};
+            var song = {id: id , title: title , singer_id: singer};
             this.props.handleUpdate(song);
 
         }
@@ -136,25 +113,23 @@ var Song = React.createClass({
                 </div>
             </div>
 
-        var addLyrics = <button className="mz-btns btns-small" type="button" >
-                            <span>Add lyrics</span>  
-                            <span className="fa fa-plus" />
-                        </button>
-
         var lyrics = this.state.editable ? 
-            <div className="midcol">
-                <div className="app">
-                    <form name="conversion" method="get" action="" target="">
-                        <textarea defaultValue={this.props.song.lyrics} ref='lyrics' id="saisie" onKeyUp={this.handleAmharicInputKeyUp} className="editor"  placeholder="መጻፍ ይጀምሩ..."></textarea>
-                    </form>
-                </div>
-            </div> : 
-
+            "" : 
             (
-                this.props.song.lyrics ? lyricsButtonField : addLyrics 
+                this.props.song.lyrics ? lyricsButtonField : <AddLyricsButton song={this.props.song} /> 
                 )
         
-        var title = this.state.editable ? <input type='text' ref='title' defaultValue={this.props.song.title} /> : this.props.song.title;
+        var title = this.state.editable ?
+            <div className="form-item">
+                <div className="form-label">
+                    Song title
+                </div>
+                <div className="">
+                    <input ref='title' defaultValue={this.props.song.title}  />
+                </div>
+            </div>            :
+            
+            this.props.song.title;
         var singers = this.state.editable ? <SingersSelectList song={this.props.song} singers={this.props.singers} />          
             : <div className="singer-name-listing">{singer_name}</div>;
 
@@ -165,7 +140,7 @@ var Song = React.createClass({
         var editSubmitButton = <ActionButton  
                                     current_user={this.props.current_user}
                                     updateCurrentUser={this.updateCurrentUser}
-                                    classList={"fa edit-song-icon " + (this.state.editable ? " fa-paper-plane" : " fa-pencil-square-o")}
+                                    classList={"fa edit-song-icon " + (this.state.editable ? "song-save-button fa-save" : " fa-pencil-square-o")}
                                     handleAction={this.handleEdit} />
 
         var user_liked_this_song = false;
@@ -205,7 +180,7 @@ var Song = React.createClass({
                         <div className="song-singer-container">
                             {singers}
                         </div>
-
+                        {idField}
                         <div className="see-lyrics-area">
                             <div className="lyrics-button">
                                 {lyrics}    
@@ -243,6 +218,8 @@ var Song = React.createClass({
                     song={this.props.song}
                     handleAddSongToPlaylist={this.props.handleAddSongToPlaylist}
                     current_user={this.props.current_user} />
+
+                <AddLyricsModal song={this.props.song} />
            
             </div>
         )

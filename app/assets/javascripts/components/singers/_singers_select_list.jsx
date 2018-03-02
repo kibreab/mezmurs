@@ -17,9 +17,19 @@ var SingersSelectList = React.createClass({
         });
 
         return(
-            <select id="singer-select" value={this.state ? this.state.singer_id : ""} onChange={this.handleSingerChange} className="form-select chosen-select">
-                {singersSelectList}
-            </select>
+
+            <div className="form-item">
+                <div className="form-label">
+                    Singer
+                </div>
+                <div className="">
+                    <select id="singer-select" value={this.state ? this.state.singer_id : ""} onChange={this.handleSingerChange} className="chosen-select">
+                        {singersSelectList}
+                    </select>                    
+                </div>
+            </div>   
+
+
         )
         
     }

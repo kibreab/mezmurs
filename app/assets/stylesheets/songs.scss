@@ -300,7 +300,7 @@ audio{
 }
 .popover-title {
     margin: 0;
-    font-family: "Raleway", Arial, sans-serif;
+    font-family: $main-font-family;
     padding: 8px 14px;
     font-size: 11px;    
     line-height: 18px;
@@ -471,8 +471,12 @@ audio{
             left: 42px;
             .edit-song-icon{
                 font-size: 23px;
-                color: #000000;
+                color: #000;
                 cursor: pointer;
+
+            }
+            .song-save-button{
+                margin-right: 12px;
             }
         }       
     }

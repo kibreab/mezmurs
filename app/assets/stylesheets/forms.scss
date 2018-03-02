@@ -59,7 +59,6 @@ form, input{
 .form-item {
     margin-right: 12px;
     position: relative;
-    width: 48%;
 }
 .form-label {
     font-family: Gotham Medium,"M Hei PRC W45","M Hei HK W42","M Hei HK W40","HelveticaNeue-Regular","Helvetica Neue Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -83,6 +82,42 @@ input{
     font-size: 16px;
     background-color: #f7f7f7;    
 }
+
+/* --------- Buttons ------ */
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: inline-block;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+select{
+    outline: 0;
+    border: 1px solid #d0d0d0;
+    transition: background-color 200ms linear;
+    padding: 6px;
+    width: 100%;
+    margin: 0; 
+    background-color: #f7f7f7;       
+    border-radius: 0;                
+    -webkit-appearance: none;
+}
+
 .chosen-single{
     padding: 11px 40px 11   px 10px !important;
     border-radius: 0 !important;
@@ -98,20 +133,7 @@ input{
     border: 1px solid #ccc !important;
     box-shadow: none !important;
 }
-select {
-    -webkit-appearance: menulist;
-    box-sizing: border-box;
-    align-items: center;
-    white-space: pre;
-    -webkit-rtl-ordering: logical;
-    color: black;
-    background-color: white;
-    cursor: default;
-    border-width: 1px;
-    border-style: solid;
-    border-color: initial;
-    border-image: initial;
-}
+
 .search-by-text-container{
 	width: 100%;
 }
@@ -185,15 +207,13 @@ select {
     }
 }
 
-
-
 .chosen-container chosen-container-single{
     width: 100%;
     height: 40px !important;
 }
 .chosen-container-single .chosen-search input[type="text"]{
     background: none !important;
-    font-family: "Raleway", Arial, sans-serif;
+    font-family: $main-font-family;
     height: 30px;
     border: 1px solid #ccc;
 }
@@ -206,12 +226,20 @@ select {
 
 }
 .chosen-container-single .chosen-single div {
-    position: absolute;
-    top: 7px;
-    right: 0;
+    padding: 10px 40px 10px 10px;
+    border-radius: 0;
+    font-size: 16px;
+    line-height: 18.4px;
+    position: relative;
     display: block;
-    width: 18px;
+    width: 100%;
     height: 100%;
+    background-color: transparent;
+    -webkit-appearance: none;
+
+}
+.chosen-search-input{
+
 }
 
 
@@ -299,4 +327,8 @@ select {
       }
     }
   }
+}
+.text-area-amharic-modal{
+    min-height: 227px;
+    max-width: 98%;
 }

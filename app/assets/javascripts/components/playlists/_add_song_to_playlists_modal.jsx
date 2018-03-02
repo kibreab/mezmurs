@@ -34,10 +34,6 @@ var AddSongToPlaylistModal = React.createClass({
             )
         });
 
-
-
-
-
         return (
             <div className="modal-playlist-item-container" key={playlist.id+"-modal-"}>
               <div className="pull-left">
@@ -47,15 +43,13 @@ var AddSongToPlaylistModal = React.createClass({
               <div className="pull-right"><i className={"modal-toggle-open-icon " + (playlist.songs.length > 0 ? "fa fa-chevron-down" : "")} type="" data-toggle="collapse" data-target={"#songs-of-" + playlist.id } aria-expanded="false" aria-controls="collapseModalSongs"></i></div>
               <div className="pull-right modal-playlist-songs-counter">{playlist.songs.length ? playlist.songs.length : ""}</div>
 
-              <div className="" id={"songs-of-" + playlist.id}>
+              <div className="collapse" id={"songs-of-" + playlist.id}>
                   <div className="card card-block">
                       <div className="">
                           {playlist_songs}
                       </div>
                   </div>
               </div>
-
-
 
             </div>
         )
