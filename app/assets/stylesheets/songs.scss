@@ -222,10 +222,10 @@ audio{
 	font-family: Nyala, "Raleway", Arial, sans-serif;
 }
 #playlist a.active{
-	color: red;
+	color: $main-logo-color;
 }
 #playlist div a.active{
-	color: red;
+	color: $main-logo-color;
 }
 .song-title-span{	
     margin-left: 10px;
@@ -448,7 +448,7 @@ audio{
     }
 
     .song-activity-button-area-active{
-        border-top: 1px solid #ff7576;
+        border-top: 1px solid $main-logo-color;
         padding: 2px 10px;
         background: $main-logo-color;
         overflow: visible;
