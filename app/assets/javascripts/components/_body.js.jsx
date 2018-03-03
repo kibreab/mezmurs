@@ -282,6 +282,7 @@ var Body = React.createClass({
                 <div className="major-navigation">
                     <Allsongs 
                         songs={this.state.songs}
+                        handleSingerSubmit={this.handleSingerSubmit}
                         singers={this.state.singers}
                         handleAddSongToPlaylist={this.handleAddSongToPlaylist}
                         handleDelete={this.handleDelete}

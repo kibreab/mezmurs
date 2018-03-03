@@ -13,7 +13,7 @@ var NewSinger= React.createClass({
             contentType: false,
             success: (singer) => {
                 console.log(' -*- -*-  **  SUCCESS  **  -*- -*- ')
-                
+                this.props.handleSingerSubmit(singer);
                 //this.props.handleSubmit(singer);
             }
         });

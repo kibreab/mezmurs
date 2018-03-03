@@ -416,8 +416,9 @@ audio{
             background: $main-logo-color;   
             .p-button-editable{
                 position: relative;
-                top: -4px;
-                font-size: 11px;
+                top: -5px;
+                left: 1px;
+                font-size: 9px;                
                 color: #fff;
                 cursor: pointer;            
             }
@@ -534,7 +535,7 @@ audio{
     }
 }
 .add-singer-button{
-    font-size: 10px;
+    font-size: 9px;
     cursor: pointer;
     color: $main-logo-color;
     text-decoration: underline;

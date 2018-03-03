@@ -23,6 +23,7 @@ var Allsongs = React.createClass({
                           handleDelete={this.handleDelete.bind(this, song.id)}
                           updateCurrentSong={this.updateCurrentSong}
                           updateCurrentUser={this.updateCurrentUser}
+                          handleSingerSubmit={this.props.handleSingerSubmit}
                           singers={this.props.singers}
                           current_user={this.props.current_user}
                           currentSong={this.props.currentSong}

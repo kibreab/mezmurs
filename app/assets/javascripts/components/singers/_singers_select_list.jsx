@@ -29,7 +29,7 @@ var SingersSelectList = React.createClass({
                     </select>                             
                     <div className="add-singer-button" data-toggle="modal" data-target="#modalAddSingers">Add Singer</div>                   
                 </div>
-                <AddSingerModal current_user={this.props.current_user} />
+                <AddSingerModal current_user={this.props.current_user} handleSingerSubmit={this.props.handleSingerSubmit} />
             </div>
         )
         
@@ -60,7 +60,7 @@ var AddSingerModal = React.createClass({
                 <span>Add missing singers from the list</span>
               </div>
               
-              <NewSinger current_user={this.props.current_user} />
+              <NewSinger current_user={this.props.current_user} handleSingerSubmit={this.props.handleSingerSubmit} />
 
             </div>
 

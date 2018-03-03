@@ -128,6 +128,7 @@ var Song = React.createClass({
             handleSongSingerChange={this.handleSongSingerChange} 
             song={this.props.song} 
             current_user={this.props.current_user}
+            handleSingerSubmit={this.props.handleSingerSubmit}
             singers={this.props.singers} />          
             : <div className="singer-name-listing">{singer_name}</div>;
 
