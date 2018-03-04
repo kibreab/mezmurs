@@ -69,9 +69,7 @@ var AddSongToPlaylistModal = React.createClass({
             </div>
 
             <div className="modal-body">
-              <div className="welcome-text">{this.props.song.title}</div>
-              <div className="site-name">M E Z M U R S . C O M </div>
-
+              <ModalSongHeader song={this.props.song} />
               <div className="member-qn">
                 <span>{"Your playlists "}</span>
                 <span className="modal-playlists-counter">{this.props.current_user ? this.props.current_user.playlists.length : ""}</span>

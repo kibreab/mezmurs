@@ -4,7 +4,7 @@ var AddLyricsModal = React.createClass({
     this.props.handleAmharicInputKeyUp();
   },  
   render() {
-    
+    var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : "Unknown singer"
     
     return(
     
@@ -12,25 +12,15 @@ var AddLyricsModal = React.createClass({
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             
-            <div className="modal-header">              
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span className="fa fa-times"aria-hidden="true"></span>
-              </button>
-            </div>
+            <ModalHeader />
 
             <div className="modal-body">
-              <div className="welcome-text">{this.props.song.title}</div>
-              <div className="site-name">M E Z M U R S . C O M </div>
+              <ModalSongHeader song={this.props.song} />
 
               <div className="member-qn">
                 <span>Lyrics addiition in progress </span>
               </div>
-
-
               <AmharicKeyboard />
-
-
-
             </div>
 
           </div>

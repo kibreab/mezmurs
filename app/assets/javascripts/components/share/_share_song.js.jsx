@@ -30,18 +30,10 @@ var ShareSongContent = React.createClass({
     
       <div className="modal fade" id={"modalShareSong-"+this.props.song.id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            
-            <div className="modal-header">              
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span className="fa fa-times"aria-hidden="true"></span>
-              </button>
-            </div>
-
+          <div className="modal-content">            
+            <ModalHeader />
             <div className="modal-body">
-              <div className="welcome-text">{this.props.song.title}</div>
-              <div className="site-name">M E Z M U R S . C O M </div>
-
+              <ModalSongHeader song={this.props.song} />
               <div className="member-qn">
                 <span>Share this song to social media </span>
               </div>
