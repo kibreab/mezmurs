@@ -26,6 +26,8 @@ gem 'jbuilder'
 gem 'sdoc', group: :doc
 gem 'jquery-rails'
 
+gem 'will_paginate', '~> 3.1.0'
+
 gem "font-awesome-rails"
 
 gem 'chosen-rails'

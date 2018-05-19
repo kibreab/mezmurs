@@ -8,10 +8,13 @@ var Body = React.createClass({
     },
 
     componentDidMount() {
-        $.getJSON('/api/v1/songs.json', (response) => { this.setState({ songs: response }) });
+        this.fetchSongs("");
         $.getJSON('/api/v1/singers.json', (response) => { this.setState({ singers: response }) });
         this.chosenSelectInit();
-    },  
+    },
+    fetchSongs(data) {
+        $.getJSON('/api/v1/songs.json?per_page=30&page=1', data,  (response) => { this.setState({ songs: response }) });
+    },
     chosenSelectInit: function() {
         $('.chosen-select').chosen({
           allow_single_deselect: true,
@@ -237,8 +240,9 @@ var Body = React.createClass({
         this.props.updateCurrentUser(user);
     },
 
-    render() {
 
+
+    render() {        
         return (
             <div className="">
                 <NewSong handleSubmit={this.handleSubmit}/>
@@ -282,6 +286,7 @@ var Body = React.createClass({
                 <div className="major-navigation">
                     <Allsongs 
                         songs={this.state.songs}
+                        fetchSongs={this.fetchSongs}
                         handleSingerSubmit={this.handleSingerSubmit}
                         singers={this.state.singers}
                         handleAddSongToPlaylist={this.handleAddSongToPlaylist}
@@ -294,6 +299,7 @@ var Body = React.createClass({
                         current_user={this.props.current_user} />  
 
                 </div>
+
                 <LoginModal updateCurrentUser={this.updateCurrentUser} current_user={this.props.current_user} />
 
                 {/* <div className="pull-left right-navigation">

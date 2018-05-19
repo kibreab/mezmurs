@@ -1,6 +1,9 @@
 class Api::V1::SongsController < Api::V1::BaseController
   def index
-    respond_with Song.all
+    songs = Song.all
+              .paginate(:page => params[:page], :per_page => params[:per_page])
+              .order("#{sort_column} #{sort_direction}")
+    respond_with songs
   end
 
   def create
@@ -24,6 +27,14 @@ class Api::V1::SongsController < Api::V1::BaseController
   end
 
   private
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end  
+  
+  def sort_column
+    params[:sort] ? params[:sort] : "id"
+  end
 
   def song_params
     params.require(:song).permit(:id, :title, :description, :lyrics, :type, :category, :album_number, :singer_id, :playlist_id, :filename)

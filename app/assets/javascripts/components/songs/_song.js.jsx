@@ -88,9 +88,9 @@ var Song = React.createClass({
       this.setState({ song_singer_id: id })  
     }, 
     render() {
-        console.log(this.props.song.singer);
+        //console.log(this.props.song.singer);
         var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : ""
-        var singer_picture = this.props.song.singer ? this.props.song.singer.picture : "/assets/original/missing.png" 
+        var singer_picture = this.props.song.singer && this.props.song.singer.picture ? this.props.song.singer.picture : "/assets/original/missing.png" 
         var nowPlaying = (this.props.currentSong && this.props.currentSong.id == this.props.song.id);
         //<input type='text' ref='lyrics' defaultValue={this.props.song.lyrics} />
         
@@ -156,7 +156,7 @@ var Song = React.createClass({
 
          
         var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.props.handleDelete} aria-hidden="true"></i>
-
+        var singer_picture = this.props.song.singer && this.props.song.singer.picture ? this.props.song.singer.picture : "/assets/original/missing.png" 
 
         return (
             <div className={"song-holder pull-left " + (nowPlaying ? "active-song-holder " : "")}>
@@ -164,7 +164,7 @@ var Song = React.createClass({
                 <div className="song-item">
 
 
-                    <div className={this.state.editable ? "" : "singer-bg" } style ={ { backgroundImage: "url(" + this.props.song.singer.picture +")"} }>
+                    <div className={this.state.editable ? "" : "singer-bg" } style ={ { backgroundImage: "url(" + singer_picture +")"} }>
                         <div id="playlist" className="play-button-area">
                             <div className={this.state.editable ? "play-button-editable" : (nowPlaying ? "play-button-active" : "play-button")} onClick={this.handlePlaySong}>  
                                 <span className={this.state.editable ? (nowPlaying ? "p-button-editable fa fa-music " : "p-button-editable fa fa-play " ) : (nowPlaying ? "p-button-active fa fa-music" : "fa fa-play p-button")}></span>
@@ -186,7 +186,7 @@ var Song = React.createClass({
                         {idField}
                         <div className="see-lyrics-area">
                             <div className="lyrics-button">
-                                {lyrics}    
+                                {/*lyrics*/}    
                             </div>
                             
                         </div>
