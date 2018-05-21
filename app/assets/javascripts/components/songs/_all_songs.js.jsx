@@ -1,48 +1,32 @@
-//import VirtualList from 'react-tiny-virtual-list';
-
 var Allsongs = React.createClass({
   getInitialState() {
       return { 
-        maxOneTimeFetch: 30,
-        per_page: 30,
+        maxOneTimeFetch: 0,        
         page: 1
        }
   },
   componentDidMount() {
+    var per_page = this.node.clientWidth/96;
+    this.setState({
+      per_page: per_page
+    });       
   },
 
   handleShowMore: function() {
-    this.setState({per_page: this.state.per_page + this.state.maxOneTimeFetch, page: this.state.page}, function() {
+    this.setState({per_page: this.state.per_page + this.state.maxOneTimeFetch, page: this.state.page + 1}, function() {
       this._fetchMore();
     });
   },
+  handlePrevious: function() {
+    this.setState({page: this.state.page - 1}, function() {
+      this._fetchMore();
+    });
+  },  
 
   _fetchMore: function() {
-
     var data = {"per_page": this.state.per_page, "page": this.state.page}
-
     this.props.fetchSongs(data)
-
-   //$.ajax({
-   //  url: "api/v1/songs",
-   //  dataType: "json",
-   //  data: data,
-   //  type: "GET",
-   //  xhrFields: {
-   //    withCredentials: true
-   //  },
-   //  success: function(result) {
-   //    console.log (result);
-   //    this.setState({
-   //      songs: result,                    
-   //    });
-   //  }.bind(this),
-   //  error: function(event, status, throwError) {
-   //    console.log("I have error searching from library");
-   //  }
-   //});
   },
-
 
   handleDelete(id) {
       this.props.handleDelete(id);
@@ -59,9 +43,9 @@ var Allsongs = React.createClass({
       this.props.updateCurrentUser(user);
   },
   render() {
-
-      var sorted_songs = this.state.songs ? this.state.songs : this.props.songs; //_.sortBy(this.props.songs, 'title');
-      var songs= sorted_songs.map((song) => {
+      var sortBy = "title"
+      var s_songs = this.state.songs ? this.state.songs : this.props.songs; //;
+      var songs= _.sortBy(s_songs, sortBy).map((song) => {
           return (
               <div key={song.id}>
                   <Song song={song}
@@ -81,10 +65,11 @@ var Allsongs = React.createClass({
 
       return(
           <div>
-              <div className="all-song-items-container" >
-                {songs}
-                <div className="pull-left" onClick={this.handleShowMore}>Show more</div>  
+              <div className="pull-left previous-items" onClick={this.handlePrevious}><span className="fa fa-angle-left"></span></div>  
+              <div className="all-song-items-container pull-left" ref={node => (this.node = node)}> 
+                {songs}                
               </div>
+              <div className="pull-left next-items" onClick={this.handleShowMore}><span className="fa fa-angle-right"></span></div>                
           </div>
     );
   }

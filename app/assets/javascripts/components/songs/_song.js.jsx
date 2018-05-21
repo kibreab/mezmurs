@@ -52,7 +52,7 @@ var Song = React.createClass({
 
     handlePlaySong(e){
         e.preventDefault();
-        var src = "assets/all_old_emezmurs/" + this.props.song.filename;
+        var src = "assets/bene lay.mp3" //+ this.props.song.filename;
         $("#audioPlayer")[0].src = src;
         $("#audioPlayer")[0].play();
         $(".song-title").find("a").removeClass("active");

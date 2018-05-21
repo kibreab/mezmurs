@@ -11,7 +11,6 @@ class Api::V1::SongsController < Api::V1::BaseController
   end
 
   def show
-    puts "COMES TO SHOWWW:::::"
     #respond_with :api, :v1, Song.find(params[:id])
     @song = Song.find(params[:id])
   end  
@@ -33,7 +32,7 @@ class Api::V1::SongsController < Api::V1::BaseController
   end  
   
   def sort_column
-    params[:sort] ? params[:sort] : "id"
+    params[:sort] ? params[:sort] : "title"
   end
 
   def song_params

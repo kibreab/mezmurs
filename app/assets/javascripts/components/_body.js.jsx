@@ -8,12 +8,14 @@ var Body = React.createClass({
     },
 
     componentDidMount() {
-        this.fetchSongs("");
+        var totalWidth =  $('body').width();
+        oneTimeFetch = totalWidth/120;
+        this.fetchSongs({"per_page": oneTimeFetch, "page": 1});
         $.getJSON('/api/v1/singers.json', (response) => { this.setState({ singers: response }) });
         this.chosenSelectInit();
     },
     fetchSongs(data) {
-        $.getJSON('/api/v1/songs.json?per_page=30&page=1', data,  (response) => { this.setState({ songs: response }) });
+        $.getJSON('/api/v1/songs.json', data,  (response) => { this.setState({ songs: response }) });
     },
     chosenSelectInit: function() {
         $('.chosen-select').chosen({
@@ -242,7 +244,7 @@ var Body = React.createClass({
 
 
 
-    render() {        
+    render() {
         return (
             <div className="">
                 <NewSong handleSubmit={this.handleSubmit}/>
@@ -256,26 +258,13 @@ var Body = React.createClass({
 
                 <div className="major-navigation second-layer">
 
-                    <AudioHeader 
-                        singers={this.state.singers} 
-                        onUpdate={this.handleSongUpdate}
-                        updateCurrentUser={this.updateCurrentUser}
-                        currentSong={this.state.currentSong} 
-                        current_user={this.props.current_user}
-                        />
-
-                    < NewPlaylist updateCurrentUser={this.updateCurrentUser} handleSubmit={this.handlePlaylistSubmit} current_user={this.props.current_user} />
-
-                </div>
-
-
-                <div className="major-navigation second-layer">
-
                     <AllPlaylists 
                         handlePlaylistSubmit={this.handlePlaylistSubmit}
                         handleDelete={this.handlePlaylistDelete}
                         handleAddSongToPlaylist={this.handleAddSongToPlaylist}
                         current_user={this.props.current_user} /> 
+
+                    <NewPlaylist updateCurrentUser={this.updateCurrentUser} handleSubmit={this.handlePlaylistSubmit} current_user={this.props.current_user} />
 
                 </div>
 
@@ -299,6 +288,17 @@ var Body = React.createClass({
                         current_user={this.props.current_user} />  
 
                 </div>
+
+                <div className="major-navigation">
+                    <AudioHeader 
+                        singers={this.state.singers} 
+                        onUpdate={this.handleSongUpdate}
+                        updateCurrentUser={this.updateCurrentUser}
+                        currentSong={this.state.currentSong} 
+                        current_user={this.props.current_user}
+                        />
+                </div>
+
 
                 <LoginModal updateCurrentUser={this.updateCurrentUser} current_user={this.props.current_user} />
 
