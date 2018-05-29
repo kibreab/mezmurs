@@ -10,7 +10,7 @@ var Body = React.createClass({
     },
 
     componentDidMount() {
-        window.missing_picture_url = ""; //"/assets/original/missing.png";
+        window.missing_picture_url = "";//"/assets/original/missing.png";
         var totalWidth =  $('body').width();
         oneTimeFetch = totalWidth/120;
         this.fetchSongs({"per_page": oneTimeFetch, "page": 1});
@@ -18,10 +18,12 @@ var Body = React.createClass({
         this.chosenSelectInit();
     },
     fetchSongs(data) {
-        var searchValue = this.state.searchValue;
-        if (searchValue) {
-            data["search_value"] = searchValue;
+        if (this.state.searchValue) {
+            data["search_value"] = this.state.searchValue;
         }
+        if (this.state.searchSingerValue) {
+            data["singer_id"] = this.state.searchSingerValue;
+        }        
         $.getJSON('/api/v1/songs.json', data,  (response) => { this.setState({ songs: response }) });
     },
     chosenSelectInit: function() {
@@ -34,7 +36,7 @@ var Body = React.createClass({
     },
     
     setSearchValue(value) {this.setState({ searchValue: value })}, 
-    setSearchSingerValue(value) {this.setState({ seasetSearchSingerValuerchValue: value })}, 
+    setSearchSingerValue(value) {this.setState({ searchSingerValue: value })}, 
     
     handleSubmit(song) {
         var newState = this.state.songs.concat(song);

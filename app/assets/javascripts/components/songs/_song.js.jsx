@@ -155,7 +155,7 @@ var Song = React.createClass({
                             handleAction={this.handleSongLike} />
 
          
-        var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.props.handleDelete} aria-hidden="true"></i>
+        var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.props.handleDelete} aria-hidden="true"></i>        
 
         return (
             <div className={"song-holder pull-left " + (nowPlaying ? "active-song-holder " : "")}>

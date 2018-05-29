@@ -63,9 +63,11 @@ var Allsongs = React.createClass({
           )
       });
 
+      var showPrevious = this.state.page == 1 ? null : <div className="pull-left previous-items" onClick={this.handlePrevious}><span className="fa fa-angle-left"></span></div>;
+
       return(
           <div>
-              <div className="pull-left previous-items" onClick={this.handlePrevious}><span className="fa fa-angle-left"></span></div>  
+              {showPrevious}
               <div className="all-song-items-container pull-left" ref={node => (this.node = node)}> 
                 {songs}                
               </div>
