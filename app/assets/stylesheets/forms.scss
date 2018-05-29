@@ -137,9 +137,13 @@ select{
 .search-by-text-container{
 	width: 100%;
 }
+.long-text-input{
+    width: 400px;
+    height: 45px;
+}
+
 .search-forms-container{
-	width: 60%;	
-	
+	width: 80%;		
 	padding: 12px 12px 0 40px;
 }
 .search-button-container {
@@ -183,8 +187,8 @@ select{
 .search-icon-container{
 	font-size: 50px;
     position: relative;
-    top: 8px;
-    left: 20px;    
+    top: 14px;
+    right: 30px;    
     cursor: pointer;
     -webkit-transition: all .3s ease-out;
     -moz-transition: all .3s ease-out;

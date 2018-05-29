@@ -1,5 +1,27 @@
 var SearchArea = React.createClass({
-
+    getInitialState() {
+        return {
+            searchValue: "",
+            searchSingerValue: ""
+        }
+    },    
+    handleOnChange(event) {
+        value = event.target.value;
+        this.setState({searchValue: value});
+        this.props.setSearchValue(value);
+    },
+    handleSingerChange(event) {
+        value = event.target.value;
+        this.setState({searchSingerValue: value});
+        this.props.setSearchSingerValue(value);
+        
+    }, 
+    search(event){
+        var totalWidth =  $('body').width();
+        oneTimeFetch = totalWidth/120;
+        var data = {"per_page": oneTimeFetch, "page": 1, search_value: this.state.searchValue, singer_id: this.state.searchSingerValue}
+        this.props.fetchSongs(data);                
+    },
     render() {
         var singersSelectList = this.props.singers.map(function (item, key) {
           return (
@@ -18,7 +40,7 @@ var SearchArea = React.createClass({
                                 Song title
                             </div>
                             <div className="search-by-text-container">
-                                <input className=""  />
+                                <input className="long-text-input" value={this.state.searchValue} onChange={this.handleOnChange} />
                             </div>
                         </div>
 
@@ -28,7 +50,10 @@ var SearchArea = React.createClass({
                                 Singer name
                             </div>
                             <div className="search-by-text-container">
-                                <select id="singer-select" value={this.state ? this.state.singer_id : ""} className="form-select chosen-select" onChange={this.handleSingerChange}>                                    
+                                <select id="singer-select" className="long-text-input form-select" onChange={this.handleSingerChange}>
+                                    <option value={""} key={0}>
+                                        { "ANY" }
+                                    </option>                                    
                                     {singersSelectList}
                                 </select>
                             </div>
@@ -38,7 +63,7 @@ var SearchArea = React.createClass({
 
                 </div>
 
-                <div className="search-icon-container pull-left">
+                <div className="search-icon-container pull-left" onClick={this.search} >
                     <i className="fa fa-search"></i>
                     
                     <div className="hidden">

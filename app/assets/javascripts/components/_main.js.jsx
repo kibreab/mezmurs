@@ -14,7 +14,7 @@ var Main = React.createClass({
     		window.current_user = this.props.current_user
 
         return (
-            <div className="">            
+            <div className="page">            
                 <Header current_user={this.state.current_user} />
                 <Body 
                     updateCurrentUser={this.updateCurrentUser} 

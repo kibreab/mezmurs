@@ -30,7 +30,7 @@ var Allsongs = React.createClass({
 
   handleDelete(id) {
       this.props.handleDelete(id);
-  },
+  },  
 
   onUpdate(song) {
       this.props.onUpdate(song);

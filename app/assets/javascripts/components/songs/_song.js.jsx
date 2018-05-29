@@ -90,7 +90,7 @@ var Song = React.createClass({
     render() {
         //console.log(this.props.song.singer);
         var singer_name = this.props.song.singer ? this.props.song.singer.singer_name : ""
-        var singer_picture = this.props.song.singer && this.props.song.singer.picture ? this.props.song.singer.picture : "/assets/original/missing.png" 
+        var singer_picture = this.props.song.singer && this.props.song.singer.picture ? this.props.song.singer.picture : window.missing_picture_url 
         var nowPlaying = (this.props.currentSong && this.props.currentSong.id == this.props.song.id);
         //<input type='text' ref='lyrics' defaultValue={this.props.song.lyrics} />
         
@@ -156,7 +156,6 @@ var Song = React.createClass({
 
          
         var deleteButton = <i className="fa fa-trash song-action-buttons" onClick={this.props.handleDelete} aria-hidden="true"></i>
-        var singer_picture = this.props.song.singer && this.props.song.singer.picture ? this.props.song.singer.picture : "/assets/original/missing.png" 
 
         return (
             <div className={"song-holder pull-left " + (nowPlaying ? "active-song-holder " : "")}>

@@ -26,7 +26,7 @@ var AllPlaylists = React.createClass({
                 )
             });        
         }else{
-            var playlists = <div>Please add playlists to see them here</div>
+            var playlists = <div>No playlists yet</div>
         }
 
         return(

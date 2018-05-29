@@ -3,11 +3,14 @@ var Body = React.createClass({
         return { 
             songs: [],
             singers: [],
+            searchValue: "",
+            searchSingerValue: "",
             currentSong: this.props.currentSong ? JSON.parse(this.props.currentSong) : null
          }
     },
 
     componentDidMount() {
+        window.missing_picture_url = ""; //"/assets/original/missing.png";
         var totalWidth =  $('body').width();
         oneTimeFetch = totalWidth/120;
         this.fetchSongs({"per_page": oneTimeFetch, "page": 1});
@@ -15,6 +18,10 @@ var Body = React.createClass({
         this.chosenSelectInit();
     },
     fetchSongs(data) {
+        var searchValue = this.state.searchValue;
+        if (searchValue) {
+            data["search_value"] = searchValue;
+        }
         $.getJSON('/api/v1/songs.json', data,  (response) => { this.setState({ songs: response }) });
     },
     chosenSelectInit: function() {
@@ -25,6 +32,10 @@ var Body = React.createClass({
         });
       
     },
+    
+    setSearchValue(value) {this.setState({ searchValue: value })}, 
+    setSearchSingerValue(value) {this.setState({ seasetSearchSingerValuerchValue: value })}, 
+    
     handleSubmit(song) {
         var newState = this.state.songs.concat(song);
         this.setState({ songs: newState })
@@ -251,7 +262,7 @@ var Body = React.createClass({
 
                 <div className="major-navigation first-layer">
 
-                    <SearchArea singers={this.state.singers} />
+                    <SearchArea singers={this.state.singers} setSearchValue={this.setSearchValue} setSearchSingerValue={this.setSearchSingerValue} fetchSongs={this.fetchSongs} />
                     <User current_user={this.props.current_user} updateCurrentUser={this.updateCurrentUser} />
   
                 </div>

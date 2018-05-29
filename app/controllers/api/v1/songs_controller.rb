@@ -1,6 +1,14 @@
 class Api::V1::SongsController < Api::V1::BaseController
   def index
+    
+    opts = {}
+    if params[:singer_id].present?
+      opts[:singer_id] = params[:singer_id]
+    end
+
     songs = Song.all
+              .where(opts)
+              .where("title ILIKE ?", "%#{params[:search_value]}%")
               .paginate(:page => params[:page], :per_page => params[:per_page])
               .order("#{sort_column} #{sort_direction}")
     respond_with songs

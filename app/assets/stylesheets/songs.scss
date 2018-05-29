@@ -137,7 +137,8 @@ audio{
 .audio-header{
     position: fixed;
     bottom: 0;
-    background: #ddd;
+    background: #fafafa;
+    border-top: 1px solid #ddd;
 }
 .sort-container{
 	height: 78px;
@@ -353,9 +354,9 @@ audio{
     	height: 219px;    	
     }
     .singer-bg{
-        height: 100px;
+        height: 140px;
         background-size: cover;
-        border-radius: 5px;
+        border-radius: 4px 4px 0px 0px;
         &:hover{
             height: 140px;            
         }
