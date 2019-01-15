@@ -1,4 +1,5 @@
-= Rails with React tutorial sample files
+= Music directory for songs and singers 
  
-This is part of a tutorial article about React-rails on Pluralsight:
-=== {Building a CRUD interface with React and Ruby on Rails}[link:http://tutorials.pluralsight.com/ruby-ruby-on-rails/building-a-crud-interface-with-react-and-ruby-on-rails]
+Ruby on rails routes to React code base and all data is then managed by the React side of things
+
+Setting up the environment guide coming soon
